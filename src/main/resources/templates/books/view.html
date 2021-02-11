@@ -3,10 +3,10 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
-<h2 th:text="${'Book: ' + book.name}">Default Title</h2>
+<h2 th:text="${'Book: ' + book.title}">Default Title</h2>
 
 <div>
-    <p th:text="${'Name: ' + book.name}"></p>
+    <p th:text="${'Title: ' + book.title}"></p>
     <p th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></p>
 </div>
 
@@ -41,7 +41,7 @@
 <th:block th:if="${book}">
     <form method="post" th:action="@{/books/view}" id="delete-book">
         <input type="hidden" name="bookId" th:value="${book.id}" class="form-control">
-        <input type="hidden" id="bookId" th:value="${book.name}" class="form-control">
+        <input type="hidden" id="bookId" th:value="${book.title}" class="form-control">
         <p></p>
         <input onclick="deleteBook()" type="button" value="Delete Book" class="btn btn-danger">
     </form>

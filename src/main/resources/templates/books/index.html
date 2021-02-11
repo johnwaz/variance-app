@@ -10,7 +10,7 @@
 <div class="container body-content">
     <ul>
         <li th:each="book : ${user.books}">
-            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.name}"></a>
+            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
         </li>
     </ul>
     <a th:href="@{'/books/add'}">
