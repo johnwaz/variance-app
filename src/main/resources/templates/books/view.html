@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${'Book: ' + book.name}">Default Title</h2>
+
+<div>
+    <p th:text="${'Name: ' + book.name}"></p>
+    <p th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></p>
+</div>
+
+<div>
+    <a th:href="@{/books/edit/{id}(id=${book.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
+
+<h3 th:text="${'Chapters:'}"></h3>
+<div>
+    <ul>
+        <li th:each="chapter : ${book.chapters}">
+            <a th:href="@{'/chapters/view/' + ${chapter.id}}" th:text="${chapter.name}"></a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <a th:href="@{/properties/addRoom/{id}(id=${property.id})}">
+        <input type="submit" value="Add Room" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
+
+<div>
+    <a th:href="@{/}">
+        <input type="submit" th:value="${'Back to Home-Page'}" class="btn btn-dark">
+    </a>
+</div>
+
+<th:block th:if="${book}">
+    <form method="post" th:action="@{/books/view}" id="delete-book">
+        <input type="hidden" name="bookId" th:value="${book.id}" class="form-control">
+        <input type="hidden" id="bookId" th:value="${book.name}" class="form-control">
+        <p></p>
+        <input onclick="deleteProperty()" type="button" value="Delete Book" class="btn btn-danger">
+    </form>
+</th:block>
 
 </body>
 </html>
