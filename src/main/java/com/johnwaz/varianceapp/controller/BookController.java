@@ -120,4 +120,10 @@ public class BookController {
         bookRepository.save(book);
         return "redirect:view/" + bookId;
     }
+
+    @PostMapping("view")
+    public String processDeleteBook(int bookId) {
+        bookRepository.deleteById(bookId);
+        return "redirect:";
+    }
 }
