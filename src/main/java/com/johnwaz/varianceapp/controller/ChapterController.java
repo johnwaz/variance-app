@@ -75,4 +75,27 @@ public class ChapterController {
         chapterRepository.save(newChapter);
         return "redirect:/books/view/{id}";
     }
+
+    @GetMapping(path = {"view/{chapterId}", "view"})
+    public String displayViewChapter(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (chapterId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
+            return "redirect:../";
+        } else {
+            Optional<Chapter> result = chapterRepository.findById(chapterId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Chapter chapter = result.get();
+                if (user.getId() != chapter.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("chapter", chapter);
+            }
+        }
+        return "chapters/view";
+    }
 }
