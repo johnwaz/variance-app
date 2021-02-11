@@ -4,7 +4,7 @@
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
 <h2 th:text="${'Book: ' + book.title}">Default Title</h2>
-
+<p></p>
 <div>
     <p th:text="${'Title: ' + book.title}"></p>
     <p th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></p>
@@ -15,8 +15,9 @@
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 </div>
+<p></p>
 
-<!--<h3 th:text="${'Chapters:'}"></h3>-->
+<h3 th:text="${'Chapters:'}"></h3>
 <!--<div>-->
 <!--    <ul>-->
 <!--        <li th:each="chapter : ${book.chapters}">-->
@@ -26,11 +27,11 @@
 <!--</div>-->
 
 <!--<div>-->
-<!--    <a th:href="@{/properties/addRoom/{id}(id=${property.id})}">-->
-<!--        <input type="submit" value="Add Room" class="btn btn-secondary">-->
+<!--    <a th:href="@{/chapters/add/{id}(id=${chapter.id})}">-->
+<!--        <input type="submit" value="Add Chapter" class="btn btn-secondary">-->
 <!--    </a>-->
 <!--</div>-->
-<!--<p></p>-->
+<p></p>
 
 <div>
     <a th:href="@{/}">
