@@ -4,3 +4,10 @@ function deleteBook() {
         document.getElementById("delete-book").submit();
     }
 }
+
+function deleteChapter() {
+    let chapter = $('#chapterId').val();
+    if (confirm(`Remove ${chapter}?`)) {
+        document.getElementById("delete-chapter").submit();
+    }
+}
