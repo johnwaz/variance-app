@@ -63,7 +63,7 @@ public class ChapterController {
                                        HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("book", bookRepository.findById(bookId).get());
-            return "devices/add";
+            return "chapters/add";
         }
         Optional optBook = bookRepository.findById(bookId);
         Book book = bookRepository.findById(bookId).get();
