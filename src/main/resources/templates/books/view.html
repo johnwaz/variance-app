@@ -16,25 +16,25 @@
     </a>
 </div>
 
-<h3 th:text="${'Chapters:'}"></h3>
-<div>
-    <ul>
-        <li th:each="chapter : ${book.chapters}">
-            <a th:href="@{'/chapters/view/' + ${chapter.id}}" th:text="${chapter.name}"></a>
-        </li>
-    </ul>
-</div>
+<!--<h3 th:text="${'Chapters:'}"></h3>-->
+<!--<div>-->
+<!--    <ul>-->
+<!--        <li th:each="chapter : ${book.chapters}">-->
+<!--            <a th:href="@{'/chapters/view/' + ${chapter.id}}" th:text="${chapter.name}"></a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
 
-<div>
-    <a th:href="@{/properties/addRoom/{id}(id=${property.id})}">
-        <input type="submit" value="Add Room" class="btn btn-secondary">
-    </a>
-</div>
-<p></p>
+<!--<div>-->
+<!--    <a th:href="@{/properties/addRoom/{id}(id=${property.id})}">-->
+<!--        <input type="submit" value="Add Room" class="btn btn-secondary">-->
+<!--    </a>-->
+<!--</div>-->
+<!--<p></p>-->
 
 <div>
     <a th:href="@{/}">
-        <input type="submit" th:value="${'Back to Home-Page'}" class="btn btn-dark">
+        <input type="submit" th:value="${'Back to Variance Home'}" class="btn btn-dark">
     </a>
 </div>
 
