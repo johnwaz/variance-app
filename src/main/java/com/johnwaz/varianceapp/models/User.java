@@ -2,11 +2,18 @@ package com.johnwaz.varianceapp.models;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Book> books = new ArrayList<>();
 
     @NotNull
     private String username;
@@ -25,6 +32,10 @@ public class User extends AbstractEntity {
 
     public String getUsername() {
         return username;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     public boolean isMatchingPassword(String password) {
