@@ -106,7 +106,7 @@ public class BookController {
 
     @PostMapping("edit")
     public String processEditBookForm(@Valid @ModelAttribute Book editBook, Errors errors, Model model,
-                                          int bookId, String title, String description) {
+                                      int bookId, String title, String description) {
 
         if (errors.hasErrors()) {
             model.addAttribute("book", editBook);

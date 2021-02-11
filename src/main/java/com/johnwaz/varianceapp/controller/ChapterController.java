@@ -126,20 +126,17 @@ public class ChapterController {
     }
 
     @PostMapping("edit")
-    public String processEditChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, int chapterId, String name,
-                                      @RequestParam int bookId, Model model) {
+    public String processEditChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, Model model,
+                                         int chapterId, String name) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedChapter", chapterRepository.findById(chapterId).get());
             model.addAttribute("chapter", editChapter);
             model.addAttribute("chapterId", chapterId);
-            model.addAttribute("books", bookRepository.findAll());
             return "chapters/edit";
         }
         Chapter chapter = chapterRepository.findById(chapterId).get();
-        Book book = bookRepository.findById(bookId).get();
         chapter.setName(name);
-        chapter.setBook(book);
         chapterRepository.save(chapter);
         return "redirect:view/" + chapterId;
     }
