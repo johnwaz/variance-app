@@ -27,13 +27,4 @@ public class ChapterController {
     private ChapterRepository chapterRepository;
 
     private static final String userSessionKey = "user";
-
-    @GetMapping
-    public String displayAllChapters(Model model, HttpSession session) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        User user = userRepository.findById(userId).get();
-        model.addAttribute("user", user);
-        model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
-        return "chapters/index";
-    }
 }
