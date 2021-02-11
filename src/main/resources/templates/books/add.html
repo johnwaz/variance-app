@@ -7,9 +7,9 @@
 
 <form method="post" style="max-width:600px;">
     <div class="form-group">
-        <label th:for="name">Book Name</label>
-        <input class="form-control" th:field="${book.name}" />
-        <span th:errors="${book.name}" class="error"></span>
+        <label th:for="title">Book Title</label>
+        <input class="form-control" th:field="${book.title}" />
+        <span th:errors="${book.title}" class="error"></span>
     </div>
 
     <div class="form-group">

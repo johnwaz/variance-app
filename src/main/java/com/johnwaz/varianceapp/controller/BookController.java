@@ -106,7 +106,7 @@ public class BookController {
 
     @PostMapping("edit")
     public String processEditBookForm(@Valid @ModelAttribute Book editBook, Errors errors, Model model,
-                                          int bookId, String name, String description) {
+                                      int bookId, String title, String description) {
 
         if (errors.hasErrors()) {
             model.addAttribute("book", editBook);
@@ -115,7 +115,7 @@ public class BookController {
             return "properties/edit";
         }
         Book book = bookRepository.findById(bookId).get();
-        book.setName(name);
+        book.setTitle(title);
         book.setDescription(description);
         bookRepository.save(book);
         return "redirect:view/" + bookId;

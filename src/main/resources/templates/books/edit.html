@@ -12,9 +12,9 @@
     <form method="post" th:action="@{/books/edit}">
         <div class="form-group">
             <label>Name
-                <input type="text" name="name" class="form-control" th:value="${book.name}">
+                <input type="text" name="title" class="form-control" th:value="${book.title}">
             </label>
-            <span th:errors="${book.name}" class="error"></span>
+            <span th:errors="${book.title}" class="error"></span>
         </div>
         <div class="form-group">
             <label>Description
@@ -24,7 +24,7 @@
         </div>
         <input type="hidden" th:value="${bookId}" name="bookId" />
         <div class="form-group">
-            <input type="submit" value="Update Book" class="btn btn-success">
+            <input type="submit" value="Update" class="btn btn-success">
         </div>
     </form>
 </th:block>

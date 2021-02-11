@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${'Add Chapter To: ' + book.title}">Add Chapter</h2>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">Chapter Name</label>
+        <input class="form-control" th:field="${chapter.name}" />
+        <span th:errors="${chapter.name}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Chapter" />
+</form>
+</body>
+</html>
