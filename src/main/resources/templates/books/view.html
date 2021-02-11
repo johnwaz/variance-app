@@ -18,19 +18,19 @@
 <p></p>
 
 <h3 th:text="${'Chapters:'}"></h3>
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="chapter : ${book.chapters}">-->
-<!--            <a th:href="@{'/chapters/view/' + ${chapter.id}}" th:text="${chapter.name}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="chapter : ${book.chapters}">
+            <a th:href="@{'/chapters/view/' + ${chapter.id}}" th:text="${chapter.name}"></a>
+        </li>
+    </ul>
+</div>
 
-<!--<div>-->
-<!--    <a th:href="@{/chapters/add/{id}(id=${chapter.id})}">-->
-<!--        <input type="submit" value="Add Chapter" class="btn btn-secondary">-->
-<!--    </a>-->
-<!--</div>-->
+<div>
+    <a th:href="@{/chapters/add/{id}(id=${book.id})}">
+        <input type="submit" value="Add Chapter" class="btn btn-secondary">
+    </a>
+</div>
 <p></p>
 
 <div>
