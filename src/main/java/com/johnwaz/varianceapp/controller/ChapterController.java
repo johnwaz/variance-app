@@ -98,4 +98,49 @@ public class ChapterController {
         }
         return "chapters/view";
     }
+
+    @GetMapping(path = {"edit/{chapterId}", "edit"})
+    public String displayEditChapterForm(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (chapterId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
+            return "redirect:../";
+        } else {
+            Optional<Chapter> result = chapterRepository.findById(chapterId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Chapter chapter = result.get();
+                if (user.getId() != chapter.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("chapter", chapter);
+                model.addAttribute("uneditedChapter", chapter);
+                model.addAttribute("chapterId", chapterId);
+                model.addAttribute("books", bookRepository.findAll());
+            }
+        }
+        return "chapters/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, int chapterId, String name,
+                                      @RequestParam int bookId, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedChapter", chapterRepository.findById(chapterId).get());
+            model.addAttribute("chapter", editChapter);
+            model.addAttribute("chapterId", chapterId);
+            model.addAttribute("books", bookRepository.findAll());
+            return "chapters/edit";
+        }
+        Chapter chapter = chapterRepository.findById(chapterId).get();
+        Book book = bookRepository.findById(bookId).get();
+        chapter.setName(name);
+        chapter.setBook(book);
+        chapterRepository.save(chapter);
+        return "redirect:view/" + chapterId;
+    }
 }
