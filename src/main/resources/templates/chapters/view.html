@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${'Chapter: ' + chapter.name}">Default Title</h2>
+<p></p>
+<div>
+    <p th:text="${'Name: ' + chapter.name}"></p>
+    <p th:text="${'Book: ' + chapter.book.title}"></p>
+</div>
+<div>
+    <a th:href="@{/chapters/edit/{id}(id=${chapter.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
+<p></p>
+
+<h3 th:text="${'Pages:'}"></h3>
+
+<!--<div>-->
+<!--    <ul>-->
+<!--        <li th:each="page : ${chapter.pages}">-->
+<!--            <a th:href="@{'/pages/view/' + ${page.id}}" th:text="${page.name}"></a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+<div>
+    <a th:href="@{/pages/add/{id}(id=${chapter.id})}">
+        <input type="submit" value="Add Page" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
+
+<div>
+    <a th:href="@{/books/view/{id}(id=${chapter.book.id})}">
+        <input type="submit" th:value="${'Back to ' + chapter.book.title}" class="btn btn-dark">
+    </a>
+</div>
+
+<th:block th:if="${chpater}">
+    <form method="post" th:action="@{/chapters/view}" id="delete-chapter">
+        <input type="hidden" name="chapterId" th:value="${chapter.id}" class="form-control">
+        <input type="hidden" id="chapterId" th:value="${chapter.name}" class="form-control">
+        <input type="hidden" name="bookId" th:value="${chapter.book.id}" class="form-control">
+        <p></p>
+        <input onclick="deleteChapter()" type="button" value="Delete Chapter" class="btn btn-danger">
+    </form>
+</th:block>
+
+</body>
+</html>
