@@ -12,9 +12,9 @@ public class Page extends AbstractEntity {
     @ManyToOne
     private Chapter chapter;
 
-    private int pageNumber;
+    private Integer pageNumber;
 
-    public Page(User user, Chapter chapter, int pageNumber) {
+    public Page(User user, Chapter chapter, Integer pageNumber) {
         this.user = user;
         this.chapter = chapter;
         this.pageNumber = pageNumber;
@@ -38,11 +38,11 @@ public class Page extends AbstractEntity {
         this.chapter = chapter;
     }
 
-    public int getPageNumber() {
+    public Integer getPageNumber() {
         return pageNumber;
     }
 
-    public void setPageNumber(int pageNumber) {
+    public void setPageNumber(Integer pageNumber) {
         this.pageNumber = pageNumber;
     }
 }

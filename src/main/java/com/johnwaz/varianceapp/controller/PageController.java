@@ -55,10 +55,10 @@ public class PageController {
                 model.addAttribute("chapter", chapter);
             }
         }
-        return "chapters/add";
+        return "pages/add";
     }
 
-    @PostMapping("add/{bookId}")
+    @PostMapping("add/{chapterId}")
     public String processAddPageToChapterForm(@Valid @ModelAttribute Page newPage,
                                               Errors errors, Model model, @PathVariable int chapterId,
                                               HttpSession session, RedirectAttributes redirectAttributes) {
