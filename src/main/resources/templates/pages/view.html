@@ -6,18 +6,18 @@
 <h2 th:text="${'Page: ' + page.pageNumber}">Default Title</h2>
 <p></p>
 <div>
-    <p th:text="${'Name: ' + chapter.name}"></p>
-    <p th:text="${'Book: ' + chapter.book.title}"></p>
+    <p th:text="${'Page: ' + page.pageNumber}"></p>
+    <p th:text="${'Chapter: ' + page.chapter.name}"></p>
 </div>
-<!--<div>-->
-<!--    <a th:href="@{/pages/edit/{id}(id=${page.id})}">-->
-<!--        <input type="submit" value="Edit" class="btn btn-info">-->
-<!--    </a>-->
-<!--</div>-->
+<div>
+    <a th:href="@{/pages/edit/{id}(id=${page.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
 <p></p>
 
 <div>
-    <a th:href="@{/books/view/{id}(id=${chapter.book.id})}">
+    <a th:href="@{/chapters/view/{id}(id=${page.chapter.id})}">
         <input type="submit" th:value="${'Back to ' + page.chapter.name}" class="btn btn-dark">
     </a>
 </div>
