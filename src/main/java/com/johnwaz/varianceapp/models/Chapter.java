@@ -1,8 +1,12 @@
 package com.johnwaz.varianceapp.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Chapter extends AbstractEntity {
@@ -12,6 +16,9 @@ public class Chapter extends AbstractEntity {
 
     @ManyToOne
     private Book book;
+
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Page> pages = new ArrayList<>();
 
     @NotBlank(message = "Please name the chapter")
     private String name;
@@ -46,5 +53,9 @@ public class Chapter extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Page> getPages() {
+        return pages;
     }
 }
