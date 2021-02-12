@@ -76,4 +76,27 @@ public class PageController {
         pageRepository.save(newPage);
         return "redirect:/chapters/view/{id}";
     }
+
+    @GetMapping(path = {"view/{pageId}", "view"})
+    public String displayViewPage(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "redirect:../";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("page", page);
+            }
+        }
+        return "pages/view";
+    }
 }
