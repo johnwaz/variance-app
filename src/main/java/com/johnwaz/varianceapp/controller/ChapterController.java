@@ -34,7 +34,7 @@ public class ChapterController {
     private static final String userSessionKey = "user";
 
     @GetMapping(path = {"add/{bookId}", "add"})
-    public String displayAddChapterForm(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
+    public String displayAddChapterToBookForm(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (bookId == null) {
@@ -58,7 +58,7 @@ public class ChapterController {
     }
 
     @PostMapping("add/{bookId}")
-    public String processAddChapterForm(@Valid @ModelAttribute Chapter newChapter,
+    public String processAddChapterToBookForm(@Valid @ModelAttribute Chapter newChapter,
                                        Errors errors, Model model, @PathVariable int bookId,
                                        HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
@@ -119,7 +119,6 @@ public class ChapterController {
                 model.addAttribute("chapter", chapter);
                 model.addAttribute("uneditedChapter", chapter);
                 model.addAttribute("chapterId", chapterId);
-                model.addAttribute("books", bookRepository.findAll());
             }
         }
         return "chapters/edit";
@@ -142,7 +141,7 @@ public class ChapterController {
     }
 
     @PostMapping("view")
-    public String processDeleteChapter(int chapterId, int bookId, RedirectAttributes redirectAttributes) {
+    public String processDeleteBookChapter(int chapterId, int bookId, RedirectAttributes redirectAttributes) {
         Optional optBook = bookRepository.findById(bookId);
         redirectAttributes.addAttribute("id", optBook.get());
         chapterRepository.deleteById(chapterId);
