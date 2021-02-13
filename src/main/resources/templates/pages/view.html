@@ -6,8 +6,8 @@
 <h2 th:text="${'Page: ' + page.pageNumber}">Default Title</h2>
 <p></p>
 <div>
-    <p th:text="${'Page: ' + page.pageNumber}"></p>
     <p th:text="${'Chapter: ' + page.chapter.name}"></p>
+    <p th:text="${'Book: ' + page.chapter.book.title}"></p>
 </div>
 <div>
     <a th:href="@{/pages/edit/{id}(id=${page.id})}">
