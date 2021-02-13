@@ -1,6 +1,8 @@
 package com.johnwaz.varianceapp.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -18,10 +20,14 @@ public class Page extends AbstractEntity {
     @Min(value = 1, message = "Please give a page number")
     private Integer pageNumber;
 
-    public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber) {
+    @Column(columnDefinition = "text")
+    private String content;
+
+    public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber, String content) {
         this.user = user;
         this.chapter = chapter;
         this.pageNumber = pageNumber;
+        this.content = content;
     }
 
     public Page() {}
@@ -48,5 +54,13 @@ public class Page extends AbstractEntity {
 
     public void setPageNumber(Integer pageNumber) {
         this.pageNumber = pageNumber;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

@@ -8,6 +8,7 @@
 <div>
     <p th:text="${'Chapter: ' + page.chapter.name}"></p>
     <p th:text="${'Book: ' + page.chapter.book.title}"></p>
+    <div th:text="${page.content}"></div>
 </div>
 <div>
     <a th:href="@{/pages/edit/{id}(id=${page.id})}">

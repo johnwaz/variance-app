@@ -11,8 +11,12 @@
         <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0"/>
         <span th:errors="${page.pageNumber}" class="error"></span>
     </div>
+    <div class="form-group" style="width:600px;">
+        <label th:for="content">Page Content</label>
+        <textarea class="form-control" name="content" th:field="${page.content}" rows="20" cols="100"></textarea>
+    </div>
 
-    <input type="submit" value="Add Page" />
+    <input type="submit" id="submit-code" value="Add Page" />
 </form>
 </body>
 </html>
