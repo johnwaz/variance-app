@@ -126,14 +126,14 @@ public class PageController {
     }
 
     @PostMapping("edit")
-    public String processEditPageForm(@Valid @ModelAttribute Chapter editPage, Errors errors, Model model,
-                                         int pageId, Integer pageNumber) {
+    public String processEditPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
+                                      int pageId, Integer pageNumber) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
             model.addAttribute("page", editPage);
             model.addAttribute("pageId", pageId);
-            return "chapters/edit";
+            return "pages/edit";
         }
         Page page = pageRepository.findById(pageId).get();
         page.setPageNumber(pageNumber);
