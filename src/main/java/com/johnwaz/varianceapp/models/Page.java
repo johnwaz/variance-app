@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Page extends AbstractEntity {
@@ -20,10 +22,13 @@ public class Page extends AbstractEntity {
     @Min(value = 1, message = "Please give a page number")
     private Integer pageNumber;
 
+    @NotBlank(message = "Please add some content to the page")
+    @Size(max = 3000, message = "Content must be less than 3,000 characters")
     @Column(columnDefinition = "text")
     private String content;
 
-    public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber, String content) {
+    public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber,
+                @NotBlank @Size(max = 3000, message = "Content must be less than 3,000 characters") String content) {
         this.user = user;
         this.chapter = chapter;
         this.pageNumber = pageNumber;
