@@ -99,4 +99,45 @@ public class PageController {
         }
         return "pages/view";
     }
+
+    @GetMapping(path = {"edit/{pageId}", "edit"})
+    public String displayEditPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "redirect:../";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("page", page);
+                model.addAttribute("uneditedPage", page);
+                model.addAttribute("pageId", pageId);
+            }
+        }
+        return "pages/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditPageForm(@Valid @ModelAttribute Chapter editPage, Errors errors, Model model,
+                                         int pageId, Integer pageNumber) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
+            model.addAttribute("page", editPage);
+            model.addAttribute("pageId", pageId);
+            return "chapters/edit";
+        }
+        Page page = pageRepository.findById(pageId).get();
+        page.setPageNumber(pageNumber);
+        pageRepository.save(page);
+        return "redirect:view/" + pageId;
+    }
 }
