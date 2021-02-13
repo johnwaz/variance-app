@@ -2,6 +2,8 @@ package com.johnwaz.varianceapp.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Page extends AbstractEntity {
@@ -12,9 +14,11 @@ public class Page extends AbstractEntity {
     @ManyToOne
     private Chapter chapter;
 
+    @NotNull(message = "Please give the page a number")
+    @Min(value = 1, message = "Please give the page a number")
     private Integer pageNumber;
 
-    public Page(User user, Chapter chapter, Integer pageNumber) {
+    public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber) {
         this.user = user;
         this.chapter = chapter;
         this.pageNumber = pageNumber;

@@ -64,7 +64,7 @@ public class PageController {
                                               HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
-            return "chapters/add";
+            return "pages/add";
         }
         Optional optChapter = chapterRepository.findById(chapterId);
         Chapter chapter = chapterRepository.findById(chapterId).get();

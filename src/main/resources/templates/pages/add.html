@@ -8,7 +8,8 @@
 <form method="post" style="max-width:220px;">
     <div class="form-group">
         <label th:for="pageNumber">Page Number</label>
-        <input class="form-control" th:field="${page.pageNumber}" />
+        <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0"/>
+        <span th:errors="${page.pageNumber}" class="error"></span>
     </div>
 
     <input type="submit" value="Add Page" />
