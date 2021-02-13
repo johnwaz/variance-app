@@ -11,3 +11,10 @@ function deleteChapter() {
         document.getElementById("delete-chapter").submit();
     }
 }
+
+function deletePage() {
+    let page = $('#pageId').val();
+    if (confirm(`Remove Page ${page}?`)) {
+        document.getElementById("delete-page").submit();
+    }
+}

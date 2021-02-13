@@ -14,8 +14,8 @@ public class Page extends AbstractEntity {
     @ManyToOne
     private Chapter chapter;
 
-    @NotNull(message = "Please give the page a number")
-    @Min(value = 1, message = "Please give the page a number")
+    @NotNull(message = "Please give a page number")
+    @Min(value = 1, message = "Please give a page number")
     private Integer pageNumber;
 
     public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber) {
