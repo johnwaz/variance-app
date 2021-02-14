@@ -33,7 +33,7 @@ public class PageController {
 
     private static final String userSessionKey = "user";
 
-    @GetMapping(path = {"add/{chapterId}", "add"})
+    @GetMapping(path = {"chapterPageAdd/{chapterId}", "chapterPageAdd"})
     public String displayAddPageToChapterForm(Model model, @PathVariable(required = false) Integer chapterId, Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
@@ -54,16 +54,16 @@ public class PageController {
                 model.addAttribute("chapter", chapter);
             }
         }
-        return "pages/add";
+        return "pages/chapterPageAdd";
     }
 
-    @PostMapping("add/{chapterId}")
+    @PostMapping("chapterPageAdd/{chapterId}")
     public String processAddPageToChapterForm(@Valid @ModelAttribute Page newPage,
                                               Errors errors, Model model, @PathVariable int chapterId,
                                               HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
-            return "pages/add";
+            return "pages/chapterPageAdd";
         }
         Optional optChapter = chapterRepository.findById(chapterId);
         Chapter chapter = chapterRepository.findById(chapterId).get();
@@ -76,8 +76,8 @@ public class PageController {
         return "redirect:/chapters/view/{id}";
     }
 
-    @GetMapping(path = {"view/{pageId}", "view"})
-    public String displayViewPage(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+    @GetMapping(path = {"chapterPageView/{pageId}", "chapterPageView"})
+    public String displayViewChapterPage(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (pageId == null) {
@@ -96,10 +96,10 @@ public class PageController {
                 model.addAttribute("page", page);
             }
         }
-        return "pages/view";
+        return "pages/chapterPageView";
     }
 
-    @GetMapping(path = {"edit/{pageId}", "edit"})
+    @GetMapping(path = {"chapterPageEdit/{pageId}", "chapterPageEdit"})
     public String displayEditPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
@@ -121,10 +121,10 @@ public class PageController {
                 model.addAttribute("pageId", pageId);
             }
         }
-        return "pages/edit";
+        return "pages/chapterPageEdit";
     }
 
-    @PostMapping("edit")
+    @PostMapping("chapterPageEdit")
     public String processEditPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
                                       int pageId, Integer pageNumber, String content) {
 
@@ -138,10 +138,10 @@ public class PageController {
         page.setPageNumber(pageNumber);
         page.setContent(content);
         pageRepository.save(page);
-        return "redirect:view/" + pageId;
+        return "redirect:chapterPageView/" + pageId;
     }
 
-    @PostMapping("view")
+    @PostMapping("chapterPageView")
     public String processDeleteChapterPage(int pageId, int chapterId, RedirectAttributes redirectAttributes) {
         Optional optChapter = chapterRepository.findById(chapterId);
         redirectAttributes.addAttribute("id", optChapter.get());
