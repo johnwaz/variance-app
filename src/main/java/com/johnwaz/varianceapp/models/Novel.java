@@ -1,4 +1,11 @@
 package com.johnwaz.varianceapp.models;
 
-public class Novel {
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Novel extends AbstractEntity {
+
+    @ManyToOne
+    private User user;
 }
