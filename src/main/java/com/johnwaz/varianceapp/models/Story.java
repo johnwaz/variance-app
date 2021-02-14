@@ -16,6 +16,6 @@ public class Story {
     @ManyToOne
     private Novel novel;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Chapter> chapters = new ArrayList<>();
+    @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Page> pages = new ArrayList<>();
 }

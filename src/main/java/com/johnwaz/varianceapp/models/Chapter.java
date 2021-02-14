@@ -17,19 +17,15 @@ public class Chapter extends AbstractEntity {
     @ManyToOne
     private Book book;
 
-    @ManyToOne
-    private Story story;
-
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
     @NotBlank(message = "Please name the chapter")
     private String name;
 
-    public Chapter(User user, Book book, Story story, @NotBlank String name) {
+    public Chapter(User user, Book book, @NotBlank String name) {
         this.user = user;
         this.book = book;
-        this.story = story;
         this.name = name;
     }
 
@@ -49,14 +45,6 @@ public class Chapter extends AbstractEntity {
 
     public void setBook(Book book) {
         this.book = book;
-    }
-
-    public Story getStory() {
-        return story;
-    }
-
-    public void setStory(Story story) {
-        this.story = story;
     }
 
     public String getName() {
