@@ -39,7 +39,7 @@ public class BookController {
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
-        model.addAttribute("properties", bookRepository.findAll());
+        model.addAttribute("books", bookRepository.findAll());
         return "books/add";
     }
 
