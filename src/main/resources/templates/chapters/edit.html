@@ -22,6 +22,11 @@
         </div>
     </form>
 </th:block>
-
+<p></p>
+<div>
+    <a th:href="@{/books/view/{id}(id=${chapter.book.id})}">
+        <input type="submit" th:value="${'Back to ' + chapter.book.title}" class="btn btn-dark">
+    </a>
+</div>
 </body>
 </html>

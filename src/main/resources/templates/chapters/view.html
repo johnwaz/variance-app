@@ -6,7 +6,6 @@
 <h2 th:text="${'Chapter: ' + chapter.name}">Default Title</h2>
 <p></p>
 <div>
-    <p th:text="${'Name: ' + chapter.name}"></p>
     <p th:text="${'Book: ' + chapter.book.title}"></p>
 </div>
 <div>
@@ -18,13 +17,13 @@
 
 <h3 th:text="${'Pages:'}"></h3>
 
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="page : ${chapter.pages}">-->
-<!--            <a th:href="@{'/pages/view/' + ${page.id}}" th:text="${page.name}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="page : ${chapter.pages}">
+            <a th:href="@{'/pages/view/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
+        </li>
+    </ul>
+</div>
 
 <div>
     <a th:href="@{/pages/add/{id}(id=${chapter.id})}">

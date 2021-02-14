@@ -34,17 +34,17 @@ public class ChapterController {
     private static final String userSessionKey = "user";
 
     @GetMapping(path = {"add/{bookId}", "add"})
-    public String displayAddChapterForm(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
+    public String displayAddChapterToBookForm(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (bookId == null) {
             model.addAttribute("user", user);
             model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "chapters/index";
         } else {
             Optional<Book> result = bookRepository.findById(bookId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "chapters/index";
             } else {
                 Book book = result.get();
                 if (user.getId() != book.getUser().getId()) {
@@ -58,7 +58,7 @@ public class ChapterController {
     }
 
     @PostMapping("add/{bookId}")
-    public String processAddChapterForm(@Valid @ModelAttribute Chapter newChapter,
+    public String processAddChapterToBookForm(@Valid @ModelAttribute Chapter newChapter,
                                        Errors errors, Model model, @PathVariable int bookId,
                                        HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
@@ -83,11 +83,11 @@ public class ChapterController {
         if (chapterId == null) {
             model.addAttribute("user", user);
             model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "chapters/index";
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "chapters/index";
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
@@ -106,11 +106,11 @@ public class ChapterController {
         if (chapterId == null){
             model.addAttribute("user", user);
             model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "chapters/index";
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "chapters/index";
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
@@ -119,7 +119,6 @@ public class ChapterController {
                 model.addAttribute("chapter", chapter);
                 model.addAttribute("uneditedChapter", chapter);
                 model.addAttribute("chapterId", chapterId);
-                model.addAttribute("books", bookRepository.findAll());
             }
         }
         return "chapters/edit";
@@ -142,7 +141,7 @@ public class ChapterController {
     }
 
     @PostMapping("view")
-    public String processDeleteChapter(int chapterId, int bookId, RedirectAttributes redirectAttributes) {
+    public String processDeleteBookChapter(int chapterId, int bookId, RedirectAttributes redirectAttributes) {
         Optional optBook = bookRepository.findById(bookId);
         redirectAttributes.addAttribute("id", optBook.get());
         chapterRepository.deleteById(chapterId);

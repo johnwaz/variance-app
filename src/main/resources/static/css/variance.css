@@ -9,3 +9,21 @@ header {
 .log-register {
     margin-top: 5px;
 }
+
+textarea {
+    resize: none;
+}
+
+.textarea {
+    width: 600px;
+}
+
+@media (max-width: 576px) {
+    .textarea {
+        width: 450px;
+    }
+}
+
+.page-number {
+    margin-bottom: 0;
+}
