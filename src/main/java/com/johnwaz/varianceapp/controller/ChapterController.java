@@ -42,7 +42,7 @@ public class ChapterController {
         } else {
             Optional<Book> result = bookRepository.findById(bookId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "chapters/index";
             } else {
                 Book book = result.get();
                 if (user.getId() != book.getUser().getId()) {
@@ -84,7 +84,7 @@ public class ChapterController {
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "chapters/index";
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
@@ -106,7 +106,7 @@ public class ChapterController {
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "chapters/index";
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
