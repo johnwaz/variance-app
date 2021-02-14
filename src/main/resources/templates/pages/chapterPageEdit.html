@@ -9,7 +9,7 @@
    <p>The Page you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${page}">
-   <form method="post" th:action="@{/pages/edit}">
+   <form method="post" th:action="@{/pages/chapterPageEdit}">
       <div class="form-group">
          <label class="page-number">Page Number
             <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" min="0">
