@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.Optional;
 
 @Controller
@@ -38,6 +39,7 @@ public class ChapterController {
         User user = userRepository.findById(userId).get();
         if (bookId == null) {
             model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
             return "chapters/index";
         } else {
             Optional<Book> result = bookRepository.findById(bookId);
@@ -80,6 +82,7 @@ public class ChapterController {
         User user = userRepository.findById(userId).get();
         if (chapterId == null) {
             model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
             return "chapters/index";
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
@@ -102,6 +105,7 @@ public class ChapterController {
         User user = userRepository.findById(userId).get();
         if (chapterId == null){
             model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
             return "chapters/index";
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
