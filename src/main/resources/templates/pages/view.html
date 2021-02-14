@@ -10,6 +10,7 @@
     <p th:text="${'Book: ' + page.chapter.book.title}"></p>
     <p style="text-decoration: underline" th:text="${'Content:'}"></p>
     <p style="white-space: pre-line" th:text="${page.content}"></p>
+    <hr>
 </div>
 <div>
     <a th:href="@{/pages/edit/{id}(id=${page.id})}">

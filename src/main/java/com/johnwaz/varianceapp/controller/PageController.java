@@ -34,17 +34,16 @@ public class PageController {
     private static final String userSessionKey = "user";
 
     @GetMapping(path = {"add/{chapterId}", "add"})
-    public String displayAddPageToChapterForm(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
+    public String displayAddPageToChapterForm(Model model, @PathVariable(required = false) Integer chapterId, Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (chapterId == null) {
             model.addAttribute("user", user);
-            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "pages/index";
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "pages/index";
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
@@ -82,12 +81,11 @@ public class PageController {
         User user = userRepository.findById(userId).get();
         if (pageId == null) {
             model.addAttribute("user", user);
-            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "pages/index";
         } else {
             Optional<Page> result = pageRepository.findById(pageId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "pages/index";
             } else {
                 Page page = result.get();
                 if (user.getId() != page.getUser().getId()) {
@@ -105,12 +103,11 @@ public class PageController {
         User user = userRepository.findById(userId).get();
         if (pageId == null){
             model.addAttribute("user", user);
-            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "pages/index";
         } else {
             Optional<Page> result = pageRepository.findById(pageId);
             if (result.isEmpty()) {
-                return "redirect:../";
+                return "pages/index";
             } else {
                 Page page = result.get();
                 if (user.getId() != page.getUser().getId()) {
