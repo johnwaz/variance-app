@@ -15,7 +15,7 @@ public class Novel extends AbstractEntity {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "novel", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Story> stories = new ArrayList<>();
 
     @NotBlank(message = "Please give the book a title")
