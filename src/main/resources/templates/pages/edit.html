@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h2>Edit Chapter</h2>
+<h2>Edit Page</h2>
 
 <th:block th:unless="${page}">
    <p>The Page you are trying to edit does not exist</p>
@@ -11,10 +11,15 @@
 <th:block th:if="${page}">
    <form method="post" th:action="@{/pages/edit}">
       <div class="form-group">
-         <label>Name
+         <label>Page Number
             <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}">
          </label>
          <span th:errors="${page.pageNumber}" class="error"></span>
+      </div>
+      <div class="form-group" style="width:600px;">
+         <label>Page Content</label>
+            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="25" cols="70" wrap="hard" maxlength="3000"></textarea>
+         <span th:errors="${page.content}" class="error"></span>
       </div>
       <input type="hidden" th:value="${pageId}" name="pageId" />
       <div class="form-group">

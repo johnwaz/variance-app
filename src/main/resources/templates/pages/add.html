@@ -13,7 +13,7 @@
     </div>
     <div class="form-group" style="width:600px;">
         <label th:for="content">Page Content</label>
-        <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="25" wrap="hard" maxlength="3000"></textarea>
+        <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="25" cols="70" wrap="hard" maxlength="3000"></textarea>
         <span th:errors="${page.content}" class="error"></span>
     </div>
 

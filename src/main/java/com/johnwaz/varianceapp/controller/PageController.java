@@ -127,7 +127,7 @@ public class PageController {
 
     @PostMapping("edit")
     public String processEditPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
-                                      int pageId, Integer pageNumber) {
+                                      int pageId, Integer pageNumber, String content) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
@@ -137,6 +137,7 @@ public class PageController {
         }
         Page page = pageRepository.findById(pageId).get();
         page.setPageNumber(pageNumber);
+        page.setContent(content);
         pageRepository.save(page);
         return "redirect:view/" + pageId;
     }
