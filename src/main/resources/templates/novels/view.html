@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${'Title: ' + novel.title}">Default Title</h2>
+<p></p>
+<div>
+    <p th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></p>
+</div>
+
+<div>
+    <a th:href="@{/novels/edit/{id}(id=${novel.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
+<p></p>
+
+<h3 th:text="${'Stories:'}"></h3>
+<div>
+    <ul>
+<!--        <li th:each="story : ${novel.stories}">-->
+<!--            <a th:href="@{'/stories/view/' + ${story.id}}" th:text="${story.name}"></a>-->
+<!--        </li>-->
+    </ul>
+</div>
+
+<div>
+    <a th:href="@{/stories/add/{id}(id=${novel.id})}">
+        <input type="submit" value="Add Story" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
+
+<div>
+    <a th:href="@{/novels}">
+        <input type="submit" th:value="${'Back to Novels'}" class="btn btn-dark">
+    </a>
+</div>
+
+<th:block th:if="${novel}">
+    <form method="post" th:action="@{/novels/view}" id="delete-novel">
+        <input type="hidden" name="novelId" th:value="${novel.id}" class="form-control">
+        <input type="hidden" id="novelId" th:value="${novel.title}" class="form-control">
+        <p></p>
+        <input onclick="deleteNovel()" type="button" value="Delete Novel" class="btn btn-danger">
+    </form>
+</th:block>
+
+</body>
+</html>
