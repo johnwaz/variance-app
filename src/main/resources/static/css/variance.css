@@ -13,3 +13,7 @@ header {
 textarea {
     resize: none;
 }
+
+.textarea {
+    width: 600px;
+}
