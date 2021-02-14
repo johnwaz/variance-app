@@ -12,7 +12,7 @@
    <form method="post" th:action="@{/pages/edit}">
       <div class="form-group">
          <label class="page-number">Page Number
-            <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}">
+            <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" min="0">
          </label>
          <span th:errors="${page.pageNumber}" class="error"></span>
       </div>
@@ -28,8 +28,8 @@
    </form>
 </th:block>
 <div>
-   <a th:href="@{/chapters/view/{id}(id=${page.chapter.id})}">
-      <input type="submit" th:value="${'Back to ' + page.chapter.name}" class="btn btn-dark">
+   <a th:href="@{/pages/view/{id}(id=${page.id})}">
+      <input type="submit" th:value="${'Back to Page ' + page.pageNumber}" class="btn btn-dark">
    </a>
 </div>
 </body>

@@ -24,8 +24,8 @@
 </th:block>
 <p></p>
 <div>
-    <a th:href="@{/books/view/{id}(id=${chapter.book.id})}">
-        <input type="submit" th:value="${'Back to ' + chapter.book.title}" class="btn btn-dark">
+    <a th:href="@{/chapters/view/{id}(id=${chapter.id})}">
+        <input type="submit" th:value="${'Back to ' + chapter.name}" class="btn btn-dark">
     </a>
 </div>
 </body>

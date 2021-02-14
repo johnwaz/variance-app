@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Story {
+public class Story extends AbstractEntity {
 
     @ManyToOne
     private User user;

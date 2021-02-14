@@ -29,10 +29,8 @@
     </form>
 </th:block>
 <p></p>
-<div>
-    <a th:href="@{/books}">
-        <input type="submit" th:value="${'Back to Books'}" class="btn btn-dark">
-    </a>
-</div>
+<a th:href="@{/books/view/{id}(id=${book.id})}">
+    <input type="submit" th:value="${'Back to ' + book.title}" class="btn btn-dark">
+</a>
 </body>
 </html>
