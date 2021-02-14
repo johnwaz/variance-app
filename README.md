@@ -1,6 +1,6 @@
 # variance-app
 
-A writing app for books, journals, notebooks, and other note taking options.
+A writing app for books, novels, journals, notebooks, and other note taking options.
 
 - Spring Boot
 - Java
