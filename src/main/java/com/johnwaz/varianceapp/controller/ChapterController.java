@@ -83,7 +83,7 @@ public class ChapterController {
         if (chapterId == null) {
             model.addAttribute("user", user);
             model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
-            return "redirect:../";
+            return "chapters/index";
         } else {
             Optional<Chapter> result = chapterRepository.findById(chapterId);
             if (result.isEmpty()) {
