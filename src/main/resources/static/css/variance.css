@@ -23,3 +23,7 @@ textarea {
         width: 450px;
     }
 }
+
+.page-number {
+    margin-bottom: 0;
+}
