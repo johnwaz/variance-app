@@ -11,8 +11,13 @@
         <input class="form-control" th:field="${chapter.name}" />
         <span th:errors="${chapter.name}" class="error"></span>
     </div>
-
     <input type="submit" value="Add Chapter" />
 </form>
+<p></p>
+<div>
+    <a th:href="@{/books/view/{id}(id=${book.id})}">
+        <input type="submit" th:value="${'Back to ' + book.title}" class="btn btn-dark">
+    </a>
+</div>
 </body>
 </html>
