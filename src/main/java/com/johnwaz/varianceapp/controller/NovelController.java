@@ -9,14 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("novels")
@@ -57,5 +55,28 @@ public class NovelController {
         newNovel.setUser(user);
         novelRepository.save(newNovel);
         return "redirect:";
+    }
+
+    @GetMapping(path = {"view/{novelId}", "view"})
+    public String displayViewNovel(Model model, @PathVariable(required = false) Integer novelId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (novelId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("novels", novelRepository.findAllById(Collections.singleton(userId)));
+            return "novels/index";
+        } else {
+            Optional<Novel> result = novelRepository.findById(novelId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Novel novel = result.get();
+                if (user.getId() != novel.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("novel", novel);
+            }
+        }
+        return "novels/view";
     }
 }
