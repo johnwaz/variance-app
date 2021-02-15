@@ -19,13 +19,13 @@
 
 <h3 th:text="${'Chapters:'}"></h3>
 
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="chapter : ${story.chapters}">-->
-<!--            <a th:href="@{'/chapter/storyChapterView/' + ${chapter.id}}" th:text="${'Chapter ' + chapter.pageNumber}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="chapter : ${story.chapters}">
+            <a th:href="@{'/chapters/storyChapterView/' + ${chapter.id}}" th:text="${'Chapter ' + chapter.chapterNumber}"></a>
+        </li>
+    </ul>
+</div>
 
 <div>
     <a th:href="@{/chapters/storyChapterAdd/{id}(id=${story.id})}">
