@@ -19,6 +19,9 @@ public class Chapter extends AbstractEntity {
     @ManyToOne
     private Book book;
 
+    @ManyToOne
+    private Story story;
+
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
@@ -33,6 +36,14 @@ public class Chapter extends AbstractEntity {
                    @Size(max = 250, message = "Name must be less than 50 characters") String name) {
         this.user = user;
         this.book = book;
+        this.chapterNumber = chapterNumber;
+        this.name = name;
+    }
+
+    public Chapter(User user, Story story, @NotNull @Min(value = 1) Integer chapterNumber,
+                   @Size(max = 250, message = "Name must be less than 50 characters") String name) {
+        this.user = user;
+        this.story = story;
         this.chapterNumber = chapterNumber;
         this.name = name;
     }
@@ -53,6 +64,14 @@ public class Chapter extends AbstractEntity {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public Story getStory() {
+        return story;
+    }
+
+    public void setStory(Story story) {
+        this.story = story;
     }
 
     public Integer getChapterNumber() {
