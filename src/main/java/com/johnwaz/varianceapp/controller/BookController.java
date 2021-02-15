@@ -39,7 +39,7 @@ public class BookController {
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
-        model.addAttribute("properties", bookRepository.findAll());
+        model.addAttribute("books", bookRepository.findAll());
         return "books/add";
     }
 
@@ -110,7 +110,7 @@ public class BookController {
 
         if (errors.hasErrors()) {
             model.addAttribute("book", editBook);
-            model.addAttribute("uneditedProperty", bookRepository.findById(bookId).get());
+            model.addAttribute("uneditedBook", bookRepository.findById(bookId).get());
             model.addAttribute("bookId", bookId);
             return "books/edit";
         }

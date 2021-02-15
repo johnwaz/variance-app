@@ -5,6 +5,13 @@ function deleteBook() {
     }
 }
 
+function deleteNovel() {
+    let novel = $('#novelId').val();
+    if (confirm(`Remove ${novel}?`)) {
+        document.getElementById("delete-novel").submit();
+    }
+}
+
 function deleteChapter() {
     let chapter = $('#chapterId').val();
     if (confirm(`Remove ${chapter}?`)) {

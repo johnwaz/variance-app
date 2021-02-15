@@ -48,7 +48,7 @@ public class PageController {
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
-                    return "redirect:../";
+                    return "pages/index";
                 }
                 model.addAttribute(new Page());
                 model.addAttribute("chapter", chapter);
@@ -58,22 +58,19 @@ public class PageController {
     }
 
     @PostMapping("chapterPageAdd/{chapterId}")
-    public String processAddPageToChapterForm(@Valid @ModelAttribute Page newPage,
-                                              Errors errors, Model model, @PathVariable int chapterId,
-                                              HttpSession session, RedirectAttributes redirectAttributes) {
+    public String processAddPageToChapterForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                              Model model, @PathVariable int chapterId, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
             return "pages/chapterPageAdd";
         }
-        Optional optChapter = chapterRepository.findById(chapterId);
         Chapter chapter = chapterRepository.findById(chapterId).get();
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        redirectAttributes.addAttribute("id", optChapter.get());
         newPage.setUser(user);
         newPage.setChapter(chapter);
         pageRepository.save(newPage);
-        return "redirect:/chapters/bookChapterView/{id}";
+        return "pages/chapterPageView";
     }
 
     @GetMapping(path = {"chapterPageView/{pageId}", "chapterPageView"})
@@ -91,7 +88,7 @@ public class PageController {
             } else {
                 Page page = result.get();
                 if (user.getId() != page.getUser().getId()) {
-                    return "redirect:../";
+                    return "pages/index";
                 }
                 model.addAttribute("page", page);
             }
@@ -114,7 +111,7 @@ public class PageController {
             } else {
                 Page page = result.get();
                 if (user.getId() != page.getUser().getId()) {
-                    return "redirect:../";
+                    return "pages/index";
                 }
                 model.addAttribute("page", page);
                 model.addAttribute("uneditedPage", page);
@@ -132,7 +129,7 @@ public class PageController {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
             model.addAttribute("page", editPage);
             model.addAttribute("pageId", pageId);
-            return "pages/edit";
+            return "pages/chapterPageEdit";
         }
         Page page = pageRepository.findById(pageId).get();
         page.setPageNumber(pageNumber);
@@ -146,6 +143,6 @@ public class PageController {
         Optional optChapter = chapterRepository.findById(chapterId);
         redirectAttributes.addAttribute("id", optChapter.get());
         pageRepository.deleteById(pageId);
-        return "redirect:/chapters/view/{id}";
+        return "redirect:/chapters/bookChapterView/{id}";
     }
 }

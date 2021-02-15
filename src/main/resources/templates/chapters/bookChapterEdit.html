@@ -9,17 +9,15 @@
     <p>The Chapter you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${chapter}">
-    <form method="post" th:action="@{/chapters/bookChapterEdit}">
+    <form method="post" th:action="@{/chapters/bookChapterEdit}" style="max-width:220px;">
         <div class="form-group">
-            <label class="chapter-number">Chapter Number
+            <label class="chapter-number">Chapter Number</label>
                 <input type="number" name="chapterNumber" class="form-control" th:value="${chapter.chapterNumber}">
-            </label>
             <span th:errors="${chapter.chapterNumber}" class="error"></span>
         </div>
         <div class="form-group">
-            <label>Name
+            <label>Name</label>
                 <input type="text" name="name" class="form-control" th:value="${chapter.name}">
-            </label>
             <span th:errors="${chapter.name}" class="error"></span>
         </div>
         <input type="hidden" th:value="${chapterId}" name="chapterId" />
@@ -28,11 +26,6 @@
         </div>
     </form>
 </th:block>
-<p></p>
-<div>
-    <a th:href="@{/books/view/{id}(id=${chapter.book.id})}">
-        <input type="submit" th:value="${'Back to ' + chapter.book.title}" class="btn btn-dark">
-    </a>
-</div>
+
 </body>
 </html>
