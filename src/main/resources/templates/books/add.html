@@ -15,6 +15,7 @@
     <div class="form-group">
         <label th:for="description">Book Description</label>
         <input class="form-control" th:field="${book.description}" />
+        <span th:errors="${book.description}" class="error"></span>
     </div>
 
     <input type="submit" value="Add Book" />
