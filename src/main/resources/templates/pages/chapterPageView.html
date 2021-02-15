@@ -20,8 +20,8 @@
 <p></p>
 
 <div>
-    <a th:href="@{/chapters/view/{id}(id=${page.chapter.id})}">
-        <input type="submit" th:value="${'Back to ' + page.chapter.name}" class="btn btn-dark">
+    <a th:href="@{/chapters/bookChapterView/{id}(id=${page.chapter.id})}">
+        <input type="submit" th:value="${'Back to Chapter ' + page.chapter.chapterNumber}" class="btn btn-dark">
     </a>
 </div>
 
