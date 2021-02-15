@@ -9,17 +9,15 @@
     <p>The novel you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${novel}">
-    <form method="post" th:action="@{/novels/edit}">
+    <form method="post" th:action="@{/novels/edit}" style="max-width:220px;">
         <div class="form-group">
-            <label>Name
+            <label>Name</label>
                 <input type="text" name="title" class="form-control" th:value="${novel.title}">
-            </label>
             <span th:errors="${novel.title}" class="error"></span>
         </div>
         <div class="form-group">
-            <label>Description
+            <label>Description</label>
                 <input type="text" name="description" class="form-control" th:value="${novel.description}">
-            </label>
             <span th:errors="${novel.description}" class="error"></span>
         </div>
         <input type="hidden" th:value="${novelId}" name="novelId" />

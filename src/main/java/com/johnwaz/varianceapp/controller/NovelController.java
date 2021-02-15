@@ -106,7 +106,7 @@ public class NovelController {
     }
 
     @PostMapping("edit")
-    public String processEditNovelForm(@Valid @ModelAttribute Book editNovel, Errors errors, Model model,
+    public String processEditNovelForm(@Valid @ModelAttribute Novel editNovel, Errors errors, Model model,
                                       int novelId, String title, String description) {
 
         if (errors.hasErrors()) {
