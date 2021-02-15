@@ -19,9 +19,9 @@
 <h3 th:text="${'Stories:'}"></h3>
 <div>
     <ul>
-<!--        <li th:each="story : ${novel.stories}">-->
-<!--            <a th:href="@{'/stories/view/' + ${story.id}}" th:text="${story.name}"></a>-->
-<!--        </li>-->
+        <li th:each="story : ${novel.stories}">
+            <a th:href="@{'/stories/view/' + ${story.id}}" th:text="${story.name}"></a>
+        </li>
     </ul>
 </div>
 
