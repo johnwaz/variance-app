@@ -2,9 +2,11 @@ package com.johnwaz.varianceapp.controller;
 
 import com.johnwaz.varianceapp.data.BookRepository;
 import com.johnwaz.varianceapp.data.ChapterRepository;
+import com.johnwaz.varianceapp.data.StoryRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
 import com.johnwaz.varianceapp.models.Book;
 import com.johnwaz.varianceapp.models.Chapter;
+import com.johnwaz.varianceapp.models.Story;
 import com.johnwaz.varianceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class ChapterController {
 
     @Autowired
     private ChapterRepository chapterRepository;
+
+    @Autowired
+    private StoryRepository storyRepository;
 
     private static final String userSessionKey = "user";
 
@@ -147,5 +152,48 @@ public class ChapterController {
         redirectAttributes.addAttribute("id", optBook.get());
         chapterRepository.deleteById(chapterId);
         return "redirect:/books/view/{id}";
+    }
+
+    @GetMapping(path = {"storyChapterAdd/{storyId}", "storyChapterAdd"})
+    public String displayAddChapterToStoryForm(Model model, @PathVariable(required = false) Integer storyId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (storyId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
+            return "chapters/index";
+        } else {
+            Optional<Story> result = storyRepository.findById(storyId);
+            if (result.isEmpty()) {
+                return "chapters/index";
+            } else {
+                Story story = result.get();
+                if (user.getId() != story.getUser().getId()) {
+                    return "chapters/index";
+                }
+                model.addAttribute(new Chapter());
+                model.addAttribute("story", story);
+            }
+        }
+        return "chapters/storyChapterAdd";
+    }
+
+    @PostMapping("storyChapterAdd/{storyId}")
+    public String processAddChapterToStoryForm(@Valid @ModelAttribute Chapter newChapter,
+                                               Errors errors, Model model, @PathVariable int storyId,
+                                               HttpSession session, RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()) {
+            model.addAttribute("story", storyRepository.findById(storyId).get());
+            return "chapters/storyChapterAdd";
+        }
+        Optional optStory = storyRepository.findById(storyId);
+        Story story = storyRepository.findById(storyId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        redirectAttributes.addAttribute("id", optStory.get());
+        newChapter.setUser(user);
+        newChapter.setStory(story);
+        chapterRepository.save(newChapter);
+        return "redirect:/stories/view/{id}";
     }
 }
