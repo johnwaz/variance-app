@@ -112,7 +112,7 @@ public class BookController {
             model.addAttribute("book", editBook);
             model.addAttribute("uneditedProperty", bookRepository.findById(bookId).get());
             model.addAttribute("bookId", bookId);
-            return "properties/edit";
+            return "books/edit";
         }
         Book book = bookRepository.findById(bookId).get();
         book.setTitle(title);

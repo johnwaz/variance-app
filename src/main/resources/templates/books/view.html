@@ -20,13 +20,13 @@
 <div>
     <ul>
         <li th:each="chapter : ${book.chapters}">
-            <a th:href="@{'/chapters/view/' + ${chapter.id}}" th:text="${chapter.name}"></a>
+            <a th:href="@{'/chapters/bookChapterView/' + ${chapter.id}}" th:text="${'Chapter ' + chapter.chapterNumber}"></a>
         </li>
     </ul>
 </div>
 
 <div>
-    <a th:href="@{/chapters/add/{id}(id=${book.id})}">
+    <a th:href="@{/chapters/bookChapterAdd/{id}(id=${book.id})}">
         <input type="submit" value="Add Chapter" class="btn btn-secondary">
     </a>
 </div>

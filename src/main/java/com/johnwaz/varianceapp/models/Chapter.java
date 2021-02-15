@@ -4,7 +4,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +22,18 @@ public class Chapter extends AbstractEntity {
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
-    @NotBlank(message = "Please name the chapter")
+    @NotNull(message = "Please give a chapter number")
+    @Min(value = 1, message = "Please give a chapter number")
+    private Integer chapterNumber;
+
+    @Size(max = 250, message = "Name must be less than 50 characters")
     private String name;
 
-    public Chapter(User user, Book book, @NotBlank String name) {
+    public Chapter(User user, Book book, @NotNull @Min(value = 1) Integer chapterNumber,
+                   @Size(max = 250, message = "Name must be less than 50 characters") String name) {
         this.user = user;
         this.book = book;
+        this.chapterNumber = chapterNumber;
         this.name = name;
     }
 
@@ -45,6 +53,14 @@ public class Chapter extends AbstractEntity {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public Integer getChapterNumber() {
+        return chapterNumber;
+    }
+
+    public void setChapterNumber(Integer chapterNumber) {
+        this.chapterNumber = chapterNumber;
     }
 
     public String getName() {
