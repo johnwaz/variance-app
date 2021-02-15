@@ -11,6 +11,12 @@
 <th:block th:if="${chapter}">
     <form method="post" th:action="@{/chapters/edit}">
         <div class="form-group">
+            <label class="chapter-number">Chapter Number
+                <input type="number" name="chapterNumber" class="form-control" th:value="${chapter.chapterNumber}">
+            </label>
+            <span th:errors="${chapter.chapterNumber}" class="error"></span>
+        </div>
+        <div class="form-group">
             <label>Name
                 <input type="text" name="name" class="form-control" th:value="${chapter.name}">
             </label>
