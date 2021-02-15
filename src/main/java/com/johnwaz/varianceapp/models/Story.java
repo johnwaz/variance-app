@@ -18,7 +18,7 @@ public class Story extends AbstractEntity {
     private Novel novel;
 
     @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Page> pages = new ArrayList<>();
+    private final List<Chapter> chapters = new ArrayList<>();
 
     @NotBlank(message = "Please name the story")
     private String name;
@@ -55,7 +55,7 @@ public class Story extends AbstractEntity {
         this.name = name;
     }
 
-    public List<Page> getPages() {
-        return pages;
+    public List<Chapter> getChapters() {
+        return chapters;
     }
 }
