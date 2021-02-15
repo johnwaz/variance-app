@@ -18,7 +18,7 @@ public class Novel extends AbstractEntity {
     @OneToMany(mappedBy = "novel", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Story> stories = new ArrayList<>();
 
-    @NotBlank(message = "Please give the book a title")
+    @NotBlank(message = "Please give the novel a title")
     private String title;
 
     @Size(max = 250, message = "Description must be less than 250 characters")

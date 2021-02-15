@@ -121,4 +121,10 @@ public class NovelController {
         novelRepository.save(novel);
         return "redirect:view/" + novelId;
     }
+
+    @PostMapping("view")
+    public String processDeleteNovel(int novelId) {
+        novelRepository.deleteById(novelId);
+        return "redirect:";
+    }
 }
