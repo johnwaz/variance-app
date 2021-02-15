@@ -77,7 +77,7 @@ public class ChapterController {
     }
 
     @GetMapping(path = {"view/{chapterId}", "view"})
-    public String displayViewChapter(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
+    public String displayViewBookChapter(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (chapterId == null) {
@@ -126,7 +126,7 @@ public class ChapterController {
 
     @PostMapping("edit")
     public String processEditChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, Model model,
-                                         int chapterId, String name) {
+                                         int chapterId, Integer chapterNumber, String name) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedChapter", chapterRepository.findById(chapterId).get());
@@ -135,6 +135,7 @@ public class ChapterController {
             return "chapters/edit";
         }
         Chapter chapter = chapterRepository.findById(chapterId).get();
+        chapter.setChapterNumber(chapterNumber);
         chapter.setName(name);
         chapterRepository.save(chapter);
         return "redirect:view/" + chapterId;
