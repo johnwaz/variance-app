@@ -138,7 +138,7 @@ public class StoryController {
         return "redirect:view/" + storyId;
     }
 
-    @PostMapping("bookChapterView")
+    @PostMapping("view")
     public String processDeleteNovelStory(int storyId, int novelId, RedirectAttributes redirectAttributes) {
         Optional optNovel = novelRepository.findById(novelId);
         redirectAttributes.addAttribute("id", optNovel.get());

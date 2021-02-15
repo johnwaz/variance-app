@@ -12,6 +12,13 @@ function deleteNovel() {
     }
 }
 
+function deleteStory() {
+    let story = $('#storyId').val();
+    if (confirm(`Remove ${story}?`)) {
+        document.getElementById("delete-story").submit();
+    }
+}
+
 function deleteChapter() {
     let chapter = $('#chapterId').val();
     if (confirm(`Remove ${chapter}?`)) {
