@@ -73,7 +73,7 @@ public class PageController {
         newPage.setUser(user);
         newPage.setChapter(chapter);
         pageRepository.save(newPage);
-        return "redirect:/chapters/view/{id}";
+        return "redirect:/chapters/bookChapterView/{id}";
     }
 
     @GetMapping(path = {"chapterPageView/{pageId}", "chapterPageView"})

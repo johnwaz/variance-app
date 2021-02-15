@@ -33,7 +33,7 @@ public class ChapterController {
 
     private static final String userSessionKey = "user";
 
-    @GetMapping(path = {"add/{bookId}", "add"})
+    @GetMapping(path = {"bookChapterAdd/{bookId}", "bookChapterAdd"})
     public String displayAddChapterToBookForm(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
@@ -54,16 +54,16 @@ public class ChapterController {
                 model.addAttribute("book", book);
             }
         }
-        return "chapters/add";
+        return "chapters/bookChapterAdd";
     }
 
-    @PostMapping("add/{bookId}")
+    @PostMapping("bookChapterAdd/{bookId}")
     public String processAddChapterToBookForm(@Valid @ModelAttribute Chapter newChapter,
                                        Errors errors, Model model, @PathVariable int bookId,
                                        HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("book", bookRepository.findById(bookId).get());
-            return "chapters/add";
+            return "chapters/bookChapterAdd";
         }
         Optional optBook = bookRepository.findById(bookId);
         Book book = bookRepository.findById(bookId).get();
