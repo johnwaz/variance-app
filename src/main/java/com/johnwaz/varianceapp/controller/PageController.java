@@ -73,7 +73,7 @@ public class PageController {
         newPage.setUser(user);
         newPage.setChapter(chapter);
         pageRepository.save(newPage);
-        return "redirect:/chapters/view/{id}";
+        return "redirect:/chapters/bookChapterView/{id}";
     }
 
     @GetMapping(path = {"chapterPageView/{pageId}", "chapterPageView"})
@@ -100,7 +100,7 @@ public class PageController {
     }
 
     @GetMapping(path = {"chapterPageEdit/{pageId}", "chapterPageEdit"})
-    public String displayEditPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+    public String displayEditChapterPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (pageId == null){
@@ -125,7 +125,7 @@ public class PageController {
     }
 
     @PostMapping("chapterPageEdit")
-    public String processEditPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
+    public String processEditChapterPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
                                       int pageId, Integer pageNumber, String content) {
 
         if (errors.hasErrors()) {
