@@ -48,7 +48,7 @@ public class PageController {
             } else {
                 Chapter chapter = result.get();
                 if (user.getId() != chapter.getUser().getId()) {
-                    return "redirect:../";
+                    return "pages/index";
                 }
                 model.addAttribute(new Page());
                 model.addAttribute("chapter", chapter);
@@ -91,7 +91,7 @@ public class PageController {
             } else {
                 Page page = result.get();
                 if (user.getId() != page.getUser().getId()) {
-                    return "redirect:../";
+                    return "pages/index";
                 }
                 model.addAttribute("page", page);
             }
@@ -114,7 +114,7 @@ public class PageController {
             } else {
                 Page page = result.get();
                 if (user.getId() != page.getUser().getId()) {
-                    return "redirect:../";
+                    return "pages/index";
                 }
                 model.addAttribute("page", page);
                 model.addAttribute("uneditedPage", page);
