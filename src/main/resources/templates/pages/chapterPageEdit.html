@@ -10,10 +10,9 @@
 </th:block>
 <th:block th:if="${page}">
    <form method="post" th:action="@{/pages/chapterPageEdit}">
-      <div class="form-group">
-         <label class="page-number">Page Number
+      <div class="form-group" style="max-width:220px;">
+         <label class="page-number">Page Number</label>
             <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" min="0">
-         </label>
          <span th:errors="${page.pageNumber}" class="error"></span>
       </div>
       <div class="form-group textarea">

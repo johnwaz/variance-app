@@ -132,7 +132,7 @@ public class PageController {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
             model.addAttribute("page", editPage);
             model.addAttribute("pageId", pageId);
-            return "pages/edit";
+            return "pages/chapterPageEdit";
         }
         Page page = pageRepository.findById(pageId).get();
         page.setPageNumber(pageNumber);
