@@ -58,18 +58,15 @@ public class PageController {
     }
 
     @PostMapping("chapterPageAdd/{chapterId}")
-    public String processAddPageToChapterForm(@Valid @ModelAttribute Page newPage,
-                                              Errors errors, Model model, @PathVariable int chapterId,
-                                              HttpSession session, RedirectAttributes redirectAttributes) {
+    public String processAddPageToChapterForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                              Model model, @PathVariable int chapterId, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
             return "pages/chapterPageAdd";
         }
-        Optional optChapter = chapterRepository.findById(chapterId);
         Chapter chapter = chapterRepository.findById(chapterId).get();
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        redirectAttributes.addAttribute("id", optChapter.get());
         newPage.setUser(user);
         newPage.setChapter(chapter);
         pageRepository.save(newPage);
