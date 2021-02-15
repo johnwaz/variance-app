@@ -73,4 +73,27 @@ public class StoryController {
         storyRepository.save(newStory);
         return "redirect:/novels/view/{id}";
     }
+
+    @GetMapping(path = {"view/{storyId}", "view"})
+    public String displayViewNovelStory(Model model, @PathVariable(required = false) Integer storyId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (storyId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("stories", storyRepository.findAllById(Collections.singleton(userId)));
+            return "stories/index";
+        } else {
+            Optional<Story> result = storyRepository.findById(storyId);
+            if (result.isEmpty()) {
+                return "stories/index";
+            } else {
+                Story story = result.get();
+                if (user.getId() != story.getUser().getId()) {
+                    return "stories/index";
+                }
+                model.addAttribute("story", story);
+            }
+        }
+        return "stories/view";
+    }
 }
