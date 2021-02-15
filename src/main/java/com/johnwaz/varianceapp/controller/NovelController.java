@@ -79,4 +79,46 @@ public class NovelController {
         }
         return "novels/view";
     }
+
+    @GetMapping(path = {"edit/{novelId}", "edit"})
+    public String displayEditNovelForm(Model model, @PathVariable(required = false) Integer novelId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (novelId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("novels", novelRepository.findAllById(Collections.singleton(userId)));
+            return "novels/index";
+        } else {
+            Optional<Novel> result = novelRepository.findById(novelId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Novel novel = result.get();
+                if (user.getId() != novel.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("novel", novel);
+                model.addAttribute("uneditedNovel", novel);
+                model.addAttribute("novelId", novelId);
+            }
+        }
+        return "novels/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditNovelForm(@Valid @ModelAttribute Book editNovel, Errors errors, Model model,
+                                      int novelId, String title, String description) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("novel", editNovel);
+            model.addAttribute("uneditedNovel", novelRepository.findById(novelId).get());
+            model.addAttribute("novelId", novelId);
+            return "novels/edit";
+        }
+        Novel novel = novelRepository.findById(novelId).get();
+        novel.setTitle(title);
+        novel.setDescription(description);
+        novelRepository.save(novel);
+        return "redirect:view/" + novelId;
+    }
 }
