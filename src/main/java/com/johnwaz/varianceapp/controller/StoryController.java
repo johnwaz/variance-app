@@ -96,4 +96,45 @@ public class StoryController {
         }
         return "stories/view";
     }
+
+    @GetMapping(path = {"edit/{storyId}", "edit"})
+    public String displayEditNovelStoryForm(Model model, @PathVariable(required = false) Integer storyId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (storyId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("stories", storyRepository.findAllById(Collections.singleton(userId)));
+            return "stories/index";
+        } else {
+            Optional<Story> result = storyRepository.findById(storyId);
+            if (result.isEmpty()) {
+                return "stories/index";
+            } else {
+                Story story = result.get();
+                if (user.getId() != story.getUser().getId()) {
+                    return "stories/index";
+                }
+                model.addAttribute("story", story);
+                model.addAttribute("uneditedStory", story);
+                model.addAttribute("storyId", storyId);
+            }
+        }
+        return "stories/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditNovelStoryForm(@Valid @ModelAttribute Story editStory, Errors errors, Model model,
+                                             int storyId, String name) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedStory", storyRepository.findById(storyId).get());
+            model.addAttribute("story", editStory);
+            model.addAttribute("storyId", storyId);
+            return "stories/edit";
+        }
+        Story story = storyRepository.findById(storyId).get();
+        story.setName(name);
+        storyRepository.save(story);
+        return "redirect:view/" + storyId;
+    }
 }
