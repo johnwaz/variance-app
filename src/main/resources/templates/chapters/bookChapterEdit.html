@@ -9,7 +9,7 @@
     <p>The Chapter you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${chapter}">
-    <form method="post" th:action="@{/chapters/edit}">
+    <form method="post" th:action="@{/chapters/bookChapterEdit}">
         <div class="form-group">
             <label class="chapter-number">Chapter Number
                 <input type="number" name="chapterNumber" class="form-control" th:value="${chapter.chapterNumber}">
