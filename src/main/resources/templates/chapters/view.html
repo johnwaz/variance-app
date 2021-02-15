@@ -3,11 +3,16 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
-<h2 th:text="${'Chapter: ' + chapter.name}">Default Title</h2>
+<h2 th:text="${'Chapter: ' + chapter.chapterNumber}">Default Title</h2>
 <p></p>
+<div>
+    <p th:if="${chapter.name != ''}" th:text="${'Name: ' + chapter.name}"></p>
+</div>
+
 <div>
     <p th:text="${'Book: ' + chapter.book.title}"></p>
 </div>
+
 <div>
     <a th:href="@{/chapters/edit/{id}(id=${chapter.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
