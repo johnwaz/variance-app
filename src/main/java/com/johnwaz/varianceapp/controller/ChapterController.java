@@ -219,4 +219,46 @@ public class ChapterController {
         }
         return "chapters/storyChapterView";
     }
+
+    @GetMapping(path = {"storyChapterEdit/{chapterId}", "storyChapterEdit"})
+    public String displayEditStoryChapterForm(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (chapterId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
+            return "chapters/index";
+        } else {
+            Optional<Chapter> result = chapterRepository.findById(chapterId);
+            if (result.isEmpty()) {
+                return "chapters/index";
+            } else {
+                Chapter chapter = result.get();
+                if (user.getId() != chapter.getUser().getId()) {
+                    return "chapters/index";
+                }
+                model.addAttribute("chapter", chapter);
+                model.addAttribute("uneditedChapter", chapter);
+                model.addAttribute("chapterId", chapterId);
+            }
+        }
+        return "chapters/storyChapterEdit";
+    }
+
+    @PostMapping("storyChapterEdit")
+    public String processEditStoryChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, Model model,
+                                             int chapterId, Integer chapterNumber, String name) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedChapter", chapterRepository.findById(chapterId).get());
+            model.addAttribute("chapter", editChapter);
+            model.addAttribute("chapterId", chapterId);
+            return "chapters/storyChapterEdit";
+        }
+        Chapter chapter = chapterRepository.findById(chapterId).get();
+        chapter.setChapterNumber(chapterNumber);
+        chapter.setName(name);
+        chapterRepository.save(chapter);
+        return "redirect:storyChapterView/" + chapterId;
+    }
 }
