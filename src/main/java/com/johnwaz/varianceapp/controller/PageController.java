@@ -250,4 +250,12 @@ public class PageController {
         pageRepository.save(page);
         return "redirect:storyChapterPageView/" + pageId;
     }
+
+    @PostMapping("storyChapterPageView")
+    public String processDeleteStoryChapterPage(int pageId, int chapterId, RedirectAttributes redirectAttributes) {
+        Optional optChapter = chapterRepository.findById(chapterId);
+        redirectAttributes.addAttribute("id", optChapter.get());
+        pageRepository.deleteById(pageId);
+        return "redirect:/chapters/storyChapterView/{id}";
+    }
 }
