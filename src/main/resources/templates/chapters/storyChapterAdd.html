@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h2 th:text="${'Add Chapter To: ' + book.title}">Add Chapter</h2>
+<h2 th:text="${'Add Chapter To: ' + story.name}">Add Chapter</h2>
 
 <form method="post" style="max-width:220px;">
     <div class="form-group">
@@ -20,8 +20,8 @@
 </form>
 <p></p>
 <div>
-    <a th:href="@{/books/view/{id}(id=${book.id})}">
-        <input type="submit" th:value="${'Back to ' + book.title}" class="btn btn-dark">
+    <a th:href="@{/stories/view/{id}(id=${story.id})}">
+        <input type="submit" th:value="${'Back to ' + story.name}" class="btn btn-dark">
     </a>
 </div>
 </body>
