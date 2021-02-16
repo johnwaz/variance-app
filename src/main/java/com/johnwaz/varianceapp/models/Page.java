@@ -51,7 +51,7 @@ public class Page extends AbstractEntity {
     public void setChapter(Chapter chapter) {
         this.chapter = chapter;
     }
-    
+
     public Integer getPageNumber() {
         return pageNumber;
     }
