@@ -57,8 +57,8 @@ public class StoryController {
 
     @PostMapping("add/{novelId}")
     public String processAddStoryToNovelForm(@Valid @ModelAttribute Story newStory,
-                                              Errors errors, Model model, @PathVariable int novelId,
-                                              HttpSession session, RedirectAttributes redirectAttributes) {
+                                             Errors errors, Model model, @PathVariable int novelId,
+                                             HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("novel", novelRepository.findById(novelId).get());
             return "stories/add";
@@ -124,7 +124,7 @@ public class StoryController {
 
     @PostMapping("edit")
     public String processEditNovelStoryForm(@Valid @ModelAttribute Story editStory, Errors errors, Model model,
-                                             int storyId, String name) {
+                                            int storyId, String name) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedStory", storyRepository.findById(storyId).get());

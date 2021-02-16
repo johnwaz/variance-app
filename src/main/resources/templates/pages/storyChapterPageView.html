@@ -7,26 +7,26 @@
 <p></p>
 <div>
     <p th:text="${'Chapter: ' + page.chapter.name}"></p>
-    <p th:text="${'Book: ' + page.chapter.book.title}"></p>
+    <p th:text="${'Story: ' + page.chapter.story.name}"></p>
     <p style="text-decoration: underline" th:text="${'Content:'}"></p>
     <p style="white-space: pre-line" th:text="${page.content}"></p>
     <hr>
 </div>
 <div>
-    <a th:href="@{/pages/chapterPageEdit/{id}(id=${page.id})}">
+    <a th:href="@{/pages/storyChapterPageEdit/{id}(id=${page.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 </div>
 <p></p>
 
 <div>
-    <a th:href="@{/chapters/bookChapterView/{id}(id=${page.chapter.id})}">
+    <a th:href="@{/chapters/storyChapterView/{id}(id=${page.chapter.id})}">
         <input type="submit" th:value="${'Back to Chapter ' + page.chapter.chapterNumber}" class="btn btn-dark">
     </a>
 </div>
 
 <th:block th:if="${page}">
-    <form method="post" th:action="@{/pages/chapterPageView}" id="delete-page">
+    <form method="post" th:action="@{/pages/storyChapterPageView}" id="delete-page">
         <input type="hidden" name="pageId" th:value="${page.id}" class="form-control">
         <input type="hidden" id="pageId" th:value="${page.pageNumber}" class="form-control">
         <input type="hidden" name="chapterId" th:value="${page.chapter.id}" class="form-control">

@@ -22,20 +22,20 @@
 
 <h3 th:text="${'Pages:'}"></h3>
 
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="page : ${chapter.pages}">-->
-<!--            <a th:href="@{'/pages/chapterPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="page : ${chapter.pages}">
+            <a th:href="@{'/pages/storyChapterPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
+        </li>
+    </ul>
+</div>
 
-<!--<div>-->
-<!--    <a th:href="@{/pages/chapterPageAdd/{id}(id=${chapter.id})}">-->
-<!--        <input type="submit" value="Add Page" class="btn btn-secondary">-->
-<!--    </a>-->
-<!--</div>-->
-<!--<p></p>-->
+<div>
+    <a th:href="@{/pages/storyChapterPageAdd/{id}(id=${chapter.id})}">
+        <input type="submit" value="Add Page" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
 
 <div>
     <a th:href="@{/stories/view/{id}(id=${chapter.story.id})}">

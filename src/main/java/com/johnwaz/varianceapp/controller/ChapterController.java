@@ -64,8 +64,8 @@ public class ChapterController {
 
     @PostMapping("bookChapterAdd/{bookId}")
     public String processAddChapterToBookForm(@Valid @ModelAttribute Chapter newChapter,
-                                       Errors errors, Model model, @PathVariable int bookId,
-                                       HttpSession session, RedirectAttributes redirectAttributes) {
+                                              Errors errors, Model model, @PathVariable int bookId,
+                                              HttpSession session, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("book", bookRepository.findById(bookId).get());
             return "chapters/bookChapterAdd";
@@ -131,7 +131,7 @@ public class ChapterController {
 
     @PostMapping("bookChapterEdit")
     public String processEditBookChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, Model model,
-                                         int chapterId, Integer chapterNumber, String name) {
+                                             int chapterId, Integer chapterNumber, String name) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedChapter", chapterRepository.findById(chapterId).get());
@@ -247,7 +247,7 @@ public class ChapterController {
 
     @PostMapping("storyChapterEdit")
     public String processEditStoryChapterForm(@Valid @ModelAttribute Chapter editChapter, Errors errors, Model model,
-                                             int chapterId, Integer chapterNumber, String name) {
+                                              int chapterId, Integer chapterNumber, String name) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedChapter", chapterRepository.findById(chapterId).get());

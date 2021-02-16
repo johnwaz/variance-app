@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${'Add Page To: Chapter ' + chapter.chapterNumber}">Add Page</h2>
+
+<form method="post" style="max-width:220px;">
+    <div class="form-group">
+        <label th:for="pageNumber">Page Number</label>
+        <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
+        <span th:errors="${page.pageNumber}" class="error"></span>
+    </div>
+    <div class="form-group textarea">
+        <label th:for="content">Page Content</label>
+        <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" maxlength="3000"></textarea>
+        <span th:errors="${page.content}" class="error"></span>
+    </div>
+    <input type="submit" id="submit-code" value="Add Page" />
+</form>
+<p></p>
+<div>
+    <a th:href="@{/chapters/storyChapterView/{id}(id=${chapter.id})}">
+        <input type="submit" th:value="${'Back to Chapter ' + chapter.chapterNumber}" class="btn btn-dark">
+    </a>
+</div>
+</body>
+</html>
