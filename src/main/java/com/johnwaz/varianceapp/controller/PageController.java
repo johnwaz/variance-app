@@ -87,7 +87,7 @@ public class PageController {
                 return "pages/index";
             } else {
                 Page page = result.get();
-                if (user.getId() != page.getUser().getId()) {
+                if (user.getId() != page.getUser().getId() || page.getChapter().getBook() == null) {
                     return "pages/index";
                 }
                 model.addAttribute("page", page);
@@ -110,7 +110,7 @@ public class PageController {
                 return "pages/index";
             } else {
                 Page page = result.get();
-                if (user.getId() != page.getUser().getId()) {
+                if (user.getId() != page.getUser().getId() || page.getChapter().getBook() == null) {
                     return "pages/index";
                 }
                 model.addAttribute("page", page);
