@@ -211,7 +211,7 @@ public class ChapterController {
                 return "chapters/index";
             } else {
                 Chapter chapter = result.get();
-                if (user.getId() != chapter.getUser().getId()) {
+                if (user.getId() != chapter.getUser().getId() || chapter.getStory() == null) {
                     return "chapters/index";
                 }
                 model.addAttribute("chapter", chapter);
@@ -234,7 +234,7 @@ public class ChapterController {
                 return "chapters/index";
             } else {
                 Chapter chapter = result.get();
-                if (user.getId() != chapter.getUser().getId()) {
+                if (user.getId() != chapter.getUser().getId() || chapter.getStory() == null) {
                     return "chapters/index";
                 }
                 model.addAttribute("chapter", chapter);
