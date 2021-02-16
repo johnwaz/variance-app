@@ -145,4 +145,44 @@ public class PageController {
         pageRepository.deleteById(pageId);
         return "redirect:/chapters/bookChapterView/{id}";
     }
+
+    @GetMapping(path = {"storyChapterPageAdd/{chapterId}", "storyChapterPageAdd"})
+    public String displayAddPageToStoryChapterForm(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (chapterId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Chapter> result = chapterRepository.findById(chapterId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Chapter chapter = result.get();
+                if (user.getId() != chapter.getUser().getId()) {
+                    return "pages/index";
+                }
+                model.addAttribute(new Page());
+                model.addAttribute("chapter", chapter);
+            }
+        }
+        return "pages/storyChapterPageAdd";
+    }
+
+    @PostMapping("storyChapterPageAdd/{chapterId}")
+    public String processAddPageToStoryChapterForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                                  Model model, @PathVariable int chapterId, HttpSession session) {
+        if (errors.hasErrors()) {
+            model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
+            return "pages/storyChapterPageAdd";
+        }
+        Chapter chapter = chapterRepository.findById(chapterId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        newPage.setUser(user);
+        newPage.setChapter(chapter);
+        pageRepository.save(newPage);
+        return "pages/storyChapterPageView";
+    }
 }
