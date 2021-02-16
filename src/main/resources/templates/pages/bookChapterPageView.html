@@ -13,7 +13,7 @@
     <hr>
 </div>
 <div>
-    <a th:href="@{/pages/chapterPageEdit/{id}(id=${page.id})}">
+    <a th:href="@{/pages/bookChapterPageEdit/{id}(id=${page.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 </div>
@@ -26,7 +26,7 @@
 </div>
 
 <th:block th:if="${page}">
-    <form method="post" th:action="@{/pages/chapterPageView}" id="delete-page">
+    <form method="post" th:action="@{/pages/bookChapterPageView}" id="delete-page">
         <input type="hidden" name="pageId" th:value="${page.id}" class="form-control">
         <input type="hidden" id="pageId" th:value="${page.pageNumber}" class="form-control">
         <input type="hidden" name="chapterId" th:value="${page.chapter.id}" class="form-control">
