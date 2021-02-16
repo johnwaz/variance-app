@@ -46,7 +46,7 @@ public class NovelController {
 
     @PostMapping("add")
     public String processAddNovelForm(@Valid @ModelAttribute Novel newNovel,
-                                     Errors errors, HttpSession session) {
+                                      Errors errors, HttpSession session) {
         if (errors.hasErrors()) {
             return "novels/add";
         }
@@ -107,7 +107,7 @@ public class NovelController {
 
     @PostMapping("edit")
     public String processEditNovelForm(@Valid @ModelAttribute Novel editNovel, Errors errors, Model model,
-                                      int novelId, String title, String description) {
+                                       int novelId, String title, String description) {
 
         if (errors.hasErrors()) {
             model.addAttribute("novel", editNovel);
