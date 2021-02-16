@@ -45,7 +45,7 @@ public class BookController {
 
     @PostMapping("add")
     public String processAddBookForm(@Valid @ModelAttribute Book newBook,
-                                         Errors errors, HttpSession session) {
+                                     Errors errors, HttpSession session) {
         if (errors.hasErrors()) {
             return "books/add";
         }
