@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2>Journals</h2>
+
+<p th:unless="${user.journals} and ${user.journals.size()}">There are no journals</p>
+
+<div class="container body-content">
+    <ul>
+        <li th:each="journal : ${user.journals}">
+            <a th:href="@{'/journals/view/' + ${journal.id}}" th:text="${journal.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/journals/add'}">
+        <input type="submit" value="Add Journals" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
+
+</body>
+</html>

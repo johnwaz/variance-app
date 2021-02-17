@@ -6,7 +6,7 @@
 <h2>Edit Chapter</h2>
 
 <th:block th:unless="${chapter}">
-    <p>The Chapter you are trying to edit does not exist</p>
+    <p>The chapter you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${chapter}">
     <form method="post" th:action="@{/chapters/bookChapterEdit}" style="max-width:220px;">

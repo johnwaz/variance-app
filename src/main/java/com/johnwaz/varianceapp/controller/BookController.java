@@ -60,7 +60,7 @@ public class BookController {
     public String displayViewBook(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (bookId == null){
+        if (bookId == null) {
             model.addAttribute("user", user);
             model.addAttribute("books", bookRepository.findAllById(Collections.singleton(userId)));
             return "books/index";
@@ -83,7 +83,7 @@ public class BookController {
     public String displayEditBookForm(Model model, @PathVariable(required = false) Integer bookId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (bookId == null){
+        if (bookId == null) {
             model.addAttribute("user", user);
             model.addAttribute("books", bookRepository.findAllById(Collections.singleton(userId)));
             return "books/index";

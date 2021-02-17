@@ -101,7 +101,7 @@ public class StoryController {
     public String displayEditNovelStoryForm(Model model, @PathVariable(required = false) Integer storyId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (storyId == null){
+        if (storyId == null) {
             model.addAttribute("user", user);
             model.addAttribute("stories", storyRepository.findAllById(Collections.singleton(userId)));
             return "stories/index";

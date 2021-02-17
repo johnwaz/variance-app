@@ -2,7 +2,6 @@ package com.johnwaz.varianceapp.controller;
 
 import com.johnwaz.varianceapp.data.NovelRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
-import com.johnwaz.varianceapp.models.Book;
 import com.johnwaz.varianceapp.models.Novel;
 import com.johnwaz.varianceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class NovelController {
     public String displayViewNovel(Model model, @PathVariable(required = false) Integer novelId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (novelId == null){
+        if (novelId == null) {
             model.addAttribute("user", user);
             model.addAttribute("novels", novelRepository.findAllById(Collections.singleton(userId)));
             return "novels/index";
@@ -84,7 +83,7 @@ public class NovelController {
     public String displayEditNovelForm(Model model, @PathVariable(required = false) Integer novelId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (novelId == null){
+        if (novelId == null) {
             model.addAttribute("user", user);
             model.addAttribute("novels", novelRepository.findAllById(Collections.singleton(userId)));
             return "novels/index";
