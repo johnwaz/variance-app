@@ -46,7 +46,7 @@ public class JournalController {
 
     @PostMapping("add")
     public String processAddJournalForm(@Valid @ModelAttribute Journal newJournal,
-                                     Errors errors, HttpSession session) {
+                                        Errors errors, HttpSession session) {
         if (errors.hasErrors()) {
             return "journals/add";
         }
@@ -78,5 +78,47 @@ public class JournalController {
             }
         }
         return "journals/view";
+    }
+
+    @GetMapping(path = {"edit/{journalId}", "edit"})
+    public String displayEditJournalForm(Model model, @PathVariable(required = false) Integer journalId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (journalId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("journals", journalRepository.findAllById(Collections.singleton(userId)));
+            return "journals/index";
+        } else {
+            Optional<Journal> result = journalRepository.findById(journalId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Journal journal = result.get();
+                if (user.getId() != journal.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("journal", journal);
+                model.addAttribute("uneditedJournal", journal);
+                model.addAttribute("journalId", journalId);
+            }
+        }
+        return "journals/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditJournalForm(@Valid @ModelAttribute Journal editJournal, Errors errors, Model model,
+                                         int journalId, String name, String description) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("journal", editJournal);
+            model.addAttribute("uneditedJournal", journalRepository.findById(journalId).get());
+            model.addAttribute("journalId", journalId);
+            return "journals/edit";
+        }
+        Journal journal = journalRepository.findById(journalId).get();
+        journal.setName(name);
+        journal.setDescription(description);
+        journalRepository.save(journal);
+        return "redirect:view/" + journalId;
     }
 }
