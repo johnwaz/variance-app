@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
 
 @Controller
 @RequestMapping("journals")
@@ -28,6 +29,15 @@ public class JournalController {
     private JournalRepository journalRepository;
 
     private static final String userSessionKey = "user";
+
+    @GetMapping
+    public String displayAllJournals(Model model, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        model.addAttribute("user", user);
+        model.addAttribute("journals", journalRepository.findAllById(Collections.singleton(userId)));
+        return "journals/index";
+    }
 
     @GetMapping("add")
     public String displayAddJournalForm(Model model) {
