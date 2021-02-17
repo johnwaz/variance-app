@@ -6,7 +6,7 @@
 <h2 th:text="${'Page: ' + page.pageNumber}">Default Title</h2>
 <p></p>
 <div>
-    <p th:text="${'Chapter: ' + page.chapter.name}"></p>
+    <p th:text="${'Chapter: ' + page.chapter.chapterNumber}"></p>
     <p th:text="${'Book: ' + page.chapter.book.title}"></p>
     <p style="text-decoration: underline" th:text="${'Content:'}"></p>
     <p style="white-space: pre-line" th:text="${page.content}"></p>
