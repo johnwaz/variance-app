@@ -9,14 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("journals")
@@ -57,5 +55,28 @@ public class JournalController {
         newJournal.setUser(user);
         journalRepository.save(newJournal);
         return "redirect:";
+    }
+
+    @GetMapping(path = {"view/{journalId}", "view"})
+    public String displayViewJournal(Model model, @PathVariable(required = false) Integer journalId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (journalId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("journals", journalRepository.findAllById(Collections.singleton(userId)));
+            return "journals/index";
+        } else {
+            Optional<Journal> result = journalRepository.findById(journalId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Journal journal = result.get();
+                if (user.getId() != journal.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("journal", journal);
+            }
+        }
+        return "journals/view";
     }
 }
