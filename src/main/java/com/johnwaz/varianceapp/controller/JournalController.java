@@ -121,4 +121,10 @@ public class JournalController {
         journalRepository.save(journal);
         return "redirect:view/" + journalId;
     }
+
+    @PostMapping("view")
+    public String processDeleteJournal(int journalId) {
+        journalRepository.deleteById(journalId);
+        return "redirect:";
+    }
 }
