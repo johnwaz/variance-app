@@ -17,6 +17,9 @@ public class Page extends AbstractEntity {
     @ManyToOne
     private Chapter chapter;
 
+    @ManyToOne
+    private Journal journal;
+
     @NotNull(message = "Please give a page number")
     @Min(value = 1, message = "Please give a page number")
     private Integer pageNumber;
@@ -30,6 +33,14 @@ public class Page extends AbstractEntity {
                 @NotBlank @Size(max = 3000, message = "Content must be less than 3,000 characters") String content) {
         this.user = user;
         this.chapter = chapter;
+        this.pageNumber = pageNumber;
+        this.content = content;
+    }
+
+    public Page(User user, Journal journal, @NotNull @Min(value = 1) Integer pageNumber,
+                @NotBlank @Size(max = 3000, message = "Content must be less than 3,000 characters") String content) {
+        this.user = user;
+        this.journal = journal;
         this.pageNumber = pageNumber;
         this.content = content;
     }
@@ -50,6 +61,14 @@ public class Page extends AbstractEntity {
 
     public void setChapter(Chapter chapter) {
         this.chapter = chapter;
+    }
+
+    public Journal getJournal() {
+        return journal;
+    }
+
+    public void setJournal(Journal journal) {
+        this.journal = journal;
     }
 
     public Integer getPageNumber() {
