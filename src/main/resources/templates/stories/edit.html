@@ -6,7 +6,7 @@
 <h2>Edit Story</h2>
 
 <th:block th:unless="${story}">
-    <p>The Story you are trying to edit does not exist</p>
+    <p>The story you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${story}">
     <form method="post" th:action="@{/stories/edit}" style="max-width:220px;">

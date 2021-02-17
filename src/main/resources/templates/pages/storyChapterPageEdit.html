@@ -6,7 +6,7 @@
 <h2>Edit Page</h2>
 
 <th:block th:unless="${page}">
-    <p>The Page you are trying to edit does not exist</p>
+    <p>The page you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${page}">
     <form method="post" th:action="@{/pages/storyChapterPageEdit}">
