@@ -2,7 +2,6 @@ package com.johnwaz.varianceapp.controller;
 
 import com.johnwaz.varianceapp.data.JournalRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
-import com.johnwaz.varianceapp.models.Book;
 import com.johnwaz.varianceapp.models.Journal;
 import com.johnwaz.varianceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class JournalController {
     public String displayViewJournal(Model model, @PathVariable(required = false) Integer journalId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (journalId == null){
+        if (journalId == null) {
             model.addAttribute("user", user);
             model.addAttribute("journals", journalRepository.findAllById(Collections.singleton(userId)));
             return "journals/index";
@@ -84,7 +83,7 @@ public class JournalController {
     public String displayEditJournalForm(Model model, @PathVariable(required = false) Integer journalId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (journalId == null){
+        if (journalId == null) {
             model.addAttribute("user", user);
             model.addAttribute("journals", journalRepository.findAllById(Collections.singleton(userId)));
             return "journals/index";

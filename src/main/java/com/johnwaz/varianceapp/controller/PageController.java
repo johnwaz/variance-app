@@ -59,7 +59,7 @@ public class PageController {
 
     @PostMapping("bookChapterPageAdd/{chapterId}")
     public String processAddPageToBookChapterForm(@Valid @ModelAttribute Page newPage, Errors errors,
-                                              Model model, @PathVariable int chapterId, HttpSession session) {
+                                                  Model model, @PathVariable int chapterId, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
             return "pages/bookChapterPageAdd";
@@ -100,7 +100,7 @@ public class PageController {
     public String displayEditBookChapterPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (pageId == null){
+        if (pageId == null) {
             model.addAttribute("user", user);
             model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
             return "pages/index";
@@ -123,7 +123,7 @@ public class PageController {
 
     @PostMapping("bookChapterPageEdit")
     public String processEditBookChapterPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
-                                             int pageId, Integer pageNumber, String content) {
+                                                 int pageId, Integer pageNumber, String content) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
@@ -172,7 +172,7 @@ public class PageController {
 
     @PostMapping("storyChapterPageAdd/{chapterId}")
     public String processAddPageToStoryChapterForm(@Valid @ModelAttribute Page newPage, Errors errors,
-                                                  Model model, @PathVariable int chapterId, HttpSession session) {
+                                                   Model model, @PathVariable int chapterId, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("chapter", chapterRepository.findById(chapterId).get());
             return "pages/storyChapterPageAdd";
@@ -213,7 +213,7 @@ public class PageController {
     public String displayEditStoryChapterPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (pageId == null){
+        if (pageId == null) {
             model.addAttribute("user", user);
             model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
             return "pages/index";
@@ -236,7 +236,7 @@ public class PageController {
 
     @PostMapping("storyChapterPageEdit")
     public String processEditStoryChapterPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
-                                                 int pageId, Integer pageNumber, String content) {
+                                                  int pageId, Integer pageNumber, String content) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());

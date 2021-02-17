@@ -108,7 +108,7 @@ public class ChapterController {
     public String displayEditBookChapterForm(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (chapterId == null){
+        if (chapterId == null) {
             model.addAttribute("user", user);
             model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
             return "chapters/index";
@@ -224,7 +224,7 @@ public class ChapterController {
     public String displayEditStoryChapterForm(Model model, @PathVariable(required = false) Integer chapterId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (chapterId == null){
+        if (chapterId == null) {
             model.addAttribute("user", user);
             model.addAttribute("chapters", chapterRepository.findAllById(Collections.singleton(userId)));
             return "chapters/index";
