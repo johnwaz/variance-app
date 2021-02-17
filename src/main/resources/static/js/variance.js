@@ -26,6 +26,13 @@ function deleteChapter() {
     }
 }
 
+function deleteJournal() {
+    let journal = $('#journalId').val();
+    if (confirm(`Remove ${journal}?`)) {
+        document.getElementById("delete-journal").submit();
+    }
+}
+
 function deletePage() {
     let page = $('#pageId').val();
     if (confirm(`Remove Page ${page}?`)) {
