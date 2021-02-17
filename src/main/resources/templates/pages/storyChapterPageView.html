@@ -8,6 +8,7 @@
 <div>
     <p th:text="${'Chapter: ' + page.chapter.chapterNumber}"></p>
     <p th:text="${'Story: ' + page.chapter.story.name}"></p>
+    <p th:text="${'Novel: ' + page.chapter.story.novel.title}"></p>
     <p style="text-decoration: underline" th:text="${'Content:'}"></p>
     <p style="white-space: pre-line" th:text="${page.content}"></p>
     <hr>

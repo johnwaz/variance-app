@@ -7,10 +7,8 @@
 <p></p>
 <div>
     <p th:if="${chapter.name != ''}" th:text="${'Name: ' + chapter.name}"></p>
-</div>
-
-<div>
     <p th:text="${'Story: ' + chapter.story.name}"></p>
+    <p th:text="${'Novel: ' + chapter.story.novel.title}"></p>
 </div>
 
 <div>
