@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${'Add Subject To: ' + notebook.title}">Add Subject</h2>
 
+<form method="post" style="max-width:220px;">
+    <div class="form-group">
+        <label th:for="name">Subject Name</label>
+        <input class="form-control" th:field="${subject.name}" />
+        <span th:errors="${subject.name}" class="error"></span>
+    </div>
+    <input type="submit" value="Add Subject" />
+</form>
+<p></p>
+<div>
+    <a th:href="@{/notebooks/view/{id}(id=${notebook.id})}">
+        <input type="submit" th:value="${'Back to ' + notebook.title}" class="btn btn-dark">
+    </a>
+</div>
 </body>
 </html>
