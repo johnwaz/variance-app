@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2>Edit Subject</h2>
+
+<th:block th:unless="${subject}">
+    <p>The subject you are trying to edit does not exist</p>
+</th:block>
+<th:block th:if="${subject}">
+    <form method="post" th:action="@{/subjects/edit}" style="max-width:220px;">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" th:value="${subject.name}">
+            <span th:errors="${subject.name}" class="error"></span>
+        </div>
+        <input type="hidden" th:value="${subjectId}" name="subjectId" />
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success">
+        </div>
+    </form>
+</th:block>
 
 </body>
 </html>
