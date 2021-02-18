@@ -303,4 +303,27 @@ public class PageController {
         pageRepository.save(newPage);
         return "pages/journalPageView";
     }
+
+    @GetMapping(path = {"journalPageView/{pageId}", "journalPageView"})
+    public String displayViewJournalPage(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId() || page.getJournal() == null) {
+                    return "pages/index";
+                }
+                model.addAttribute("page", page);
+            }
+        }
+        return "pages/journalPageView";
+    }
 }
