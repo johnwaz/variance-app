@@ -9,14 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("notebooks")
@@ -57,5 +55,28 @@ public class NotebookController {
         newNotebook.setUser(user);
         notebookRepository.save(newNotebook);
         return "redirect:";
+    }
+
+    @GetMapping(path = {"view/{notebookId}", "view"})
+    public String displayViewNotebook(Model model, @PathVariable(required = false) Integer notebookId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (notebookId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("notebooks", notebookRepository.findAllById(Collections.singleton(userId)));
+            return "notebooks/index";
+        } else {
+            Optional<Notebook> result = notebookRepository.findById(notebookId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Notebook notebook = result.get();
+                if (user.getId() != notebook.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("notebook", notebook);
+            }
+        }
+        return "notebooks/view";
     }
 }
