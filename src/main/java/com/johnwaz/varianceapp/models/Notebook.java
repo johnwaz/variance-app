@@ -21,10 +21,10 @@ public class Notebook extends AbstractEntity {
     @NotBlank(message = "Please give the notebook a title")
     private String title;
 
-    @Size(max = 250, message = "Description must be less than 250 characters")
+    @Size(max = 200, message = "Description must be less than 200 characters")
     private String description;
 
-    public Notebook(User user, @NotBlank String title, @Size(max = 250, message = "Description must be less than 250 characters") String description) {
+    public Notebook(User user, @NotBlank String title, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
         this.user = user;
         this.title = title;
         this.description = description;

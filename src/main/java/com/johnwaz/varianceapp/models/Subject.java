@@ -21,13 +21,13 @@ public class Subject extends AbstractEntity {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
-    @NotBlank(message = "Please give the subject a name")
+    @NotBlank(message = "Please name the subject")
     private String name;
 
-    @Size(max = 250, message = "Description must be less than 250 characters")
+    @Size(max = 200, message = "Description must be less than 200 characters")
     private String description;
 
-    public Subject(User user, Notebook notebook, @NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description) {
+    public Subject(User user, Notebook notebook, @NotBlank String name, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
         this.user = user;
         this.notebook = notebook;
         this.name = name;
