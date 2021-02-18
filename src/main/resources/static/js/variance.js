@@ -33,6 +33,13 @@ function deleteJournal() {
     }
 }
 
+function deleteNotebook() {
+    let notebook = $('#notebookId').val();
+    if (confirm(`Remove ${notebook}?`)) {
+        document.getElementById("delete-notebook").submit();
+    }
+}
+
 function deletePage() {
     let page = $('#pageId').val();
     if (confirm(`Remove Page ${page}?`)) {

@@ -3,7 +3,6 @@ package com.johnwaz.varianceapp.controller;
 import com.johnwaz.varianceapp.data.NotebookRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
 import com.johnwaz.varianceapp.models.Notebook;
-import com.johnwaz.varianceapp.models.Novel;
 import com.johnwaz.varianceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -120,5 +119,11 @@ public class NotebookController {
         notebook.setDescription(description);
         notebookRepository.save(notebook);
         return "redirect:view/" + notebookId;
+    }
+
+    @PostMapping("view")
+    public String processDeleteNotebook(int notebookId) {
+        notebookRepository.deleteById(notebookId);
+        return "redirect:";
     }
 }
