@@ -20,7 +20,7 @@
 <div>
     <ul>
         <li th:each="page : ${journal.pages}">
-            <a th:href="@{'/pages/journalPage/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
+            <a th:href="@{'/pages/journalPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
         </li>
     </ul>
 </div>
