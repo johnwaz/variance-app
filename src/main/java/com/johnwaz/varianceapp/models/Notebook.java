@@ -18,15 +18,15 @@ public class Notebook extends AbstractEntity {
     @OneToMany(mappedBy = "notebook", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Subject> subjects = new ArrayList<>();
 
-    @NotBlank(message = "Please give the notebook a name")
-    private String name;
+    @NotBlank(message = "Please give the notebook a title")
+    private String title;
 
     @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
-    public Notebook(User user, @NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description) {
+    public Notebook(User user, @NotBlank String title, @Size(max = 250, message = "Description must be less than 250 characters") String description) {
         this.user = user;
-        this.name = name;
+        this.title = title;
         this.description = description;
     }
 
@@ -40,12 +40,12 @@ public class Notebook extends AbstractEntity {
         this.user = user;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
