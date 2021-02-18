@@ -79,4 +79,46 @@ public class NotebookController {
         }
         return "notebooks/view";
     }
+
+    @GetMapping(path = {"edit/{notebookId}", "edit"})
+    public String displayEditNotebookForm(Model model, @PathVariable(required = false) Integer notebookId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (notebookId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("notebooks", notebookRepository.findAllById(Collections.singleton(userId)));
+            return "notebooks/index";
+        } else {
+            Optional<Notebook> result = notebookRepository.findById(notebookId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Notebook notebook = result.get();
+                if (user.getId() != notebook.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("notebook", notebook);
+                model.addAttribute("uneditedNotebook", notebook);
+                model.addAttribute("notebookId", notebookId);
+            }
+        }
+        return "notebooks/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditNotebookForm(@Valid @ModelAttribute Notebook editNotebook, Errors errors, Model model,
+                                       int notebookId, String title, String description) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("notebook", editNotebook);
+            model.addAttribute("uneditedNotebook", notebookRepository.findById(notebookId).get());
+            model.addAttribute("notebookId", notebookId);
+            return "notebooks/edit";
+        }
+        Notebook notebook = notebookRepository.findById(notebookId).get();
+        notebook.setTitle(title);
+        notebook.setDescription(description);
+        notebookRepository.save(notebook);
+        return "redirect:view/" + notebookId;
+    }
 }
