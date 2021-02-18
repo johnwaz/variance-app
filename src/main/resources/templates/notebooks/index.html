@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2>Notebooks</h2>
+
+<p th:unless="${user.notebooks} and ${user.notebooks.size()}">There are no notebooks</p>
+
+<div class="container body-content">
+    <ul>
+        <li th:each="notebook : ${user.notebooks}">
+            <a th:href="@{'/notebooks/view/' + ${notebook.id}}" th:text="${notebook.title}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/notebooks/add'}">
+        <input type="submit" value="Add Notebooks" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
 
 </body>
 </html>
