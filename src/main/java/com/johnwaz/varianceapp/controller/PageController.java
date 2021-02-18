@@ -368,4 +368,12 @@ public class PageController {
         pageRepository.save(page);
         return "redirect:journalPageView/" + pageId;
     }
+
+    @PostMapping("journalPageView")
+    public String processDeleteJournalPage(int pageId, int journalId, RedirectAttributes redirectAttributes) {
+        Optional optJournal = journalRepository.findById(journalId);
+        redirectAttributes.addAttribute("id", optJournal.get());
+        pageRepository.deleteById(pageId);
+        return "redirect:/journals/view/{id}";
+    }
 }
