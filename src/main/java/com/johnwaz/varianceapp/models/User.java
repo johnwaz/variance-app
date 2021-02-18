@@ -28,6 +28,9 @@ public class User extends AbstractEntity {
     private final List<Journal> journals = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Notebook> notebooks = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
     @NotNull
@@ -67,6 +70,10 @@ public class User extends AbstractEntity {
 
     public List<Journal> getJournals() {
         return journals;
+    }
+
+    public List<Notebook> getNotebooks() {
+        return notebooks;
     }
 
     public List<Page> getPages() {
