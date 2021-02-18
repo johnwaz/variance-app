@@ -10,27 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Journal extends AbstractEntity {
+public class Notebook extends AbstractEntity {
 
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "journal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Page> pages = new ArrayList<>();
+    @OneToMany(mappedBy = "notebook", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Subject> subjects = new ArrayList<>();
 
-    @NotBlank(message = "Please name the journal")
-    private String name;
+    @NotBlank(message = "Please give the notebook a title")
+    private String title;
 
     @Size(max = 200, message = "Description must be less than 200 characters")
     private String description;
 
-    public Journal(User user, @NotBlank String name, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
+    public Notebook(User user, @NotBlank String title, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
         this.user = user;
-        this.name = name;
+        this.title = title;
         this.description = description;
     }
 
-    public Journal() {}
+    public Notebook() {}
 
     public User getUser() {
         return user;
@@ -40,12 +40,12 @@ public class Journal extends AbstractEntity {
         this.user = user;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -56,7 +56,7 @@ public class Journal extends AbstractEntity {
         this.description = description;
     }
 
-    public List<Page> getPages() {
-        return pages;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 }

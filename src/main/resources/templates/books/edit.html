@@ -11,7 +11,7 @@
 <th:block th:if="${book}">
     <form method="post" th:action="@{/books/edit}" style="max-width:220px;">
         <div class="form-group">
-            <label>Name</label>
+            <label>Title</label>
                 <input type="text" name="title" class="form-control" th:value="${book.title}">
             <span th:errors="${book.title}" class="error"></span>
         </div>

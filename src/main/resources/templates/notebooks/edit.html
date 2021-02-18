@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2>Edit Notebook</h2>
+
+<th:block th:unless="${notebook}">
+    <p>The notebook you are trying to edit does not exist</p>
+</th:block>
+<th:block th:if="${notebook}">
+    <form method="post" th:action="@{/notebooks/edit}" style="max-width:220px;">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" th:value="${notebook.title}">
+            <span th:errors="${notebook.title}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="description" class="form-control" th:value="${notebook.description}">
+            <span th:errors="${notebook.description}" class="error"></span>
+        </div>
+        <input type="hidden" th:value="${notebookId}" name="notebookId" />
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success">
+        </div>
+    </form>
+</th:block>
+
+</body>
+</html>

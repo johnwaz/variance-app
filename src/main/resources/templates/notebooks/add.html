@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<h2>Add Notebook</h2>
+
+<form method="post" style="max-width:220px;">
+    <div class="form-group">
+        <label th:for="title">Notebook Title</label>
+        <input class="form-control" th:field="${notebook.title}" />
+        <span th:errors="${notebook.title}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Notebook Description</label>
+        <input class="form-control" th:field="${notebook.description}" />
+        <span th:errors="${notebook.description}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Notebook" />
+</form>
+<p></p>
+<div>
+    <a th:href="@{/notebooks}">
+        <input type="submit" th:value="${'Back to Notebooks'}" class="btn btn-dark">
+    </a>
+</div>
+</body>
+</html>

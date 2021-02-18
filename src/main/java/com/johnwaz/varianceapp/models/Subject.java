@@ -10,27 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Journal extends AbstractEntity {
+public class Subject extends AbstractEntity {
 
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "journal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
+    private Notebook notebook;
+
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
-    @NotBlank(message = "Please name the journal")
+    @NotBlank(message = "Please name the subject")
     private String name;
 
     @Size(max = 200, message = "Description must be less than 200 characters")
     private String description;
 
-    public Journal(User user, @NotBlank String name, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
+    public Subject(User user, Notebook notebook, @NotBlank String name, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
         this.user = user;
+        this.notebook = notebook;
         this.name = name;
         this.description = description;
     }
 
-    public Journal() {}
+    public Subject() {}
 
     public User getUser() {
         return user;
@@ -38,6 +42,14 @@ public class Journal extends AbstractEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Notebook getNotebook() {
+        return notebook;
+    }
+
+    public void setNotebook(Notebook notebook) {
+        this.notebook = notebook;
     }
 
     public String getName() {
