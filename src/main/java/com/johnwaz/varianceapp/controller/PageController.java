@@ -1,6 +1,7 @@
 package com.johnwaz.varianceapp.controller;
 
 import com.johnwaz.varianceapp.data.ChapterRepository;
+import com.johnwaz.varianceapp.data.JournalRepository;
 import com.johnwaz.varianceapp.data.PageRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
 import com.johnwaz.varianceapp.models.Chapter;
@@ -27,6 +28,9 @@ public class PageController {
 
     @Autowired
     private ChapterRepository chapterRepository;
+
+    @Autowired
+    private JournalRepository journalRepository;
 
     @Autowired
     private PageRepository pageRepository;
