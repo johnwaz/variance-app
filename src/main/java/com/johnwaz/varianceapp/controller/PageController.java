@@ -1,9 +1,11 @@
 package com.johnwaz.varianceapp.controller;
 
 import com.johnwaz.varianceapp.data.ChapterRepository;
+import com.johnwaz.varianceapp.data.JournalRepository;
 import com.johnwaz.varianceapp.data.PageRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
 import com.johnwaz.varianceapp.models.Chapter;
+import com.johnwaz.varianceapp.models.Journal;
 import com.johnwaz.varianceapp.models.Page;
 import com.johnwaz.varianceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PageController {
 
     @Autowired
     private ChapterRepository chapterRepository;
+
+    @Autowired
+    private JournalRepository journalRepository;
 
     @Autowired
     private PageRepository pageRepository;
@@ -257,5 +262,118 @@ public class PageController {
         redirectAttributes.addAttribute("id", optChapter.get());
         pageRepository.deleteById(pageId);
         return "redirect:/chapters/storyChapterView/{id}";
+    }
+
+    @GetMapping(path = {"journalPageAdd/{journalId}", "journalPageAdd"})
+    public String displayAddPageToJournalForm(Model model, @PathVariable(required = false) Integer journalId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (journalId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Journal> result = journalRepository.findById(journalId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Journal journal = result.get();
+                if (user.getId() != journal.getUser().getId()) {
+                    return "pages/index";
+                }
+                model.addAttribute(new Page());
+                model.addAttribute("journal", journal);
+            }
+        }
+        return "pages/journalPageAdd";
+    }
+
+    @PostMapping("journalPageAdd/{journalId}")
+    public String processAddPageToJournalForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                                   Model model, @PathVariable int journalId, HttpSession session) {
+        if (errors.hasErrors()) {
+            model.addAttribute("journal", journalRepository.findById(journalId).get());
+            return "pages/journalPageAdd";
+        }
+        Journal journal = journalRepository.findById(journalId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        newPage.setUser(user);
+        newPage.setJournal(journal);
+        pageRepository.save(newPage);
+        return "pages/journalPageView";
+    }
+
+    @GetMapping(path = {"journalPageView/{pageId}", "journalPageView"})
+    public String displayViewJournalPage(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId() || page.getJournal() == null) {
+                    return "pages/index";
+                }
+                model.addAttribute("page", page);
+            }
+        }
+        return "pages/journalPageView";
+    }
+
+    @GetMapping(path = {"journalPageEdit/{pageId}", "journalPageEdit"})
+    public String displayEditJournalPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId() || page.getJournal() == null) {
+                    return "pages/index";
+                }
+                model.addAttribute("page", page);
+                model.addAttribute("uneditedPage", page);
+                model.addAttribute("pageId", pageId);
+            }
+        }
+        return "pages/journalPageEdit";
+    }
+
+    @PostMapping("journalPageEdit")
+    public String processEditJournalPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
+                                                  int pageId, Integer pageNumber, String content) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
+            model.addAttribute("page", editPage);
+            model.addAttribute("pageId", pageId);
+            return "pages/journalPageEdit";
+        }
+        Page page = pageRepository.findById(pageId).get();
+        page.setPageNumber(pageNumber);
+        page.setContent(content);
+        pageRepository.save(page);
+        return "redirect:journalPageView/" + pageId;
+    }
+
+    @PostMapping("journalPageView")
+    public String processDeleteJournalPage(int pageId, int journalId, RedirectAttributes redirectAttributes) {
+        Optional optJournal = journalRepository.findById(journalId);
+        redirectAttributes.addAttribute("id", optJournal.get());
+        pageRepository.deleteById(pageId);
+        return "redirect:/journals/view/{id}";
     }
 }

@@ -17,20 +17,20 @@
 <p></p>
 
 <h3 th:text="${'Pages:'}"></h3>
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="page : ${journal.pages}">-->
-<!--            <a th:href="@{'/pages/journalPage/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="page : ${journal.pages}">
+            <a th:href="@{'/pages/journalPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
+        </li>
+    </ul>
+</div>
 
-<!--<div>-->
-<!--    <a th:href="@{/pages/journalPageAdd/{id}(id=${journal.id})}">-->
-<!--        <input type="submit" value="Add Page" class="btn btn-secondary">-->
-<!--    </a>-->
-<!--</div>-->
-<!--<p></p>-->
+<div>
+    <a th:href="@{/pages/journalPageAdd/{id}(id=${journal.id})}">
+        <input type="submit" value="Add Page" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
 
 <div>
     <a th:href="@{/journals}">
