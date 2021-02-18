@@ -5,6 +5,7 @@ import com.johnwaz.varianceapp.data.JournalRepository;
 import com.johnwaz.varianceapp.data.PageRepository;
 import com.johnwaz.varianceapp.data.UserRepository;
 import com.johnwaz.varianceapp.models.Chapter;
+import com.johnwaz.varianceapp.models.Journal;
 import com.johnwaz.varianceapp.models.Page;
 import com.johnwaz.varianceapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -261,5 +262,45 @@ public class PageController {
         redirectAttributes.addAttribute("id", optChapter.get());
         pageRepository.deleteById(pageId);
         return "redirect:/chapters/storyChapterView/{id}";
+    }
+
+    @GetMapping(path = {"journalPageAdd/{journalId}", "journalPageAdd"})
+    public String displayAddPageToJournalForm(Model model, @PathVariable(required = false) Integer journalId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (journalId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Journal> result = journalRepository.findById(journalId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Journal journal = result.get();
+                if (user.getId() != journal.getUser().getId()) {
+                    return "pages/index";
+                }
+                model.addAttribute(new Page());
+                model.addAttribute("journal", journal);
+            }
+        }
+        return "pages/journalPageAdd";
+    }
+
+    @PostMapping("journalPageAdd/{journalId}")
+    public String processAddPageToJournalForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                                   Model model, @PathVariable int journalId, HttpSession session) {
+        if (errors.hasErrors()) {
+            model.addAttribute("journal", journalRepository.findById(journalId).get());
+            return "pages/journalPageAdd";
+        }
+        Journal journal = journalRepository.findById(journalId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        newPage.setUser(user);
+        newPage.setJournal(journal);
+        pageRepository.save(newPage);
+        return "pages/journalPageView";
     }
 }
