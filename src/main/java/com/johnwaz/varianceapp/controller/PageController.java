@@ -436,4 +436,46 @@ public class PageController {
         }
         return "pages/nbSubjectPageView";
     }
+
+    @GetMapping(path = {"nbSubjectPageEdit/{pageId}", "nbSubjectPageEdit"})
+    public String displayEditSubjectPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId() || page.getSubject() == null) {
+                    return "pages/index";
+                }
+                model.addAttribute("page", page);
+                model.addAttribute("uneditedPage", page);
+                model.addAttribute("pageId", pageId);
+            }
+        }
+        return "pages/nbSubjectPageEdit";
+    }
+
+    @PostMapping("nbSubjectPageEdit")
+    public String processEditSubjectPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
+                                             int pageId, Integer pageNumber, String content) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
+            model.addAttribute("page", editPage);
+            model.addAttribute("pageId", pageId);
+            return "pages/nbSubjectPageEdit";
+        }
+        Page page = pageRepository.findById(pageId).get();
+        page.setPageNumber(pageNumber);
+        page.setContent(content);
+        pageRepository.save(page);
+        return "redirect:nbSubjectPageView/" + pageId;
+    }
 }
