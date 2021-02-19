@@ -96,4 +96,46 @@ public class SubjectController {
         }
         return "subjects/view";
     }
+
+    @GetMapping(path = {"edit/{subjectId}", "edit"})
+    public String displayEditNotebookStoryForm(Model model, @PathVariable(required = false) Integer subjectId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (subjectId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("subjects", subjectRepository.findAllById(Collections.singleton(userId)));
+            return "subjects/index";
+        } else {
+            Optional<Subject> result = subjectRepository.findById(subjectId);
+            if (result.isEmpty()) {
+                return "subjects/index";
+            } else {
+                Subject subject = result.get();
+                if (user.getId() != subject.getUser().getId()) {
+                    return "subjects/index";
+                }
+                model.addAttribute("subject", subject);
+                model.addAttribute("uneditedSubject", subject);
+                model.addAttribute("subjectId", subjectId);
+            }
+        }
+        return "subjects/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditNotebookSubjectForm(@Valid @ModelAttribute Subject editSubject, Errors errors, Model model,
+                                            int subjectId, String name, String description) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedSubject", subjectRepository.findById(subjectId).get());
+            model.addAttribute("subject", editSubject);
+            model.addAttribute("subjectId", subjectId);
+            return "subjects/edit";
+        }
+        Subject subject = subjectRepository.findById(subjectId).get();
+        subject.setName(name);
+        subject.setDescription(description);
+        subjectRepository.save(subject);
+        return "redirect:view/" + subjectId;
+    }
 }
