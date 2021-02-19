@@ -478,4 +478,12 @@ public class PageController {
         pageRepository.save(page);
         return "redirect:nbSubjectPageView/" + pageId;
     }
+
+    @PostMapping("nbSubjectPageView")
+    public String processDeleteSubjectPage(int pageId, int subjectId, RedirectAttributes redirectAttributes) {
+        Optional optSubject = subjectRepository.findById(subjectId);
+        redirectAttributes.addAttribute("id", optSubject.get());
+        pageRepository.deleteById(pageId);
+        return "redirect:/subjects/view/{id}";
+    }
 }
