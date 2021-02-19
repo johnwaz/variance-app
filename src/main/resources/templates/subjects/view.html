@@ -5,7 +5,9 @@
 <header th:replace="fragments :: header"></header>
 <h2 th:text="${'Subject: ' + subject.name}">Default Title</h2>
 <p></p>
-
+<div>
+    <p th:if="${subject.description != ''}" th:text="${'Description: ' + subject.description}"></p>
+</div>
 <div>
     <p th:text="${'Notebook: ' + subject.notebook.title}"></p>
 </div>

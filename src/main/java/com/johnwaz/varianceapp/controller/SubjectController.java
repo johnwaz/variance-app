@@ -138,4 +138,12 @@ public class SubjectController {
         subjectRepository.save(subject);
         return "redirect:view/" + subjectId;
     }
+
+    @PostMapping("view")
+    public String processDeleteNotebookSubject(int subjectId, int notebookId, RedirectAttributes redirectAttributes) {
+        Optional optNotebook = notebookRepository.findById(notebookId);
+        redirectAttributes.addAttribute("id", optNotebook.get());
+        subjectRepository.deleteById(subjectId);
+        return "redirect:/notebooks/view/{id}";
+    }
 }
