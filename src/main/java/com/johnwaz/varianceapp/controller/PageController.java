@@ -1,13 +1,7 @@
 package com.johnwaz.varianceapp.controller;
 
-import com.johnwaz.varianceapp.data.ChapterRepository;
-import com.johnwaz.varianceapp.data.JournalRepository;
-import com.johnwaz.varianceapp.data.PageRepository;
-import com.johnwaz.varianceapp.data.UserRepository;
-import com.johnwaz.varianceapp.models.Chapter;
-import com.johnwaz.varianceapp.models.Journal;
-import com.johnwaz.varianceapp.models.Page;
-import com.johnwaz.varianceapp.models.User;
+import com.johnwaz.varianceapp.data.*;
+import com.johnwaz.varianceapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +26,9 @@ public class PageController {
 
     @Autowired
     private JournalRepository journalRepository;
+
+    @Autowired
+    private SubjectRepository subjectRepository;
 
     @Autowired
     private PageRepository pageRepository;
@@ -375,5 +372,118 @@ public class PageController {
         redirectAttributes.addAttribute("id", optJournal.get());
         pageRepository.deleteById(pageId);
         return "redirect:/journals/view/{id}";
+    }
+
+    @GetMapping(path = {"nbSubjectPageAdd/{subjectId}", "nbSubjectPageAdd"})
+    public String displayAddPageToSubjectForm(Model model, @PathVariable(required = false) Integer subjectId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (subjectId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Subject> result = subjectRepository.findById(subjectId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Subject subject = result.get();
+                if (user.getId() != subject.getUser().getId()) {
+                    return "pages/index";
+                }
+                model.addAttribute(new Page());
+                model.addAttribute("subject", subject);
+            }
+        }
+        return "pages/nbSubjectPageAdd";
+    }
+
+    @PostMapping("nbSubjectPageAdd/{subjectId}")
+    public String processAddPageToSubjectForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                              Model model, @PathVariable int subjectId, HttpSession session) {
+        if (errors.hasErrors()) {
+            model.addAttribute("subject", subjectRepository.findById(subjectId).get());
+            return "pages/nbSubjectPageAdd";
+        }
+        Subject subject = subjectRepository.findById(subjectId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        newPage.setUser(user);
+        newPage.setSubject(subject);
+        pageRepository.save(newPage);
+        return "pages/nbSubjectPageView";
+    }
+
+    @GetMapping(path = {"nbSubjectPageView/{pageId}", "nbSubjectPageView"})
+    public String displayViewSubjectPage(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId() || page.getSubject() == null) {
+                    return "pages/index";
+                }
+                model.addAttribute("page", page);
+            }
+        }
+        return "pages/nbSubjectPageView";
+    }
+
+    @GetMapping(path = {"nbSubjectPageEdit/{pageId}", "nbSubjectPageEdit"})
+    public String displayEditSubjectPageForm(Model model, @PathVariable(required = false) Integer pageId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (pageId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Page> result = pageRepository.findById(pageId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Page page = result.get();
+                if (user.getId() != page.getUser().getId() || page.getSubject() == null) {
+                    return "pages/index";
+                }
+                model.addAttribute("page", page);
+                model.addAttribute("uneditedPage", page);
+                model.addAttribute("pageId", pageId);
+            }
+        }
+        return "pages/nbSubjectPageEdit";
+    }
+
+    @PostMapping("nbSubjectPageEdit")
+    public String processEditSubjectPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
+                                             int pageId, Integer pageNumber, String content) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());
+            model.addAttribute("page", editPage);
+            model.addAttribute("pageId", pageId);
+            return "pages/nbSubjectPageEdit";
+        }
+        Page page = pageRepository.findById(pageId).get();
+        page.setPageNumber(pageNumber);
+        page.setContent(content);
+        pageRepository.save(page);
+        return "redirect:nbSubjectPageView/" + pageId;
+    }
+
+    @PostMapping("nbSubjectPageView")
+    public String processDeleteSubjectPage(int pageId, int subjectId, RedirectAttributes redirectAttributes) {
+        Optional optSubject = subjectRepository.findById(subjectId);
+        redirectAttributes.addAttribute("id", optSubject.get());
+        pageRepository.deleteById(pageId);
+        return "redirect:/subjects/view/{id}";
     }
 }

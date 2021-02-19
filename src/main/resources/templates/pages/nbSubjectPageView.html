@@ -6,29 +6,30 @@
 <h2 th:text="${'Page: ' + page.pageNumber}">Default Title</h2>
 <p></p>
 <div>
-    <p th:text="${'Journal: ' + page.journal.name}"></p>
+    <p th:text="${'Subject: ' + page.subject.name}"></p>
+    <p th:text="${'Notebook: ' + page.subject.notebook.title}"></p>
     <p style="text-decoration: underline" th:text="${'Content:'}"></p>
     <p style="white-space: break-spaces" th:text="${page.content}"></p>
     <hr>
 </div>
 <div>
-    <a th:href="@{/pages/journalPageEdit/{id}(id=${page.id})}">
+    <a th:href="@{/pages/nbSubjectPageEdit/{id}(id=${page.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 </div>
 <p></p>
 
 <div>
-    <a th:href="@{/journals/view/{id}(id=${page.journal.id})}">
-        <input type="submit" th:value="${'Back to ' + page.journal.name}" class="btn btn-dark">
+    <a th:href="@{/subjects/view/{id}(id=${page.subject.id})}">
+        <input type="submit" th:value="${'Back to ' + page.subject.name}" class="btn btn-dark">
     </a>
 </div>
 
 <th:block th:if="${page}">
-    <form method="post" th:action="@{/pages/journalPageView}" id="delete-page">
+    <form method="post" th:action="@{/pages/nbSubjectPageView}" id="delete-page">
         <input type="hidden" name="pageId" th:value="${page.id}" class="form-control">
         <input type="hidden" id="pageId" th:value="${page.pageNumber}" class="form-control">
-        <input type="hidden" name="journalId" th:value="${page.journal.id}" class="form-control">
+        <input type="hidden" name="subjectId" th:value="${page.subject.id}" class="form-control">
         <p></p>
         <input onclick="deletePage()" type="button" value="Delete Page" class="btn btn-danger">
     </form>

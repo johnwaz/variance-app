@@ -21,22 +21,22 @@
 
 <h3 th:text="${'Pages:'}"></h3>
 
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="page : ${subject.page}">-->
-<!--            <a th:href="@{'/pages/subjectPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="page : ${subject.pages}">
+            <a th:href="@{'/pages/nbSubjectPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
+        </li>
+    </ul>
+</div>
 
-<!--<div>-->
-<!--    <a th:href="@{/pages/subjectPageAdd/{id}(id=${subject.id})}">-->
-<!--        <input type="submit" value="Add Page" class="btn btn-secondary">-->
-<!--    </a>-->
-<!--</div>-->
-<!--<p></p>-->
+<div>
+    <a th:href="@{/pages/nbSubjectPageAdd/{id}(id=${subject.id})}">
+        <input type="submit" value="Add Page" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
 
-<!--<div>-->
+<div>
     <a th:href="@{/notebooks/view/{id}(id=${subject.notebook.id})}">
         <input type="submit" th:value="${'Back to ' + subject.notebook.title}" class="btn btn-dark">
     </a>
