@@ -73,4 +73,27 @@ public class SubjectController {
         subjectRepository.save(newSubject);
         return "redirect:/notebooks/view/{id}";
     }
+
+    @GetMapping(path = {"view/{subjectId}", "view"})
+    public String displayViewNotebookSubject(Model model, @PathVariable(required = false) Integer subjectId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (subjectId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("subjects", subjectRepository.findAllById(Collections.singleton(userId)));
+            return "subjects/index";
+        } else {
+            Optional<Subject> result = subjectRepository.findById(subjectId);
+            if (result.isEmpty()) {
+                return "subjects/index";
+            } else {
+                Subject subject = result.get();
+                if (user.getId() != subject.getUser().getId()) {
+                    return "subjects/index";
+                }
+                model.addAttribute("subject", subject);
+            }
+        }
+        return "subjects/view";
+    }
 }

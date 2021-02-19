@@ -17,20 +17,20 @@
 <p></p>
 
 <h3 th:text="${'Subjects:'}"></h3>
-<!--<div>-->
-<!--    <ul>-->
-<!--        <li th:each="subject : ${notebook.subjects}">-->
-<!--            <a th:href="@{'/subjects/view/' + ${subject.id}}" th:text="${subject.name}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div>
+    <ul>
+        <li th:each="subject : ${notebook.subjects}">
+            <a th:href="@{'/subjects/view/' + ${subject.id}}" th:text="${subject.name}"></a>
+        </li>
+    </ul>
+</div>
 
-<!--<div>-->
-<!--    <a th:href="@{/subjects/add/{id}(id=${notebook.id})}">-->
-<!--        <input type="submit" value="Add Subject" class="btn btn-secondary">-->
-<!--    </a>-->
-<!--</div>-->
-<!--<p></p>-->
+<div>
+    <a th:href="@{/subjects/add/{id}(id=${notebook.id})}">
+        <input type="submit" value="Add Subject" class="btn btn-secondary">
+    </a>
+</div>
+<p></p>
 
 <div>
     <a th:href="@{/notebooks}">
