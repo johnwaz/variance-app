@@ -40,6 +40,13 @@ function deleteNotebook() {
     }
 }
 
+function deleteSubject() {
+    let subject = $('#subjectId').val();
+    if (confirm(`Remove ${subject}?`)) {
+        document.getElementById("delete-subject").submit();
+    }
+}
+
 function deletePage() {
     let page = $('#pageId').val();
     if (confirm(`Remove Page ${page}?`)) {
