@@ -1,13 +1,7 @@
 package com.johnwaz.varianceapp.controller;
 
-import com.johnwaz.varianceapp.data.ChapterRepository;
-import com.johnwaz.varianceapp.data.JournalRepository;
-import com.johnwaz.varianceapp.data.PageRepository;
-import com.johnwaz.varianceapp.data.UserRepository;
-import com.johnwaz.varianceapp.models.Chapter;
-import com.johnwaz.varianceapp.models.Journal;
-import com.johnwaz.varianceapp.models.Page;
-import com.johnwaz.varianceapp.models.User;
+import com.johnwaz.varianceapp.data.*;
+import com.johnwaz.varianceapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +26,9 @@ public class PageController {
 
     @Autowired
     private JournalRepository journalRepository;
+
+    @Autowired
+    private SubjectRepository subjectRepository;
 
     @Autowired
     private PageRepository pageRepository;
@@ -375,5 +372,45 @@ public class PageController {
         redirectAttributes.addAttribute("id", optJournal.get());
         pageRepository.deleteById(pageId);
         return "redirect:/journals/view/{id}";
+    }
+
+    @GetMapping(path = {"nbSubjectPageAdd/{subjectId}", "nbSubjectPageAdd"})
+    public String displayAddPageToSubjectForm(Model model, @PathVariable(required = false) Integer subjectId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (subjectId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("pages", pageRepository.findAllById(Collections.singleton(userId)));
+            return "pages/index";
+        } else {
+            Optional<Subject> result = subjectRepository.findById(subjectId);
+            if (result.isEmpty()) {
+                return "pages/index";
+            } else {
+                Subject subject = result.get();
+                if (user.getId() != subject.getUser().getId()) {
+                    return "pages/index";
+                }
+                model.addAttribute(new Page());
+                model.addAttribute("subject", subject);
+            }
+        }
+        return "pages/journalPageAdd";
+    }
+
+    @PostMapping("nbSubjectPageAdd/{subjectId}")
+    public String processAddPageToSubjectForm(@Valid @ModelAttribute Page newPage, Errors errors,
+                                              Model model, @PathVariable int subjectId, HttpSession session) {
+        if (errors.hasErrors()) {
+            model.addAttribute("subject", subjectRepository.findById(subjectId).get());
+            return "pages/nbSubjectPageAdd";
+        }
+        Subject subject = subjectRepository.findById(subjectId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        newPage.setUser(user);
+        newPage.setSubject(subject);
+        pageRepository.save(newPage);
+        return "pages/nbSubjectPageView";
     }
 }
