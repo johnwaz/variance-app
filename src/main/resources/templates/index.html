@@ -4,10 +4,10 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 <h1>Welcome!</h1>
-<h2 th:text="${'Hello ' + user.username}" class="home-h2"></h2>
+<h2 th:text="${'Hello ' + user.username}"></h2>
 <p></p>
 
-<div cleass="container body-content">
+<div class="container body-content home-div">
     <span th:unless="${user.books} and ${user.books.size()}" class="home-span">
         <a th:href="@{'/books/add'}">
             <input type="submit" value="Add Books" class="btn btn-secondary">
