@@ -30,5 +30,38 @@
     </span>
 </div>
 
+<div th:if="${user.books} and ${user.books.size()}" class="container body-content home-div">
+    <h3 th:text="${'Books:'}"></h3>
+    <ul>
+        <li th:each="book : ${user.books}">
+            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.novels} and ${user.novels.size()}" class="container body-content home-div">
+    <h3 th:text="${'Novels:'}"></h3>
+    <ul>
+        <li th:each="novel : ${user.novels}">
+            <a th:href="@{'/novels/view/' + ${novel.id}}" th:text="${novel.title}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.journals} and ${user.journals.size()}" class="container body-content home-div">
+    <h3 th:text="${'Journals:'}"></h3>
+    <ul>
+        <li th:each="journal : ${user.journals}">
+            <a th:href="@{'/journals/view/' + ${journal.id}}" th:text="${journal.name}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.notebooks} and ${user.notebooks.size()}" class="container body-content home-div">
+    <h3 th:text="${'Notebooks:'}"></h3>
+    <ul>
+        <li th:each="notebook : ${user.notebooks}">
+            <a th:href="@{'/notebooks/view/' + ${notebook.id}}" th:text="${notebook.title}"></a>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
