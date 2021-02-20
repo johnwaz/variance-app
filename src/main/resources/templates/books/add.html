@@ -3,17 +3,17 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h2>Add Book</h2>
+<h2>Book</h2>
 
 <form method="post" style="max-width:220px;">
     <div class="form-group">
-        <label th:for="title">Book Title</label>
+        <label th:for="title">Title</label>
         <input class="form-control" th:field="${book.title}" />
         <span th:errors="${book.title}" class="error"></span>
     </div>
 
     <div class="form-group">
-        <label th:for="description">Book Description</label>
+        <label th:for="description">Description</label>
         <input class="form-control" th:field="${book.description}" />
         <span th:errors="${book.description}" class="error"></span>
     </div>
@@ -22,8 +22,8 @@
 </form>
 <p></p>
 <div>
-    <a th:href="@{/books}">
-        <input type="submit" th:value="${'Back to Books'}" class="btn btn-dark">
+    <a th:href="@{/}">
+        <input type="submit" th:value="${'Home'}" class="btn btn-dark">
     </a>
 </div>
 </body>
