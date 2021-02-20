@@ -3,21 +3,12 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h2>Books</h2>
-
-<p th:unless="${user.books} and ${user.books.size()}">There are no books</p>
-
-<div class="container body-content">
-    <ul>
-        <li th:each="book : ${user.books}">
-            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
-        </li>
-    </ul>
-    <a th:href="@{'/books/add'}">
-        <input type="submit" value="Add Books" class="btn btn-secondary">
+<h2 class="error">You must have taken a wrong turn!</h2>
+<p></p>
+<div>
+    <a class="navbar-brand" href="/">
+        <input type="submit" th:value="${'Back to Variance'}" class="btn btn-dark">
     </a>
 </div>
-<p></p>
-
 </body>
 </html>
