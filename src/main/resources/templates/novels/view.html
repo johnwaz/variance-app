@@ -6,13 +6,7 @@
 <h2 th:text="${'Title: ' + novel.title}">Default Title</h2>
 <p></p>
 <div>
-    <p th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></p>
-</div>
-
-<div>
-    <a th:href="@{/novels/edit/{id}(id=${novel.id})}">
-        <input type="submit" value="Edit" class="btn btn-info">
-    </a>
+    <h4 th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></h4>
 </div>
 <p></p>
 
@@ -26,26 +20,30 @@
 </div>
 
 <div>
-    <a th:href="@{/stories/add/{id}(id=${novel.id})}">
-        <input type="submit" value="Add Story" class="btn btn-secondary">
-    </a>
+    <span class="view-span">
+        <a th:href="@{/novels/edit/{id}(id=${novel.id})}">
+            <input type="submit" value="Edit" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/stories/add/{id}(id=${novel.id})}">
+            <input type="submit" value="Add Story" class="btn btn-secondary">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-dark">
+        </a>
+    </span>
+    <th:block th:if="${novel}">
+        <form method="post" th:action="@{/novels/view}" id="delete-novel">
+            <input type="hidden" name="novelId" th:value="${novel.id}" class="form-control">
+            <input type="hidden" id="novelId" th:value="${novel.title}" class="form-control">
+            <p></p>
+            <input onclick="deleteNovel()" type="button" value="Delete Novel" class="btn btn-danger">
+        </form>
+    </th:block>
 </div>
-<p></p>
-
-<div>
-    <a th:href="@{/}">
-        <input type="submit" th:value="${'Home'}" class="btn btn-dark">
-    </a>
-</div>
-
-<th:block th:if="${novel}">
-    <form method="post" th:action="@{/novels/view}" id="delete-novel">
-        <input type="hidden" name="novelId" th:value="${novel.id}" class="form-control">
-        <input type="hidden" id="novelId" th:value="${novel.title}" class="form-control">
-        <p></p>
-        <input onclick="deleteNovel()" type="button" value="Delete Novel" class="btn btn-danger">
-    </form>
-</th:block>
 
 </body>
 </html>

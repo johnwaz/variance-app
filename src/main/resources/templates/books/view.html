@@ -6,7 +6,7 @@
 <h2 th:text="${'Title: ' + book.title}">Default Title</h2>
 <p></p>
 <div>
-    <p th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></p>
+    <h4 th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></h4>
 </div>
 <p></p>
 
@@ -27,13 +27,13 @@
     </span>
     <span class="view-span">
         <a th:href="@{/chapters/bookChapterAdd/{id}(id=${book.id})}">
-        <input type="submit" value="Add Chapter" class="btn btn-secondary">
-    </a>
+            <input type="submit" value="Add Chapter" class="btn btn-secondary">
+        </a>
     </span>
     <span class="view-span">
         <a th:href="@{/}">
-        <input type="submit" th:value="${'Home'}" class="btn btn-dark">
-    </a>
+            <input type="submit" th:value="${'Home'}" class="btn btn-dark">
+        </a>
     </span>
     <th:block th:if="${book}">
         <form method="post" th:action="@{/books/view}" id="delete-book">
