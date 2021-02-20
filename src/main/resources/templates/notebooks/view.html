@@ -38,7 +38,7 @@
     <th:block th:if="${notebook}">
         <form method="post" th:action="@{/notebooks/view}" id="delete-notebook">
             <input type="hidden" name="notebookId" th:value="${notebook.id}" class="form-control">
-            <input type="hidden" id="notebook" th:value="${notebook.title}" class="form-control">
+            <input type="hidden" id="notebookId" th:value="${notebook.title}" class="form-control">
             <p></p>
             <input onclick="deleteNotebook()" type="button" value="Delete Notebook" class="btn btn-danger">
         </form>
