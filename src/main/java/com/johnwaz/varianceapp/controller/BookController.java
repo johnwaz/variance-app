@@ -53,7 +53,7 @@ public class BookController {
         User user = userRepository.findById(userId).get();
         newBook.setUser(user);
         bookRepository.save(newBook);
-        return "redirect:";
+        return "redirect:../";
     }
 
     @GetMapping(path = {"view/{bookId}", "view"})
@@ -124,6 +124,6 @@ public class BookController {
     @PostMapping("view")
     public String processDeleteBook(int bookId) {
         bookRepository.deleteById(bookId);
-        return "redirect:";
+        return "redirect:../";
     }
 }
