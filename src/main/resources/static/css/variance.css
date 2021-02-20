@@ -18,6 +18,14 @@ header {
     text-decoration: none;
 }
 
+.view-span {
+    margin-right: 10px;
+}
+
+.view-span a:hover {
+    text-decoration: none;
+}
+
 .log-register {
     margin-top: 5px;
 }
