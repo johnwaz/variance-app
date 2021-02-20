@@ -53,7 +53,7 @@ public class NovelController {
         User user = userRepository.findById(userId).get();
         newNovel.setUser(user);
         novelRepository.save(newNovel);
-        return "redirect:";
+        return "redirect:../";
     }
 
     @GetMapping(path = {"view/{novelId}", "view"})
@@ -124,6 +124,6 @@ public class NovelController {
     @PostMapping("view")
     public String processDeleteNovel(int novelId) {
         novelRepository.deleteById(novelId);
-        return "redirect:";
+        return "redirect:../";
     }
 }
