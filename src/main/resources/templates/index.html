@@ -3,9 +3,65 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h1>Variance</h1>
-<h2 th:text="${'Hello ' + user.username + '!'}"></h2>
+<h1>Welcome!</h1>
+<h2 th:text="${'Hello ' + user.username}"></h2>
 <p></p>
+
+<div class="container body-content home-div">
+    <span th:unless="${user.books} and ${user.books.size()}" class="home-span">
+        <a th:href="@{'/books/add'}">
+            <input type="submit" value="Add Books" class="btn btn-secondary">
+        </a>
+    </span>
+    <span th:unless="${user.novels} and ${user.novels.size()}" class="home-span">
+        <a th:href="@{'/novels/add'}">
+            <input type="submit" value="Add Novels" class="btn btn-secondary">
+        </a>
+    </span>
+    <span th:unless="${user.journals} and ${user.journals.size()}" class="home-span">
+        <a th:href="@{'/journals/add'}">
+            <input type="submit" value="Add Journals" class="btn btn-secondary">
+        </a>
+    </span>
+    <span th:unless="${user.notebooks} and ${user.notebooks.size()}" class="home-span">
+        <a th:href="@{'/notebooks/add'}">
+            <input type="submit" value="Add Notebooks" class="btn btn-secondary">
+        </a>
+    </span>
+</div>
+
+<div th:if="${user.books} and ${user.books.size()}" class="container body-content home-div">
+    <h3 th:text="${'Books:'}"></h3>
+    <ul>
+        <li th:each="book : ${user.books}">
+            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.novels} and ${user.novels.size()}" class="container body-content home-div">
+    <h3 th:text="${'Novels:'}"></h3>
+    <ul>
+        <li th:each="novel : ${user.novels}">
+            <a th:href="@{'/novels/view/' + ${novel.id}}" th:text="${novel.title}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.journals} and ${user.journals.size()}" class="container body-content home-div">
+    <h3 th:text="${'Journals:'}"></h3>
+    <ul>
+        <li th:each="journal : ${user.journals}">
+            <a th:href="@{'/journals/view/' + ${journal.id}}" th:text="${journal.name}"></a>
+        </li>
+    </ul>
+</div>
+<div th:if="${user.notebooks} and ${user.notebooks.size()}" class="container body-content home-div">
+    <h3 th:text="${'Notebooks:'}"></h3>
+    <ul>
+        <li th:each="notebook : ${user.notebooks}">
+            <a th:href="@{'/notebooks/view/' + ${notebook.id}}" th:text="${notebook.title}"></a>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>

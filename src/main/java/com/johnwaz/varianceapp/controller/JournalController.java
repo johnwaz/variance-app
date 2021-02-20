@@ -53,7 +53,7 @@ public class JournalController {
         User user = userRepository.findById(userId).get();
         newJournal.setUser(user);
         journalRepository.save(newJournal);
-        return "redirect:";
+        return "redirect:../";
     }
 
     @GetMapping(path = {"view/{journalId}", "view"})
@@ -124,6 +124,6 @@ public class JournalController {
     @PostMapping("view")
     public String processDeleteJournal(int journalId) {
         journalRepository.deleteById(journalId);
-        return "redirect:";
+        return "redirect:../";
     }
 }

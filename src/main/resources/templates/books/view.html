@@ -6,13 +6,7 @@
 <h2 th:text="${'Title: ' + book.title}">Default Title</h2>
 <p></p>
 <div>
-    <p th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></p>
-</div>
-
-<div>
-    <a th:href="@{/books/edit/{id}(id=${book.id})}">
-        <input type="submit" value="Edit" class="btn btn-info">
-    </a>
+    <h4 th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></h4>
 </div>
 <p></p>
 
@@ -26,26 +20,30 @@
 </div>
 
 <div>
-    <a th:href="@{/chapters/bookChapterAdd/{id}(id=${book.id})}">
-        <input type="submit" value="Add Chapter" class="btn btn-secondary">
-    </a>
+    <span class="view-span">
+        <a th:href="@{/books/edit/{id}(id=${book.id})}">
+            <input type="submit" value="Edit Book" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/chapters/bookChapterAdd/{id}(id=${book.id})}">
+            <input type="submit" value="Add Chapter" class="btn btn-secondary">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-dark">
+        </a>
+    </span>
+    <th:block th:if="${book}">
+        <form method="post" th:action="@{/books/view}" id="delete-book">
+            <input type="hidden" name="bookId" th:value="${book.id}" class="form-control">
+            <input type="hidden" id="bookId" th:value="${book.title}" class="form-control">
+            <p></p>
+            <input onclick="deleteBook()" type="button" value="Delete Book" class="btn btn-danger">
+        </form>
+    </th:block>
 </div>
-<p></p>
-
-<div>
-    <a th:href="@{/books}">
-        <input type="submit" th:value="${'Back to Books'}" class="btn btn-dark">
-    </a>
-</div>
-
-<th:block th:if="${book}">
-    <form method="post" th:action="@{/books/view}" id="delete-book">
-        <input type="hidden" name="bookId" th:value="${book.id}" class="form-control">
-        <input type="hidden" id="bookId" th:value="${book.title}" class="form-control">
-        <p></p>
-        <input onclick="deleteBook()" type="button" value="Delete Book" class="btn btn-danger">
-    </form>
-</th:block>
 
 </body>
 </html>

@@ -6,13 +6,7 @@
 <h2 th:text="${'Name: ' + journal.name}">Default Title</h2>
 <p></p>
 <div>
-    <p th:if="${journal.description != ''}" th:text="${'Description: ' + journal.description}"></p>
-</div>
-
-<div>
-    <a th:href="@{/journals/edit/{id}(id=${journal.id})}">
-        <input type="submit" value="Edit" class="btn btn-info">
-    </a>
+    <h4 th:if="${journal.description != ''}" th:text="${'Description: ' + journal.description}"></h4>
 </div>
 <p></p>
 
@@ -26,26 +20,30 @@
 </div>
 
 <div>
-    <a th:href="@{/pages/journalPageAdd/{id}(id=${journal.id})}">
-        <input type="submit" value="Add Page" class="btn btn-secondary">
-    </a>
+    <span class="view-span">
+        <a th:href="@{/journals/edit/{id}(id=${journal.id})}">
+            <input type="submit" value="Edit Journal" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/pages/journalPageAdd/{id}(id=${journal.id})}">
+            <input type="submit" value="Add Page" class="btn btn-secondary">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-dark">
+        </a>
+    </span>
+    <th:block th:if="${journal}">
+        <form method="post" th:action="@{/journals/view}" id="delete-journal">
+            <input type="hidden" name="journalId" th:value="${journal.id}" class="form-control">
+            <input type="hidden" id="journalId" th:value="${journal.name}" class="form-control">
+            <p></p>
+            <input onclick="deleteJournal()" type="button" value="Delete Journal" class="btn btn-danger">
+        </form>
+    </th:block>
 </div>
-<p></p>
-
-<div>
-    <a th:href="@{/journals}">
-        <input type="submit" th:value="${'Back to Journals'}" class="btn btn-dark">
-    </a>
-</div>
-
-<th:block th:if="${journal}">
-    <form method="post" th:action="@{/journals/view}" id="delete-journal">
-        <input type="hidden" name="journalId" th:value="${journal.id}" class="form-control">
-        <input type="hidden" id="journalId" th:value="${journal.name}" class="form-control">
-        <p></p>
-        <input onclick="deleteJournal()" type="button" value="Delete Journal" class="btn btn-danger">
-    </form>
-</th:block>
 
 </body>
 </html>

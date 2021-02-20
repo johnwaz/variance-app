@@ -53,7 +53,7 @@ public class NotebookController {
         User user = userRepository.findById(userId).get();
         newNotebook.setUser(user);
         notebookRepository.save(newNotebook);
-        return "redirect:";
+        return "redirect:../";
     }
 
     @GetMapping(path = {"view/{notebookId}", "view"})
@@ -124,6 +124,6 @@ public class NotebookController {
     @PostMapping("view")
     public String processDeleteNotebook(int notebookId) {
         notebookRepository.deleteById(notebookId);
-        return "redirect:";
+        return "redirect:../";
     }
 }

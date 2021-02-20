@@ -3,21 +3,12 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h2>Notebooks</h2>
-
-<p th:unless="${user.notebooks} and ${user.notebooks.size()}">There are no notebooks</p>
-
-<div class="container body-content">
-    <ul>
-        <li th:each="notebook : ${user.notebooks}">
-            <a th:href="@{'/notebooks/view/' + ${notebook.id}}" th:text="${notebook.title}"></a>
-        </li>
-    </ul>
-    <a th:href="@{'/notebooks/add'}">
-        <input type="submit" value="Add Notebooks" class="btn btn-secondary">
+<h2 class="error">You must have taken a wrong turn!</h2>
+<p></p>
+<div>
+    <a class="navbar-brand" href="/">
+        <input type="submit" th:value="${'Back to Variance'}" class="btn btn-dark">
     </a>
 </div>
-<p></p>
-
 </body>
 </html>

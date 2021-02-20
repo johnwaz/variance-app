@@ -6,6 +6,26 @@ header {
     margin-bottom: 20px;
 }
 
+.home-div {
+    margin-top: 20px;
+}
+
+.home-span {
+    margin-right: 20px;
+}
+
+.home-span a:hover {
+    text-decoration: none;
+}
+
+.view-span {
+    margin-right: 10px;
+}
+
+.view-span a:hover {
+    text-decoration: none;
+}
+
 .log-register {
     margin-top: 5px;
 }
