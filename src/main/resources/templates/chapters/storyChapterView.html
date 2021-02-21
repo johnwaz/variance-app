@@ -6,15 +6,9 @@
 <h2 th:text="${'Chapter: ' + chapter.chapterNumber}">Default Title</h2>
 <p></p>
 <div>
-    <p th:if="${chapter.name != ''}" th:text="${'Name: ' + chapter.name}"></p>
-    <p th:text="${'Story: ' + chapter.story.name}"></p>
-    <p th:text="${'Novel: ' + chapter.story.novel.title}"></p>
-</div>
-
-<div>
-    <a th:href="@{/chapters/storyChapterEdit/{id}(id=${chapter.id})}">
-        <input type="submit" value="Edit" class="btn btn-info">
-    </a>
+    <h5 th:if="${chapter.name != ''}" th:text="${'Name: ' + chapter.name}"></h5>
+    <h5 th:text="${'Story: ' + chapter.story.name}"></h5>
+    <h4 th:text="${'Novel: ' + chapter.story.novel.title}"></h4>
 </div>
 <p></p>
 
@@ -29,27 +23,31 @@
 </div>
 
 <div>
-    <a th:href="@{/pages/storyChapterPageAdd/{id}(id=${chapter.id})}">
-        <input type="submit" value="Add Page" class="btn btn-secondary">
-    </a>
+    <span class="view-span">
+        <a th:href="@{/chapters/storyChapterEdit/{id}(id=${chapter.id})}">
+            <input type="submit" value="Edit Chapter" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/pages/storyChapterPageAdd/{id}(id=${chapter.id})}">
+            <input type="submit" value="Add Page" class="btn btn-secondary">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/stories/view/{id}(id=${chapter.story.id})}">
+            <input type="submit" th:value="${'Back to ' + chapter.story.name}" class="btn btn-dark">
+        </a>
+    </span>
+    <th:block th:if="${chapter}">
+        <form method="post" th:action="@{/chapters/storyChapterView}" id="delete-chapter">
+            <input type="hidden" name="chapterId" th:value="${chapter.id}" class="form-control">
+            <input type="hidden" id="chapterId" th:value="${chapter.name}" class="form-control">
+            <input type="hidden" name="storyId" th:value="${chapter.story.id}" class="form-control">
+            <p></p>
+            <input onclick="deleteChapter()" type="button" value="Delete Chapter" class="btn btn-danger">
+        </form>
+    </th:block>
 </div>
-<p></p>
-
-<div>
-    <a th:href="@{/stories/view/{id}(id=${chapter.story.id})}">
-        <input type="submit" th:value="${'Back to ' + chapter.story.name}" class="btn btn-dark">
-    </a>
-</div>
-
-<th:block th:if="${chapter}">
-    <form method="post" th:action="@{/chapters/storyChapterView}" id="delete-chapter">
-        <input type="hidden" name="chapterId" th:value="${chapter.id}" class="form-control">
-        <input type="hidden" id="chapterId" th:value="${chapter.name}" class="form-control">
-        <input type="hidden" name="storyId" th:value="${chapter.story.id}" class="form-control">
-        <p></p>
-        <input onclick="deleteChapter()" type="button" value="Delete Chapter" class="btn btn-danger">
-    </form>
-</th:block>
 
 </body>
 </html>

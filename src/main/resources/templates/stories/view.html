@@ -7,13 +7,7 @@
 <p></p>
 
 <div>
-    <p th:text="${'Novel: ' + story.novel.title}"></p>
-</div>
-
-<div>
-    <a th:href="@{/stories/edit/{id}(id=${story.id})}">
-        <input type="submit" value="Edit" class="btn btn-info">
-    </a>
+    <h4 th:text="${'Novel: ' + story.novel.title}"></h4>
 </div>
 <p></p>
 
@@ -28,27 +22,31 @@
 </div>
 
 <div>
-    <a th:href="@{/chapters/storyChapterAdd/{id}(id=${story.id})}">
-        <input type="submit" value="Add Chapter" class="btn btn-secondary">
-    </a>
+    <span class="view-span">
+        <a th:href="@{/stories/edit/{id}(id=${story.id})}">
+            <input type="submit" value="Edit Story" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/chapters/storyChapterAdd/{id}(id=${story.id})}">
+            <input type="submit" value="Add Chapter" class="btn btn-secondary">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/novels/view/{id}(id=${story.novel.id})}">
+            <input type="submit" th:value="${'Back to ' + story.novel.title}" class="btn btn-dark">
+        </a>
+    </span>
+    <th:block th:if="${story}">
+        <form method="post" th:action="@{/stories/view}" id="delete-story">
+            <input type="hidden" name="storyId" th:value="${story.id}" class="form-control">
+            <input type="hidden" id="storyId" th:value="${story.name}" class="form-control">
+            <input type="hidden" name="novelId" th:value="${story.novel.id}" class="form-control">
+            <p></p>
+            <input onclick="deleteStory()" type="button" value="Delete Story" class="btn btn-danger">
+        </form>
+    </th:block>
 </div>
-<p></p>
-
-<div>
-    <a th:href="@{/novels/view/{id}(id=${story.novel.id})}">
-        <input type="submit" th:value="${'Back to ' + story.novel.title}" class="btn btn-dark">
-    </a>
-</div>
-
-<th:block th:if="${story}">
-    <form method="post" th:action="@{/stories/view}" id="delete-story">
-        <input type="hidden" name="storyId" th:value="${story.id}" class="form-control">
-        <input type="hidden" id="storyId" th:value="${story.name}" class="form-control">
-        <input type="hidden" name="novelId" th:value="${story.novel.id}" class="form-control">
-        <p></p>
-        <input onclick="deleteStory()" type="button" value="Delete Story" class="btn btn-danger">
-    </form>
-</th:block>
 
 </body>
 </html>
