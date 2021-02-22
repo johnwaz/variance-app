@@ -8,12 +8,12 @@
 <form method="post" style="max-width:220px;">
     <div class="form-group">
         <label th:for="name">Subject Name</label>
-        <input class="form-control" th:field="${subject.name}" />
+        <input class="form-control" th:field="${subject.name}" placeholder="required"/>
         <span th:errors="${subject.name}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="description">Subject Description</label>
-        <input class="form-control" th:field="${subject.description}" />
+        <input class="form-control" th:field="${subject.description}" placeholder="optional"/>
         <span th:errors="${subject.description}" class="error"></span>
     </div>
     <input type="submit" value="Add Subject" />
