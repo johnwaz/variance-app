@@ -8,12 +8,12 @@
 <form method="post" style="max-width:220px;">
     <div class="form-group">
         <label th:for="chapterNumber">Chapter Number</label>
-        <input type="number" class="form-control" th:field="${chapter.chapterNumber}" placeholder="0" min="0"/>
+        <input type="number" class="form-control" th:field="${chapter.chapterNumber}" placeholder="1" min="0"/>
         <span th:errors="${chapter.chapterNumber}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="name">Chapter Name</label>
-        <input class="form-control" th:field="${chapter.name}" />
+        <input class="form-control" th:field="${chapter.name}" placeholder="optional"/>
         <span th:errors="${chapter.name}" class="error"></span>
     </div>
     <input type="submit" value="Add Chapter" />
