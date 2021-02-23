@@ -15,7 +15,7 @@
             <input type="text" name="name" class="form-control" th:value="${story.name}" placeholder="required">
             <span th:errors="${story.name}" class="error"></span>
         </div>
-        <input type="hidden" th:value="${storyId}" name="storyId" />
+        <input type="hidden" th:value="${storyId}" name="storyId"/>
         <div class="form-group">
             <input type="submit" value="Update" class="btn btn-success">
         </div>
