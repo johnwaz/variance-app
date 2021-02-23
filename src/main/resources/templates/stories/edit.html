@@ -12,7 +12,7 @@
     <form method="post" th:action="@{/stories/edit}" style="max-width:220px;">
         <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" th:value="${story.name}">
+            <input type="text" name="name" class="form-control" th:value="${story.name}" placeholder="required">
             <span th:errors="${story.name}" class="error"></span>
         </div>
         <input type="hidden" th:value="${storyId}" name="storyId" />
