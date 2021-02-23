@@ -12,12 +12,12 @@
    <form method="post" th:action="@{/chapters/storyChapterEdit}" style="max-width:220px;">
       <div class="form-group">
          <label class="chapter-number">Chapter Number</label>
-         <input type="number" name="chapterNumber" class="form-control" th:value="${chapter.chapterNumber}" min="0">
+         <input type="number" name="chapterNumber" class="form-control" th:value="${chapter.chapterNumber}" placeholder="0" min="0">
          <span th:errors="${chapter.chapterNumber}" class="error"></span>
       </div>
       <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" class="form-control" th:value="${chapter.name}">
+         <input type="text" name="name" class="form-control" th:value="${chapter.name}" placeholder="optional">
          <span th:errors="${chapter.name}" class="error"></span>
       </div>
       <input type="hidden" th:value="${chapterId}" name="chapterId" />

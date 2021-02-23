@@ -8,10 +8,10 @@
 <form method="post" style="max-width:220px;">
     <div class="form-group">
         <label th:for="name">Story Name</label>
-        <input class="form-control" th:field="${story.name}" />
+        <input class="form-control" th:field="${story.name}" placeholder="required"/>
         <span th:errors="${story.name}" class="error"></span>
     </div>
-    <input type="submit" value="Add Story" />
+    <input type="submit" value="Add Story"/>
 </form>
 <p></p>
 <div>

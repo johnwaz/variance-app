@@ -13,10 +13,10 @@
     </div>
     <div class="form-group">
         <label th:for="name">Chapter Name</label>
-        <input class="form-control" th:field="${chapter.name}" />
+        <input class="form-control" th:field="${chapter.name}" placeholder="optional"/>
         <span th:errors="${chapter.name}" class="error"></span>
     </div>
-    <input type="submit" value="Add Chapter" />
+    <input type="submit" value="Add Chapter"/>
 </form>
 <p></p>
 <div>

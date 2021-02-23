@@ -6,25 +6,25 @@
 <h2>Edit Page</h2>
 
 <th:block th:unless="${page}">
-   <p>The page you are trying to edit does not exist</p>
+    <p>The page you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${page}">
-   <form method="post" th:action="@{/pages/bookChapterPageEdit}">
-      <div class="form-group" style="max-width:220px;">
-         <label class="page-number">Page Number</label>
-            <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" min="0">
-         <span th:errors="${page.pageNumber}" class="error"></span>
-      </div>
-      <div class="form-group textarea">
-         <label>Page Content</label>
-            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" maxlength="3000"></textarea>
-         <span th:errors="${page.content}" class="error"></span>
-      </div>
-      <input type="hidden" th:value="${pageId}" name="pageId" />
-      <div class="form-group">
-         <input type="submit" value="Update" class="btn btn-success">
-      </div>
-   </form>
+    <form method="post" th:action="@{/pages/bookChapterPageEdit}">
+        <div class="form-group" style="max-width:220px;">
+            <label class="page-number">Page Number</label>
+            <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" placeholder="0" min="0">
+            <span th:errors="${page.pageNumber}" class="error"></span>
+        </div>
+        <div class="form-group textarea">
+            <label>Page Content</label>
+            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" maxlength="3000" placeholder="required"></textarea>
+            <span th:errors="${page.content}" class="error"></span>
+        </div>
+        <input type="hidden" th:value="${pageId}" name="pageId"/>
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success">
+        </div>
+    </form>
 </th:block>
 
 </body>

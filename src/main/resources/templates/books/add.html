@@ -8,17 +8,17 @@
 <form method="post" style="max-width:220px;">
     <div class="form-group">
         <label th:for="title">Title</label>
-        <input class="form-control" th:field="${book.title}" />
+        <input class="form-control" th:field="${book.title}" placeholder="required"/>
         <span th:errors="${book.title}" class="error"></span>
     </div>
 
     <div class="form-group">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="${book.description}" />
+        <input class="form-control" th:field="${book.description}" placeholder="optional"/>
         <span th:errors="${book.description}" class="error"></span>
     </div>
 
-    <input type="submit" value="Add Book" />
+    <input type="submit" value="Add Book"/>
 </form>
 <p></p>
 <div>
