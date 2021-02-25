@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-<h2 th:text="${'Add Page To: Subject ' + subject.name}">Add Page</h2>
+<h2 th:text="${'Add Page To: ' + subject.name}">Add Page</h2>
 
 <form method="post" style="max-width:220px;">
     <div class="form-group">
@@ -20,9 +20,16 @@
 </form>
 <p></p>
 <div>
-    <a th:href="@{/subjects/view/{id}(id=${subject.id})}">
-        <input type="submit" th:value="${'Back to ' + subject.name}" class="btn btn-dark">
-    </a>
+    <span class="view-span">
+        <a th:href="@{/subjects/view/{id}(id=${subject.id})}">
+            <input type="submit" th:value="${'Back to ' + subject.name}" class="btn btn-dark">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-outline-primary">
+        </a>
+    </span>
 </div>
 </body>
 </html>
