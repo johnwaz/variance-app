@@ -40,6 +40,11 @@
             <input type="submit" th:value="${'Back to ' + chapter.book.title}" class="btn btn-dark">
         </a>
     </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
     <th:block th:if="${chapter}">
         <form method="post" th:action="@{/chapters/bookChapterView}" id="delete-chapter">
             <input type="hidden" name="chapterId" th:value="${chapter.id}" class="form-control">

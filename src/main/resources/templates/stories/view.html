@@ -37,6 +37,11 @@
             <input type="submit" th:value="${'Back to ' + story.novel.title}" class="btn btn-dark">
         </a>
     </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
     <th:block th:if="${story}">
         <form method="post" th:action="@{/stories/view}" id="delete-story">
             <input type="hidden" name="storyId" th:value="${story.id}" class="form-control">

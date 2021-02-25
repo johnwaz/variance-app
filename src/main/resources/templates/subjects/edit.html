@@ -26,6 +26,18 @@
         </div>
     </form>
 </th:block>
+<div>
+    <span class="view-span" th:if="${subject.id}">
+        <a th:href="@{/subjects/view/{id}(id=${subject.id})}">
+            <input type="submit" th:value="${'Back to ' + subject.name}" class="btn btn-dark">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
+</div>
 
 </body>
 </html>

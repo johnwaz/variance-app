@@ -39,6 +39,11 @@
             <input type="submit" th:value="${'Back to ' + subject.notebook.title}" class="btn btn-dark">
         </a>
     </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
     <th:block th:if="${subject}">
         <form method="post" th:action="@{/subjects/view}" id="delete-subject">
             <input type="hidden" name="subjectId" th:value="${subject.id}" class="form-control">

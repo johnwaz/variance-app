@@ -23,6 +23,11 @@
             <input type="submit" th:value="${'Back to ' + page.journal.name}" class="btn btn-dark">
         </a>
     </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
     <th:block th:if="${page}">
         <form method="post" th:action="@{/pages/journalPageView}" id="delete-page">
             <input type="hidden" name="pageId" th:value="${page.id}" class="form-control">

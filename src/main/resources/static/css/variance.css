@@ -2,6 +2,18 @@
     color: red;
 }
 
+.variance-nav {
+    background-color: #282828;
+}
+
+.nav-item a {
+    color: #c8c8c8 !important;
+}
+
+.nav-item a:hover {
+    color: #f0e68c !important;
+}
+
 header {
     margin-bottom: 20px;
 }
