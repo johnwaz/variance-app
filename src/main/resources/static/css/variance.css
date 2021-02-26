@@ -22,6 +22,14 @@
     border: 1px solid #282828;
 }
 
+.breadcrumbs a {
+    color: #aa6c39;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: none;
+}
+
 .home-div {
     margin-top: 20px;
 }
