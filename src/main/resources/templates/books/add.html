@@ -10,17 +10,18 @@
 <div class="var-container">
 <h2>Book</h2>
 
-<form method="post" style="max-width:220px;">
+<form method="post">
     <div class="form-group">
-        <label th:for="title">Title</label>
-        <input class="form-control" th:field="${book.title}" placeholder="required"/>
-        <span th:errors="${book.title}" class="error"></span>
+        <label th:for="title">Title
+            <input class="form-control" th:field="${book.title}" placeholder="required"/>
+        </label>
+        <p th:errors="${book.title}" class="error"></p>
     </div>
-
     <div class="form-group">
-        <label th:for="description">Description</label>
-        <input class="form-control" th:field="${book.description}" placeholder="optional"/>
-        <span th:errors="${book.description}" class="error"></span>
+        <label th:for="description">Description
+            <input class="form-control" th:field="${book.description}" placeholder="optional"/>
+        </label>
+        <p th:errors="${book.description}" class="error"></p>
     </div>
 
     <input type="submit" value="Add Book"/>
