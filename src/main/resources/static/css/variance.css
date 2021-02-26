@@ -1,5 +1,13 @@
-body {
+body, html {
+    background-color: #d3d3d3;
+    height: 100%;
+}
+
+.var-container {
     background-color: #f8f8ff;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100%;
 }
 
 .error {
@@ -22,7 +30,6 @@ body {
     background: #282828;
     padding-top: 2px;
     padding-bottom: 2px;
-    margin-bottom: 20px;
 }
 
 .breadcrumbs span {
