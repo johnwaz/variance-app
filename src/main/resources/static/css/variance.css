@@ -5,7 +5,7 @@ body, html {
 }
 
 .var-container {
-    background-color: #f8f8ff;
+    background-color: #f0f8ff;
     margin: 0 auto;
     padding: 20px;
     height: 100%;
@@ -41,7 +41,7 @@ body, html {
 }
 
 .breadcrumbs span {
-    color: #4488bf;
+    color: #D5AD36;
 }
 
 .breadcrumbs a {
