@@ -1,3 +1,7 @@
+body {
+    background-color: #f0f0f0;
+}
+
 .error {
     color: red;
 }
@@ -27,7 +31,15 @@
 }
 
 .breadcrumbs a:hover {
-    text-decoration: none;
+    color: #282828;
+}
+
+a {
+    color: #aa6c39;
+}
+
+a:hover {
+    color: #282828;
 }
 
 .home-div {
