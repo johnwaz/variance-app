@@ -3,22 +3,30 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/books/view/{id}(id=${uneditedBook.id})}" th:text="${uneditedBook.title}"></a></span>
+    <span th:text="${'/ ' + uneditedBook.title + ' Edit'}"></span>
+</div>
+<div class="var-container">
 <h2>Edit Book</h2>
 
 <th:block th:unless="${book}">
     <p>The book you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${book}">
-    <form method="post" th:action="@{/books/edit}" style="max-width:220px;">
+    <form method="post" th:action="@{/books/edit}">
         <div class="form-group">
-            <label>Title</label>
-            <input type="text" name="title" class="form-control" th:value="${book.title}" placeholder="required">
-            <span th:errors="${book.title}" class="error"></span>
+            <label>Title
+                <input type="text" name="title" class="form-control" th:value="${book.title}" placeholder="required">
+            </label>
+            <p th:errors="${book.title}" class="error"></p>
         </div>
         <div class="form-group">
-            <label>Description</label>
-            <input type="text" name="description" class="form-control" th:value="${book.description}" placeholder="optional">
-            <span th:errors="${book.description}" class="error"></span>
+            <label>Description
+                <input type="text" name="description" class="form-control" th:value="${book.description}" placeholder="optional">
+            </label>
+            <p th:errors="${book.description}" class="error"></p>
         </div>
         <input type="hidden" th:value="${bookId}" name="bookId"/>
         <div class="form-group">
@@ -38,6 +46,6 @@
         </a>
     </span>
 </div>
-
+</div>
 </body>
 </html>
