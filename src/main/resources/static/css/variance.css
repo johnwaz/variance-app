@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #f8f8ff;
 }
 
 .error {
@@ -7,35 +7,39 @@ body {
 }
 
 .variance-nav {
-    background-color: #282828;
+    background-color: #265999;
 }
 
 .nav-item a {
-    color: #c8c8c8 !important;
+    color: #d3d3d3 !important;
 }
 
 .nav-item a:hover {
-    color: #f0e68c !important;
+    color: #f4f2c9 !important;
 }
 
 .breadcrumbs {
-    background: #f0e68c;
+    background: #282828;
     padding-top: 2px;
     padding-bottom: 2px;
     margin-bottom: 20px;
-    border: 1px solid #282828;
+}
+
+.breadcrumbs span {
+    color: #4488bf;
 }
 
 .breadcrumbs a {
-    color: #aa6c39;
+    color: #d3d3d3;
 }
 
 .breadcrumbs a:hover {
-    color: #282828;
+    color: #f4f2c9;
+    text-decoration: none;
 }
 
 a {
-    color: #aa6c39;
+    color: #d5ad36;
 }
 
 a:hover {
