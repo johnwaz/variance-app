@@ -7,7 +7,7 @@ body, html {
 .var-container {
     background-color: #f0f8ff;
     margin: 0 auto;
-    padding: 20px;
+    padding-top: 40px;
     height: 100%;
     border: 2px solid #757575;
     text-align: center;
