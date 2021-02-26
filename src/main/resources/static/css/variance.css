@@ -1,13 +1,16 @@
 body, html {
     background-color: #8a8a8a;
     height: 100%;
+    overflow: hidden;
 }
 
 .var-container {
     background-color: #f8f8ff;
     margin: 0 auto;
     padding: 20px;
-    height: 90%;
+    height: 100%;
+    border: 2px solid #757575;
+    text-align: center;
 }
 
 .error {
@@ -75,6 +78,11 @@ a:hover {
 
 .log-register {
     margin-top: 5px;
+}
+
+ul {
+    list-style: none;
+    margin-right: 40px;
 }
 
 textarea {
