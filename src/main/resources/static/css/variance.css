@@ -29,6 +29,11 @@ body, html {
     color: #f4f2c9 !important;
 }
 
+.var-nav {
+    margin: 0 auto;
+    padding-right: 80px;
+}
+
 .breadcrumbs {
     background: #282828;
     padding-top: 2px;
