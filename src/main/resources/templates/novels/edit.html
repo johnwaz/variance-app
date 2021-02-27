@@ -35,8 +35,8 @@
     </form>
 </th:block>
 <div>
-    <span class="view-span" th:if="${novel.id}">
-        <a th:href="@{/novels/view/{id}(id=${novel.id})}">
+    <span class="view-span">
+        <a th:href="@{/novels/view/{id}(id=${uneditedNovel.id})}">
             <input type="submit" value="Back" class="btn btn-dark">
         </a>
     </span>

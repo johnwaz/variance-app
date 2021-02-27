@@ -36,9 +36,9 @@
     </form>
 </th:block>
 <div>
-    <span class="view-span" th:if="${chapter.id}">
-        <a th:href="@{/chapters/bookChapterView/{id}(id=${chapter.id})}">
-            <input type="submit" th:value="${'Back to Chapter ' + chapter.chapterNumber}" class="btn btn-dark">
+    <span class="view-span">
+        <a th:href="@{/chapters/bookChapterView/{id}(id=${uneditedChapter.id})}">
+            <input type="submit" th:value="${'Back to Chapter ' + uneditedChapter.chapterNumber}" class="btn btn-dark">
         </a>
     </span>
     <span class="view-span">
