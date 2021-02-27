@@ -3,6 +3,12 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/novels/view/{id}(id=${story.novel.id})}" th:text="${story.novel.title}"></a></span>
+    <span th:text="${'/ ' + story.name}"></span>
+</div>
+<div class="var-container">
 <h2 th:text="${'Story: ' + story.name}">Default Title</h2>
 <p></p>
 
@@ -52,6 +58,6 @@
         </form>
     </th:block>
 </div>
-
+</div>
 </body>
 </html>

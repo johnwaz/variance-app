@@ -3,22 +3,30 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/novels/view/{id}(id=${uneditedNovel.id})}" th:text="${uneditedNovel.title}"></a></span>
+    <span th:text="${'/ ' + uneditedNovel.title + ' Edit'}"></span>
+</div>
+<div class="var-container">
 <h2>Edit Novel</h2>
 
 <th:block th:unless="${novel}">
     <p>The novel you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${novel}">
-    <form method="post" th:action="@{/novels/edit}" style="max-width:220px;">
+    <form method="post" th:action="@{/novels/edit}">
         <div class="form-group">
-            <label>Title</label>
-            <input type="text" name="title" class="form-control" th:value="${novel.title}" placeholder="required">
-            <span th:errors="${novel.title}" class="error"></span>
+            <label>Title
+                <input type="text" name="title" class="form-control" th:value="${novel.title}" placeholder="required">
+            </label>
+            <p th:errors="${novel.title}" class="error"></p>
         </div>
         <div class="form-group">
-            <label>Description</label>
-            <input type="text" name="description" class="form-control" th:value="${novel.description}" placeholder="optional">
-            <span th:errors="${novel.description}" class="error"></span>
+            <label>Description
+                <input type="text" name="description" class="form-control" th:value="${novel.description}" placeholder="optional">
+            </label>
+            <p th:errors="${novel.description}" class="error"></p>
         </div>
         <input type="hidden" th:value="${novelId}" name="novelId"/>
         <div class="form-group">
@@ -27,8 +35,8 @@
     </form>
 </th:block>
 <div>
-    <span class="view-span" th:if="${novel.id}">
-        <a th:href="@{/novels/view/{id}(id=${novel.id})}">
+    <span class="view-span">
+        <a th:href="@{/novels/view/{id}(id=${uneditedNovel.id})}">
             <input type="submit" value="Back" class="btn btn-dark">
         </a>
     </span>
@@ -38,6 +46,6 @@
         </a>
     </span>
 </div>
-
+</div>
 </body>
 </html>

@@ -3,12 +3,18 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
-<h2 th:text="${'Page: ' + page.pageNumber}">Default Title</h2>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/journals/view/{id}(id=${page.journal.id})}" th:text="${page.journal.name}"></a></span>
+    <span th:text="${'/ Page ' + page.pageNumber}"></span>
+</div>
+<div class="var-container">
+<h2 th:text="${'Page ' + page.pageNumber}">Default Title</h2>
 <p></p>
 <div>
     <h4 th:text="${'Journal: ' + page.journal.name}"></h4>
     <h6 style="text-decoration: underline" th:text="${'Content:'}"></h6>
-    <p style="white-space: break-spaces" th:text="${page.content}"></p>
+    <textarea readonly class="page-content" style="white-space: break-spaces" th:text="${page.content}" rows="20" cols="50"></textarea>
     <hr>
 </div>
 
@@ -38,6 +44,6 @@
         </form>
     </th:block>
 </div>
-
+</div>
 </body>
 </html>

@@ -1,21 +1,68 @@
+body, html {
+    background-color: #8a8a8a;
+    height: 100%;
+}
+
+.var-container {
+    background-color: #f0f8ff;
+    padding-top: 40px;
+    height: 100%;
+    text-align: center;
+    border: 2px solid #757575;
+}
+
+@media (max-width: 576px) {
+    .var-container {
+        height: 150%;
+    }
+}
+
 .error {
     color: red;
 }
 
 .variance-nav {
-    background-color: #282828;
+    background-color: #265999;
 }
 
 .nav-item a {
-    color: #c8c8c8 !important;
+    color: #d3d3d3 !important;
 }
 
 .nav-item a:hover {
-    color: #f0e68c !important;
+    color: #f4f2c9 !important;
 }
 
-header {
-    margin-bottom: 20px;
+.var-nav {
+    margin: 0 auto;
+    padding-right: 80px;
+}
+
+.breadcrumbs {
+    background: #282828;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.breadcrumbs span {
+    color: #D5AD36;
+}
+
+.breadcrumbs a {
+    color: #d3d3d3;
+}
+
+.breadcrumbs a:hover {
+    color: #f4f2c9;
+    text-decoration: none;
+}
+
+a {
+    color: #CA9703;
+}
+
+a:hover {
+    color: #282828;
 }
 
 .home-div {
@@ -31,7 +78,8 @@ header {
 }
 
 .view-span {
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .view-span a:hover {
@@ -39,21 +87,24 @@ header {
 }
 
 .log-register {
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+ul {
+    list-style: none;
+    margin-right: 40px;
 }
 
 textarea {
     resize: none;
 }
 
-.textarea {
-    width: 600px;
+.page-content {
+    background-color: #f4f4f4;
 }
 
-@media (max-width: 576px) {
-    .textarea {
-        width: 450px;
-    }
+hr {
+    width: 75%;
 }
 
 .page-number {
