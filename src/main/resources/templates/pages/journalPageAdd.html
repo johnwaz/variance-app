@@ -3,18 +3,26 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/journals/view/{id}(id=${journal.id})}" th:text="${journal.name}"></a></span>
+    <span>/ Add Page</span>
+</div>
+<div class="var-container">
 <h2 th:text="${'Add Page To: ' + journal.name}">Add Page</h2>
 
-<form method="post" style="max-width:220px;">
+<form method="post">
     <div class="form-group">
-        <label th:for="pageNumber">Page Number</label>
-        <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
-        <span th:errors="${page.pageNumber}" class="error"></span>
+        <label th:for="pageNumber">Page Number
+            <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
+        </label>
+        <p th:errors="${page.pageNumber}" class="error"></p>
     </div>
     <div class="form-group textarea">
-        <label th:for="content">Page Content</label>
-        <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" placeholder="required"></textarea>
-        <span th:errors="${page.content}" class="error"></span>
+        <label th:for="content">Page Content
+            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+        </label>
+        <p th:errors="${page.content}" class="error"></p>
     </div>
     <input type="submit" id="submit-code" value="Add Page"/>
 </form>
@@ -30,6 +38,7 @@
             <input type="submit" th:value="${'Home'}" class="btn btn-primary">
         </a>
     </span>
+</div>
 </div>
 </body>
 </html>
