@@ -10,7 +10,7 @@
     <h5 th:text="${'Story: ' + page.chapter.story.name}"></h5>
     <h4 th:text="${'Novel: ' + page.chapter.story.novel.title}"></h4>
     <h6 style="text-decoration: underline" th:text="${'Content:'}"></h6>
-    <p style="white-space: break-spaces" th:text="${page.content}"></p>
+    <textarea style="white-space: break-spaces" th:text="${page.content}" rows="20" cols="50"></textarea>
     <hr>
 </div>
 

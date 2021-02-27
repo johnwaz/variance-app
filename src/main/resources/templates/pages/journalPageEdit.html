@@ -17,7 +17,7 @@
         </div>
         <div class="form-group textarea">
             <label>Page Content</label>
-            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" maxlength="3000" placeholder="required"></textarea>
+            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" placeholder="required"></textarea>
             <span th:errors="${page.content}" class="error"></span>
         </div>
         <input type="hidden" th:value="${pageId}" name="pageId"/>
