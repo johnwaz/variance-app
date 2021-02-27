@@ -99,6 +99,10 @@ textarea {
     resize: none;
 }
 
+.page-content {
+    background-color: #f4f4f4;
+}
+
 hr {
     width: 75%;
 }
