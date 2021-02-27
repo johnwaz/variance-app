@@ -3,17 +3,25 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/novels/view/{id}(id=${story.novel.id})}" th:text="${story.novel.title}"></a></span>
+    <span>/ <a th:href="@{/stories/view/{id}(id=${uneditedStory.id})}" th:text="${uneditedStory.name}"></a></span>
+    <span th:text="${'/ ' + uneditedStory.name + ' Edit'}"></span>
+</div>
+<div class="var-container">
 <h2>Edit Story</h2>
 
 <th:block th:unless="${story}">
     <p>The story you are trying to edit does not exist</p>
 </th:block>
 <th:block th:if="${story}">
-    <form method="post" th:action="@{/stories/edit}" style="max-width:220px;">
+    <form method="post" th:action="@{/stories/edit}">
         <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" class="form-control" th:value="${story.name}" placeholder="required">
-            <span th:errors="${story.name}" class="error"></span>
+            <label>Name
+                <input type="text" name="name" class="form-control" th:value="${story.name}" placeholder="required">
+            </label>
+            <p th:errors="${story.name}" class="error"></p>
         </div>
         <input type="hidden" th:value="${storyId}" name="storyId"/>
         <div class="form-group">
@@ -33,6 +41,6 @@
         </a>
     </span>
 </div>
-
+</div>
 </body>
 </html>
