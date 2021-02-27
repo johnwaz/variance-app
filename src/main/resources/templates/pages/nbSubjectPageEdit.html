@@ -3,6 +3,14 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/notebooks/view/{id}(id=${uneditedPage.subject.notebook.id})}" th:text="${uneditedPage.subject.notebook.title}"></a></span>
+    <span>/ <a th:href="@{/subjects/view/{id}(id=${uneditedPage.subject.id})}" th:text="${uneditedPage.subject.name}"></a></span>
+    <span>/ <a th:href="@{/pages/nbSubjectPageView/{id}(id=${uneditedPage.id})}" th:text="${'Page ' + uneditedPage.pageNumber}"></a></span>
+    <span th:text="${'/ Page ' + uneditedPage.pageNumber + ' Edit'}"></span>
+</div>
+<div class="var-container">
 <h2>Edit Page</h2>
 
 <th:block th:unless="${page}">
@@ -10,15 +18,17 @@
 </th:block>
 <th:block th:if="${page}">
     <form method="post" th:action="@{/pages/nbSubjectPageEdit}">
-        <div class="form-group" style="max-width:220px;">
-            <label class="page-number">Page Number</label>
-            <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" placeholder="0" min="0">
-            <span th:errors="${page.pageNumber}" class="error"></span>
+        <div class="form-group">
+            <label class="page-number">Page Number
+                <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" placeholder="0" min="0">
+            </label>
+            <p th:errors="${page.pageNumber}" class="error"></p>
         </div>
         <div class="form-group textarea">
-            <label>Page Content</label>
-            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="24" wrap="hard" placeholder="required"></textarea>
-            <span th:errors="${page.content}" class="error"></span>
+            <label>Page Content
+                <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+            </label>
+            <p th:errors="${page.content}" class="error"></p>
         </div>
         <input type="hidden" th:value="${pageId}" name="pageId"/>
         <div class="form-group">
@@ -38,6 +48,6 @@
         </a>
     </span>
 </div>
-
+</div>
 </body>
 </html>
