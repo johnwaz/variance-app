@@ -1,7 +1,6 @@
 body, html {
     background-color: #8a8a8a;
     height: 100%;
-    overflow: hidden;
 }
 
 .var-container {
@@ -95,14 +94,12 @@ textarea {
     resize: none;
 }
 
-.textarea {
-    width: 600px;
+hr {
+    width: 75%;
 }
 
 @media (max-width: 576px) {
-    .textarea {
-        width: 450px;
-    }
+
 }
 
 .page-number {
