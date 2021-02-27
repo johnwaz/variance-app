@@ -8,7 +8,7 @@
 <div>
     <h4 th:text="${'Journal: ' + page.journal.name}"></h4>
     <h6 style="text-decoration: underline" th:text="${'Content:'}"></h6>
-    <textarea style="white-space: break-spaces" th:text="${page.content}" rows="20" cols="50"></textarea>
+    <textarea readonly style="white-space: break-spaces" th:text="${page.content}" rows="20" cols="50"></textarea>
     <hr>
 </div>
 
