@@ -5,7 +5,7 @@
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
-    <span>/ <a th:href="@{/novels/view/{id}(id=${story.novel.id})}" th:text="${story.novel.title}"></a></span>
+    <span>/ <a th:href="@{/novels/view/{id}(id=${uneditedStory.novel.id})}" th:text="${uneditedStory.novel.title}"></a></span>
     <span>/ <a th:href="@{/stories/view/{id}(id=${uneditedStory.id})}" th:text="${uneditedStory.name}"></a></span>
     <span th:text="${'/ ' + uneditedStory.name + ' Edit'}"></span>
 </div>
