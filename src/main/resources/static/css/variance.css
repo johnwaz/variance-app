@@ -1,6 +1,13 @@
 body, html {
     background-color: #8a8a8a;
     height: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 576px) {
+    body {
+        overflow: scroll;
+    }
 }
 
 .var-container {
@@ -10,6 +17,12 @@ body, html {
     height: 100%;
     border: 2px solid #757575;
     text-align: center;
+}
+
+@media (max-width: 576px) {
+    .var-container {
+        height: 150%;
+    }
 }
 
 .error {
@@ -96,10 +109,6 @@ textarea {
 
 hr {
     width: 75%;
-}
-
-@media (max-width: 576px) {
-
 }
 
 .page-number {
