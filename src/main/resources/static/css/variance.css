@@ -1,22 +1,14 @@
 body, html {
     background-color: #8a8a8a;
     height: 100%;
-    overflow: hidden;
-}
-
-@media (max-width: 576px) {
-    body {
-        overflow: scroll;
-    }
 }
 
 .var-container {
     background-color: #f0f8ff;
-    margin: 0 auto;
     padding-top: 40px;
     height: 100%;
-    border: 2px solid #757575;
     text-align: center;
+    border: 2px solid #757575;
 }
 
 @media (max-width: 576px) {
