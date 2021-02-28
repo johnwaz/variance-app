@@ -14,8 +14,8 @@
         <h5 th:if="${book.description != ''}" th:text="${'Description: ' + book.description}"></h5>
     </div>
     <p></p>
-
-    <h3 th:text="${'Chapters:'}"></h3>
+    <h3 th:unless="${book.chapters} and ${book.chapters.size()}" th:text="${'No Chapters'}"></h3>
+    <h3 th:if="${book.chapters} and ${book.chapters.size()}" th:text="${'Chapters:'}"></h3>
     <div>
         <ul>
             <li th:each="chapter : ${book.chapters}">

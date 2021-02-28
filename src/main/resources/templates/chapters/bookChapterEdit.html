@@ -7,7 +7,7 @@
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span>/ <a th:href="@{/books/view/{id}(id=${uneditedChapter.book.id})}" th:text="${uneditedChapter.book.title}"></a></span>
     <span>/ <a th:href="@{/chapters/bookChapterView/{id}(id=${uneditedChapter.id})}" th:text="${'Chapter ' + uneditedChapter.chapterNumber}"></a></span>
-    <span th:text="${'/ ' + uneditedChapter.name + ' Edit'}"></span>
+    <span th:text="${'/ Chapter ' + uneditedChapter.chapterNumber + ' Edit'}"></span>
 </div>
 <div class="var-container">
     <h2>Edit Chapter</h2>
