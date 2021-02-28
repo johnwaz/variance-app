@@ -12,43 +12,43 @@
     <span th:text="${'/ Page ' + uneditedPage.pageNumber + ' Edit'}"></span>
 </div>
 <div class="var-container">
-<h2>Edit Page</h2>
+    <h2>Edit Page</h2>
 
-<th:block th:unless="${page}">
-    <p>The page you are trying to edit does not exist</p>
-</th:block>
-<th:block th:if="${page}">
-    <form method="post" th:action="@{/pages/storyChapterPageEdit}">
-        <div class="form-group">
-            <label class="page-number">Page Number
-                <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" placeholder="0" min="0">
-            </label>
-            <p th:errors="${page.pageNumber}" class="error"></p>
-        </div>
-        <div class="form-group textarea">
-            <label>Page Content
-                <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
-            </label>
-            <p th:errors="${page.content}" class="error"></p>
-        </div>
-        <input type="hidden" th:value="${pageId}" name="pageId"/>
-        <div class="form-group">
-            <input type="submit" value="Update" class="btn btn-success">
-        </div>
-    </form>
-</th:block>
-<div>
-    <span class="view-span">
-        <a th:href="@{/pages/storyChapterPageView/{id}(id=${uneditedPage.id})}">
-            <input type="submit" th:value="${'Back to Page ' + uneditedPage.pageNumber}" class="btn btn-dark">
-        </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/}">
-            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-        </a>
-    </span>
-</div>
+    <th:block th:unless="${page}">
+        <p>The page you are trying to edit does not exist</p>
+    </th:block>
+    <th:block th:if="${page}">
+        <form method="post" th:action="@{/pages/storyChapterPageEdit}">
+            <div class="form-group">
+                <label class="page-number">Page Number
+                    <input type="number" name="pageNumber" class="form-control" th:value="${page.pageNumber}" placeholder="0" min="0">
+                </label>
+                <p th:errors="${page.pageNumber}" class="error"></p>
+            </div>
+            <div class="form-group textarea">
+                <label>Page Content
+                    <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+                </label>
+                <p th:errors="${page.content}" class="error"></p>
+            </div>
+            <input type="hidden" th:value="${pageId}" name="pageId"/>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success">
+            </div>
+        </form>
+    </th:block>
+    <div>
+        <span class="view-span">
+            <a th:href="@{/pages/storyChapterPageView/{id}(id=${uneditedPage.id})}">
+                <input type="submit" th:value="${'Back to Page ' + uneditedPage.pageNumber}" class="btn btn-dark">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/}">
+                <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+            </a>
+        </span>
+    </div>
 </div>
 </body>
 </html>

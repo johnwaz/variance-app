@@ -9,36 +9,36 @@
     <span>/ Add Page</span>
 </div>
 <div class="var-container">
-<h2 th:text="${'Add Page To: ' + journal.name}">Add Page</h2>
+    <h2 th:text="${'Add Page To: ' + journal.name}">Add Page</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label th:for="pageNumber">Page Number
-            <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
-        </label>
-        <p th:errors="${page.pageNumber}" class="error"></p>
+    <form method="post">
+        <div class="form-group">
+            <label th:for="pageNumber">Page Number
+                <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
+            </label>
+            <p th:errors="${page.pageNumber}" class="error"></p>
+        </div>
+        <div class="form-group textarea">
+            <label th:for="content">Page Content
+                <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+            </label>
+            <p th:errors="${page.content}" class="error"></p>
+        </div>
+        <input type="submit" id="submit-code" value="Add Page"/>
+    </form>
+    <p></p>
+    <div>
+        <span class="view-span">
+            <a th:href="@{/journals/view/{id}(id=${journal.id})}">
+                <input type="submit" th:value="${'Back to ' + journal.name}" class="btn btn-dark">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/}">
+                <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+            </a>
+        </span>
     </div>
-    <div class="form-group textarea">
-        <label th:for="content">Page Content
-            <textarea data-limit-rows="true" class="form-control" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
-        </label>
-        <p th:errors="${page.content}" class="error"></p>
-    </div>
-    <input type="submit" id="submit-code" value="Add Page"/>
-</form>
-<p></p>
-<div>
-    <span class="view-span">
-        <a th:href="@{/journals/view/{id}(id=${journal.id})}">
-            <input type="submit" th:value="${'Back to ' + journal.name}" class="btn btn-dark">
-        </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/}">
-            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-        </a>
-    </span>
-</div>
 </div>
 </body>
 </html>
