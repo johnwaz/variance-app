@@ -66,11 +66,12 @@ a:hover {
 }
 
 .home-div {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .home-span {
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .home-span a:hover {
