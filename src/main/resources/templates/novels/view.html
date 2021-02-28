@@ -15,7 +15,8 @@
     </div>
     <p></p>
 
-    <h3 th:text="${'Stories:'}"></h3>
+    <h3 th:unless="${novel.stories} and ${novel.stories.size()}" th:text="${'No Stories'}"></h3>
+    <h3 th:if="${novel.stories} and ${novel.stories.size()}" th:text="${'Stories:'}"></h3>
     <div>
         <ul>
             <li th:each="story : ${novel.stories}">

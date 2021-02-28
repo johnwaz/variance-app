@@ -15,7 +15,8 @@
     </div>
     <p></p>
 
-    <h3 th:text="${'Subjects:'}"></h3>
+    <h3 th:unless="${notebook.subjects} and ${notebook.subjects.size()}" th:text="${'No Subjects'}"></h3>
+    <h3 th:if="${notebook.subjects} and ${notebook.subjects.size()}" th:text="${'Subjects:'}"></h3>
     <div>
         <ul>
             <li th:each="subject : ${notebook.subjects}">
