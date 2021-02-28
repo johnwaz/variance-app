@@ -19,8 +19,8 @@
     </div>
     <p></p>
 
-    <h3 th:text="${'Pages:'}"></h3>
-
+    <h3 th:unless="${subject.pages} and ${subject.pages.size()}" th:text="${'No Pages'}"></h3>
+    <h3 th:if="${subject.pages} and ${subject.pages.size()}" th:text="${'Pages:'}"></h3>
     <div>
         <ul>
             <li th:each="page : ${subject.pages}">
