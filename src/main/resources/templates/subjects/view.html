@@ -9,57 +9,57 @@
     <span th:text="${'/ ' + subject.name}"></span>
 </div>
 <div class="var-container">
-<h2 th:text="${'Subject: ' + subject.name}">Default Title</h2>
-<p></p>
-<div>
-    <h5 th:if="${subject.description != ''}" th:text="${'Description: ' + subject.description}"></h5>
-</div>
-<div>
-    <h4 th:text="${'Notebook: ' + subject.notebook.title}"></h4>
-</div>
-<p></p>
+    <h2 th:text="${'Subject: ' + subject.name}">Default Title</h2>
+    <p></p>
+    <div>
+        <h5 th:if="${subject.description != ''}" th:text="${'Description: ' + subject.description}"></h5>
+    </div>
+    <div>
+        <h4 th:text="${'Notebook: ' + subject.notebook.title}"></h4>
+    </div>
+    <p></p>
 
-<h3 th:text="${'Pages:'}"></h3>
+    <h3 th:text="${'Pages:'}"></h3>
 
-<div>
-    <ul>
-        <li th:each="page : ${subject.pages}">
-            <a th:href="@{'/pages/nbSubjectPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
-        </li>
-    </ul>
-</div>
+    <div>
+        <ul>
+            <li th:each="page : ${subject.pages}">
+                <a th:href="@{'/pages/nbSubjectPageView/' + ${page.id}}" th:text="${'Page ' + page.pageNumber}"></a>
+            </li>
+        </ul>
+    </div>
 
-<div>
-    <span class="view-span">
-        <a th:href="@{/subjects/edit/{id}(id=${subject.id})}">
-        <input type="submit" value="Edit Subject" class="btn btn-info">
-    </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/pages/nbSubjectPageAdd/{id}(id=${subject.id})}">
-            <input type="submit" value="Add Page" class="btn btn-secondary">
+    <div>
+        <span class="view-span">
+            <a th:href="@{/subjects/edit/{id}(id=${subject.id})}">
+            <input type="submit" value="Edit Subject" class="btn btn-info">
         </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/notebooks/view/{id}(id=${subject.notebook.id})}">
-            <input type="submit" th:value="${'Back to ' + subject.notebook.title}" class="btn btn-dark">
-        </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/}">
-            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-        </a>
-    </span>
-    <th:block th:if="${subject}">
-        <form method="post" th:action="@{/subjects/view}" id="delete-subject">
-            <input type="hidden" name="subjectId" th:value="${subject.id}" class="form-control">
-            <input type="hidden" id="subjectId" th:value="${subject.name}" class="form-control">
-            <input type="hidden" name="notebookId" th:value="${subject.notebook.id}" class="form-control">
-            <p></p>
-            <input onclick="deleteSubject()" type="button" value="Delete Subject" class="btn btn-danger">
-        </form>
-    </th:block>
-</div>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/pages/nbSubjectPageAdd/{id}(id=${subject.id})}">
+                <input type="submit" value="Add Page" class="btn btn-secondary">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/notebooks/view/{id}(id=${subject.notebook.id})}">
+                <input type="submit" th:value="${'Back to ' + subject.notebook.title}" class="btn btn-dark">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/}">
+                <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+            </a>
+        </span>
+        <th:block th:if="${subject}">
+            <form method="post" th:action="@{/subjects/view}" id="delete-subject">
+                <input type="hidden" name="subjectId" th:value="${subject.id}" class="form-control">
+                <input type="hidden" id="subjectId" th:value="${subject.name}" class="form-control">
+                <input type="hidden" name="notebookId" th:value="${subject.notebook.id}" class="form-control">
+                <p></p>
+                <input onclick="deleteSubject()" type="button" value="Delete Subject" class="btn btn-danger">
+            </form>
+        </th:block>
+    </div>
 </div>
 </body>
 </html>
