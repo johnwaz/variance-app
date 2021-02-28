@@ -8,47 +8,47 @@
     <span th:text="${'/ ' + novel.title}"></span>
 </div>
 <div class="var-container">
-<h2 th:text="${'Title: ' + novel.title}">Default Title</h2>
-<p></p>
-<div>
-    <h5 th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></h5>
-</div>
-<p></p>
+    <h2 th:text="${'Title: ' + novel.title}">Default Title</h2>
+    <p></p>
+    <div>
+        <h5 th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></h5>
+    </div>
+    <p></p>
 
-<h3 th:text="${'Stories:'}"></h3>
-<div>
-    <ul>
-        <li th:each="story : ${novel.stories}">
-            <a th:href="@{'/stories/view/' + ${story.id}}" th:text="${story.name}"></a>
-        </li>
-    </ul>
-</div>
+    <h3 th:text="${'Stories:'}"></h3>
+    <div>
+        <ul>
+            <li th:each="story : ${novel.stories}">
+                <a th:href="@{'/stories/view/' + ${story.id}}" th:text="${story.name}"></a>
+            </li>
+        </ul>
+    </div>
 
-<div>
-    <span class="view-span">
-        <a th:href="@{/novels/edit/{id}(id=${novel.id})}">
-            <input type="submit" value="Edit Novel" class="btn btn-info">
-        </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/stories/add/{id}(id=${novel.id})}">
-            <input type="submit" value="Add Story" class="btn btn-secondary">
-        </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/}">
-            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-        </a>
-    </span>
-    <th:block th:if="${novel}">
-        <form method="post" th:action="@{/novels/view}" id="delete-novel">
-            <input type="hidden" name="novelId" th:value="${novel.id}" class="form-control">
-            <input type="hidden" id="novelId" th:value="${novel.title}" class="form-control">
-            <p></p>
-            <input onclick="deleteNovel()" type="button" value="Delete Novel" class="btn btn-danger">
-        </form>
-    </th:block>
-</div>
+    <div>
+        <span class="view-span">
+            <a th:href="@{/novels/edit/{id}(id=${novel.id})}">
+                <input type="submit" value="Edit Novel" class="btn btn-info">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/stories/add/{id}(id=${novel.id})}">
+                <input type="submit" value="Add Story" class="btn btn-secondary">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/}">
+                <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+            </a>
+        </span>
+        <th:block th:if="${novel}">
+            <form method="post" th:action="@{/novels/view}" id="delete-novel">
+                <input type="hidden" name="novelId" th:value="${novel.id}" class="form-control">
+                <input type="hidden" id="novelId" th:value="${novel.title}" class="form-control">
+                <p></p>
+                <input onclick="deleteNovel()" type="button" value="Delete Novel" class="btn btn-danger">
+            </form>
+        </th:block>
+    </div>
 </div>
 </body>
 </html>

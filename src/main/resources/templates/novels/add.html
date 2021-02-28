@@ -8,30 +8,30 @@
     <span>/ Add Novel</span>
 </div>
 <div class="var-container">
-<h2>Novel</h2>
+    <h2>Novel</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label th:for="title">Title
-            <input class="form-control" th:field="${novel.title}" placeholder="required"/>
-        </label>
-        <p th:errors="${novel.title}" class="error"></p>
-    </div>
-    <div class="form-group">
-        <label th:for="description">Description
-            <input class="form-control" th:field="${novel.description}" placeholder="optional"/>
-        </label>
-        <p th:errors="${novel.description}" class="error"></p>
-    </div>
+    <form method="post">
+        <div class="form-group">
+            <label th:for="title">Title
+                <input class="form-control" th:field="${novel.title}" placeholder="required"/>
+            </label>
+            <p th:errors="${novel.title}" class="error"></p>
+        </div>
+        <div class="form-group">
+            <label th:for="description">Description
+                <input class="form-control" th:field="${novel.description}" placeholder="optional"/>
+            </label>
+            <p th:errors="${novel.description}" class="error"></p>
+        </div>
 
-    <input type="submit" value="Add Novel"/>
-</form>
-<p></p>
-<div>
-    <a th:href="@{/}">
-        <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-    </a>
-</div>
+        <input type="submit" value="Add Novel"/>
+    </form>
+    <p></p>
+    <div>
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </div>
 </div>
 </body>
 </html>

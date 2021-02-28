@@ -9,43 +9,43 @@
     <span th:text="${'/ ' + uneditedNovel.title + ' Edit'}"></span>
 </div>
 <div class="var-container">
-<h2>Edit Novel</h2>
+    <h2>Edit Novel</h2>
 
-<th:block th:unless="${novel}">
-    <p>The novel you are trying to edit does not exist</p>
-</th:block>
-<th:block th:if="${novel}">
-    <form method="post" th:action="@{/novels/edit}">
-        <div class="form-group">
-            <label>Title
-                <input type="text" name="title" class="form-control" th:value="${novel.title}" placeholder="required">
-            </label>
-            <p th:errors="${novel.title}" class="error"></p>
-        </div>
-        <div class="form-group">
-            <label>Description
-                <input type="text" name="description" class="form-control" th:value="${novel.description}" placeholder="optional">
-            </label>
-            <p th:errors="${novel.description}" class="error"></p>
-        </div>
-        <input type="hidden" th:value="${novelId}" name="novelId"/>
-        <div class="form-group">
-            <input type="submit" value="Update" class="btn btn-success">
-        </div>
-    </form>
-</th:block>
-<div>
-    <span class="view-span">
-        <a th:href="@{/novels/view/{id}(id=${uneditedNovel.id})}">
-            <input type="submit" value="Back" class="btn btn-dark">
-        </a>
-    </span>
-    <span class="view-span">
-        <a th:href="@{/}">
-            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-        </a>
-    </span>
-</div>
+    <th:block th:unless="${novel}">
+        <p>The novel you are trying to edit does not exist</p>
+    </th:block>
+    <th:block th:if="${novel}">
+        <form method="post" th:action="@{/novels/edit}">
+            <div class="form-group">
+                <label>Title
+                    <input type="text" name="title" class="form-control" th:value="${novel.title}" placeholder="required">
+                </label>
+                <p th:errors="${novel.title}" class="error"></p>
+            </div>
+            <div class="form-group">
+                <label>Description
+                    <input type="text" name="description" class="form-control" th:value="${novel.description}" placeholder="optional">
+                </label>
+                <p th:errors="${novel.description}" class="error"></p>
+            </div>
+            <input type="hidden" th:value="${novelId}" name="novelId"/>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success">
+            </div>
+        </form>
+    </th:block>
+    <div>
+        <span class="view-span">
+            <a th:href="@{/novels/view/{id}(id=${uneditedNovel.id})}">
+                <input type="submit" value="Back" class="btn btn-dark">
+            </a>
+        </span>
+        <span class="view-span">
+            <a th:href="@{/}">
+                <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+            </a>
+        </span>
+    </div>
 </div>
 </body>
 </html>
