@@ -53,7 +53,7 @@
         <th:block th:if="${chapter}">
             <form method="post" th:action="@{/chapters/storyChapterView}" id="delete-chapter">
                 <input type="hidden" name="chapterId" th:value="${chapter.id}" class="form-control">
-                <input type="hidden" id="chapterId" th:value="${chapter.name}" class="form-control">
+                <input type="hidden" id="chapterId" th:value="${chapter.chapterNumber}" class="form-control">
                 <input type="hidden" name="storyId" th:value="${chapter.story.id}" class="form-control">
                 <p></p>
                 <input onclick="deleteChapter()" type="button" value="Delete Chapter" class="btn btn-danger">
