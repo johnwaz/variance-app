@@ -3,6 +3,16 @@ body, html {
     height: 100%;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    body {
+        display: initial;
+    }
+}
+
 .var-container {
     background-color: #f0f8ff;
     padding-top: 20px;
