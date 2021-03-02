@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
@@ -9,38 +9,38 @@
     <span>/ <a th:href="@{/stories/view/{id}(id=${uneditedStory.id})}" th:text="${uneditedStory.name}"></a></span>
     <span th:text="${'/ ' + uneditedStory.name + ' Edit'}"></span>
 </div>
-<div class="var-container">
-    <h2>Edit Story</h2>
 
-    <th:block th:unless="${story}">
-        <p>The story you are trying to edit does not exist</p>
-    </th:block>
-    <th:block th:if="${story}">
-        <form method="post" th:action="@{/stories/edit}">
-            <div class="form-group">
-                <label>Name
-                    <input type="text" name="name" class="form-control" th:value="${story.name}" placeholder="required">
-                </label>
-                <p th:errors="${story.name}" class="error"></p>
-            </div>
-            <input type="hidden" th:value="${storyId}" name="storyId"/>
-            <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-success">
-            </div>
-        </form>
-    </th:block>
-    <div>
-        <span class="view-span">
-            <a th:href="@{/stories/view/{id}(id=${uneditedStory.id})}">
-                <input type="submit" th:value="${'Back to ' + uneditedStory.name}" class="btn btn-dark">
-            </a>
-        </span>
-        <span class="view-span">
-            <a th:href="@{/}">
-                <input type="submit" th:value="${'Home'}" class="btn btn-primary">
-            </a>
-        </span>
-    </div>
+<h2>Edit Story</h2>
+
+<th:block th:unless="${story}">
+    <p>The story you are trying to edit does not exist</p>
+</th:block>
+<th:block th:if="${story}">
+    <form method="post" th:action="@{/stories/edit}">
+        <div class="form-group">
+            <label>Name
+                <input type="text" name="name" class="form-control" th:value="${story.name}" placeholder="required">
+            </label>
+            <p th:errors="${story.name}" class="error"></p>
+        </div>
+        <input type="hidden" th:value="${storyId}" name="storyId"/>
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success">
+        </div>
+    </form>
+</th:block>
+<div>
+    <span class="view-span">
+        <a th:href="@{/stories/view/{id}(id=${uneditedStory.id})}">
+            <input type="submit" th:value="${'Back to ' + uneditedStory.name}" class="btn btn-dark">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
 </div>
+
 </body>
 </html>

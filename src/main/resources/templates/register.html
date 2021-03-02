@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span>Register</span>
 </div>
-<div class="var-container">
-    <h1>Variance Registration</h1>
 
-    <form method="post">
-        <div class="form-group">
-            <label>Username
-                <input class="form-control" th:field="${registerFormDTO.username}" />
-            </label>
-            <p class="error" th:errors="${registerFormDTO.username}"></p>
-        </div>
-        <div class="form-group">
-            <label>Password
-                <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
-            </label>
-            <p class="error" th:errors="${registerFormDTO.password}"></p>
-        </div>
-        <div class="form-group">
-            <label>Verify Password
-                <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
-            </label>
-        </div>
+<h1>Variance Registration</h1>
 
-        <input type="submit" class="btn btn-primary" value="Register" />
-    </form>
-
-    <div class="log-register">
-        <p>Already registered? <a href="/login">Back to login.</a></p>
+<form method="post">
+    <div class="form-group">
+        <label>Username
+            <input class="form-control" th:field="${registerFormDTO.username}" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.username}"></p>
     </div>
+    <div class="form-group">
+        <label>Password
+            <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
+        </label>
+        <p class="error" th:errors="${registerFormDTO.password}"></p>
+    </div>
+    <div class="form-group">
+        <label>Verify Password
+            <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
+        </label>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Register" />
+</form>
+
+<div class="log-register">
+    <p>Already registered? <a href="/login">Back to login.</a></p>
 </div>
+
 </body>
 </html>
