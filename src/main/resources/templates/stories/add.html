@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span>/ <a th:href="@{/novels/view/{id}(id=${novel.id})}" th:text="${novel.title}"></a></span>
     <span>/ Add Story</span>
 </div>
-<div class="var-container">
+
 <h2 th:text="${'Add Story To: ' + novel.title}">Add Story</h2>
 
 <form method="post">
@@ -33,6 +33,6 @@
         </a>
     </span>
 </div>
-</div>
+
 </body>
 </html>

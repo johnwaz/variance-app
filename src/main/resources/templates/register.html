@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span>Register</span>
 </div>
-<div class="var-container">
+
 <h1>Variance Registration</h1>
 
 <form method="post">
@@ -34,6 +34,6 @@
 <div class="log-register">
     <p>Already registered? <a href="/login">Back to login.</a></p>
 </div>
-</div>
+
 </body>
 </html>

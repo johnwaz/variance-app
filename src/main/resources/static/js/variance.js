@@ -21,7 +21,7 @@ function deleteStory() {
 
 function deleteChapter() {
     let chapter = $('#chapterId').val();
-    if (confirm(`Remove ${chapter}?`)) {
+    if (confirm(`Remove Chapter ${chapter}?`)) {
         document.getElementById("delete-chapter").submit();
     }
 }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+<body class="container var-container body-content">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span th:text="${'/ ' + novel.title}"></span>
 </div>
-<div class="var-container">
+
 <h2 th:text="${'Title: ' + novel.title}">Default Title</h2>
 <p></p>
 <div>
@@ -15,7 +15,8 @@
 </div>
 <p></p>
 
-<h3 th:text="${'Stories:'}"></h3>
+<h3 th:unless="${novel.stories} and ${novel.stories.size()}" th:text="${'No Stories'}"></h3>
+<h3 th:if="${novel.stories} and ${novel.stories.size()}" th:text="${'Stories:'}"></h3>
 <div>
     <ul>
         <li th:each="story : ${novel.stories}">
@@ -49,6 +50,6 @@
         </form>
     </th:block>
 </div>
-</div>
+
 </body>
 </html>

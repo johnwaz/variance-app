@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
-<div class="var-container">
+
 <h2 class="error">You must have taken a wrong turn!</h2>
 <p></p>
 <div>
@@ -11,6 +11,6 @@
         <input type="submit" th:value="${'Back to Variance'}" class="btn btn-dark">
     </a>
 </div>
-</div>
+
 </body>
 </html>

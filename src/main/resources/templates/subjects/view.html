@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+<body class="container var-container body-content">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span>/ <a th:href="@{/notebooks/view/{id}(id=${subject.notebook.id})}" th:text="${subject.notebook.title}"></a></span>
     <span th:text="${'/ ' + subject.name}"></span>
 </div>
-<div class="var-container">
+
 <h2 th:text="${'Subject: ' + subject.name}">Default Title</h2>
 <p></p>
 <div>
@@ -19,8 +19,8 @@
 </div>
 <p></p>
 
-<h3 th:text="${'Pages:'}"></h3>
-
+<h3 th:unless="${subject.pages} and ${subject.pages.size()}" th:text="${'No Pages'}"></h3>
+<h3 th:if="${subject.pages} and ${subject.pages.size()}" th:text="${'Pages:'}"></h3>
 <div>
     <ul>
         <li th:each="page : ${subject.pages}">
@@ -60,6 +60,6 @@
         </form>
     </th:block>
 </div>
-</div>
+
 </body>
 </html>

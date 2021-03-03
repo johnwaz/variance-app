@@ -5,20 +5,14 @@ body, html {
 
 .var-container {
     background-color: #f0f8ff;
-    padding-top: 40px;
-    height: 100%;
+    padding-bottom: 20px;
     text-align: center;
-    border: 2px solid #757575;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1000px) {
     .var-container {
-        height: 150%;
+        height: auto;
     }
-}
-
-.error {
-    color: red;
 }
 
 .variance-nav {
@@ -38,10 +32,18 @@ body, html {
     padding-right: 80px;
 }
 
+@media (max-width: 1000px) {
+    .var-nav {
+        text-align: left;
+    }
+}
+
 .breadcrumbs {
     background: #282828;
     padding-top: 2px;
     padding-bottom: 2px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .breadcrumbs span {
@@ -62,15 +64,16 @@ a {
 }
 
 a:hover {
-    color: #282828;
+    color: #757575;
 }
 
 .home-div {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .home-span {
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .home-span a:hover {
@@ -113,4 +116,8 @@ hr {
 
 .chapter-number {
     margin-bottom: 0;
+}
+
+.error {
+    color: red;
 }

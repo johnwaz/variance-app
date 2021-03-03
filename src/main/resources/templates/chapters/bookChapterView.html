@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+<body class="container var-container body-content">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span>/ <a th:href="@{/books/view/{id}(id=${chapter.book.id})}" th:text="${chapter.book.title}"></a></span>
     <span th:text="${'/ Chapter ' + chapter.chapterNumber}"></span>
 </div>
-<div class="var-container">
+
 <h2 th:text="${'Chapter ' + chapter.chapterNumber}">Default Title</h2>
 <p></p>
 <div>
@@ -20,8 +20,8 @@
 </div>
 <p></p>
 
-<h3 th:text="${'Pages:'}"></h3>
-
+<h3 th:unless="${chapter.pages} and ${chapter.pages.size()}" th:text="${'No Pages'}"></h3>
+<h3 th:if="${chapter.pages} and ${chapter.pages.size()}" th:text="${'Pages:'}"></h3>
 <div>
     <ul>
         <li th:each="page : ${chapter.pages}">
@@ -54,13 +54,13 @@
     <th:block th:if="${chapter}">
         <form method="post" th:action="@{/chapters/bookChapterView}" id="delete-chapter">
             <input type="hidden" name="chapterId" th:value="${chapter.id}" class="form-control">
-            <input type="hidden" id="chapterId" th:value="${chapter.name}" class="form-control">
+            <input type="hidden" id="chapterId" th:value="${chapter.chapterNumber}" class="form-control">
             <input type="hidden" name="bookId" th:value="${chapter.book.id}" class="form-control">
             <p></p>
             <input onclick="deleteChapter()" type="button" value="Delete Chapter" class="btn btn-danger">
         </form>
     </th:block>
 </div>
-</div>
+
 </body>
 </html>

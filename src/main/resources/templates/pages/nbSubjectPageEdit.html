@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
@@ -10,7 +10,7 @@
     <span>/ <a th:href="@{/pages/nbSubjectPageView/{id}(id=${uneditedPage.id})}" th:text="${'Page ' + uneditedPage.pageNumber}"></a></span>
     <span th:text="${'/ Page ' + uneditedPage.pageNumber + ' Edit'}"></span>
 </div>
-<div class="var-container">
+
 <h2>Edit Page</h2>
 
 <th:block th:unless="${page}">
@@ -48,6 +48,6 @@
         </a>
     </span>
 </div>
-</div>
+
 </body>
 </html>

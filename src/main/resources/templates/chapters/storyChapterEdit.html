@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span>/ <a th:href="@{/novels/view/{id}(id=${uneditedChapter.story.novel.id})}" th:text="${uneditedChapter.story.novel.title}"></a></span>
     <span>/ <a th:href="@{/stories/view/{id}(id=${uneditedChapter.story.id})}" th:text="${uneditedChapter.story.name}"></a></span>
     <span>/ <a th:href="@{/chapters/storyChapterView/{id}(id=${uneditedChapter.id})}" th:text="${'Chapter ' + uneditedChapter.chapterNumber}"></a></span>
-    <span th:text="${'/ ' + uneditedChapter.name + ' Edit'}"></span>
+    <span th:text="${'/ Chapter ' + uneditedChapter.chapterNumber + ' Edit'}"></span>
 </div>
-<div class="var-container">
+
 <h2>Edit Chapter</h2>
 
 <th:block th:unless="${chapter}">
@@ -48,6 +48,6 @@
         </a>
     </span>
 </div>
-</div>
+
 </body>
 </html>

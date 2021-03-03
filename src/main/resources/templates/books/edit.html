@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body class="container var-container">
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
     <span>/ <a th:href="@{/books/view/{id}(id=${uneditedBook.id})}" th:text="${uneditedBook.title}"></a></span>
     <span th:text="${'/ ' + uneditedBook.title + ' Edit'}"></span>
 </div>
-<div class="var-container">
+
 <h2>Edit Book</h2>
 
 <th:block th:unless="${book}">
@@ -46,6 +46,6 @@
         </a>
     </span>
 </div>
-</div>
+
 </body>
 </html>
