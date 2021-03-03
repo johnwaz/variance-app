@@ -8,15 +8,15 @@
     <span th:text="${'/ ' + novel.title}"></span>
 </div>
 
-<h2 th:text="${'Title: ' + novel.title}">Default Title</h2>
-<p></p>
+<h3 th:text="${'Title: ' + novel.title}">Default Title</h3>
+
 <div>
-    <h5 th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></h5>
+    <h6 th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></h6>
 </div>
 <p></p>
 
-<h3 th:unless="${novel.stories} and ${novel.stories.size()}" th:text="${'No Stories'}"></h3>
-<h3 th:if="${novel.stories} and ${novel.stories.size()}" th:text="${'Stories:'}"></h3>
+<h4 th:unless="${novel.stories} and ${novel.stories.size()}" th:text="${'No Stories'}"></h4>
+<h4 th:if="${novel.stories} and ${novel.stories.size()}" th:text="${'Stories:'}"></h4>
 <div>
     <ul>
         <li th:each="story : ${novel.stories}">

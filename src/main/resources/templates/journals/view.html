@@ -8,15 +8,15 @@
     <span th:text="${'/ ' + journal.name}"></span>
 </div>
 
-<h2 th:text="${'Name: ' + journal.name}">Default Title</h2>
-<p></p>
+<h3 th:text="${'Name: ' + journal.name}">Default Title</h3>
+
 <div>
-    <h5 th:if="${journal.description != ''}" th:text="${'Description: ' + journal.description}"></h5>
+    <h6 th:if="${journal.description != ''}" th:text="${'Description: ' + journal.description}"></h6>
 </div>
 <p></p>
 
-<h3 th:unless="${journal.pages} and ${journal.pages.size()}" th:text="${'No Pages'}"></h3>
-<h3 th:if="${journal.pages} and ${journal.pages.size()}" th:text="${'Pages:'}"></h3>
+<h4 th:unless="${journal.pages} and ${journal.pages.size()}" th:text="${'No Pages'}"></h4>
+<h4 th:if="${journal.pages} and ${journal.pages.size()}" th:text="${'Pages:'}"></h4>
 <div>
     <ul>
         <li th:each="page : ${journal.pages}">
