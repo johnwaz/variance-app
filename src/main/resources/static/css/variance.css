@@ -15,10 +15,6 @@ body, html {
     }
 }
 
-.error {
-    color: red;
-}
-
 .variance-nav {
     background-color: #265999;
 }
@@ -120,4 +116,8 @@ hr {
 
 .chapter-number {
     margin-bottom: 0;
+}
+
+.error {
+    color: red;
 }
