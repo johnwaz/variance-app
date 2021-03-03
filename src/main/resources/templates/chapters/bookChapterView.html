@@ -9,19 +9,19 @@
     <span th:text="${'/ Chapter ' + chapter.chapterNumber}"></span>
 </div>
 
-<h2 th:text="${'Chapter ' + chapter.chapterNumber}">Default Title</h2>
-<p></p>
+<h3 th:text="${'Chapter ' + chapter.chapterNumber}">Default Title</h3>
+
 <div>
-    <h5 th:if="${chapter.name != ''}" th:text="${'Name: ' + chapter.name}"></h5>
+    <h6 th:if="${chapter.name != ''}" th:text="${'Name: ' + chapter.name}"></h6>
 </div>
 
 <div>
-    <h4 th:text="${'Book: ' + chapter.book.title}"></h4>
+    <h5 th:text="${'Book: ' + chapter.book.title}"></h5>
 </div>
 <p></p>
 
-<h3 th:unless="${chapter.pages} and ${chapter.pages.size()}" th:text="${'No Pages'}"></h3>
-<h3 th:if="${chapter.pages} and ${chapter.pages.size()}" th:text="${'Pages:'}"></h3>
+<h4 th:unless="${chapter.pages} and ${chapter.pages.size()}" th:text="${'No Pages'}"></h4>
+<h4 th:if="${chapter.pages} and ${chapter.pages.size()}" th:text="${'Pages:'}"></h4>
 <div>
     <ul>
         <li th:each="page : ${chapter.pages}">
