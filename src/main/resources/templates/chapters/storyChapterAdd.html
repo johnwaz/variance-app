@@ -14,16 +14,14 @@
 
 <form method="post">
     <div class="form-group">
-        <label th:for="chapterNumber">Chapter Number
+        <label th:for="chapterNumber">Chapter Number <span th:errors="${chapter.chapterNumber}" class="error"></span>
             <input type="number" class="form-control" th:field="${chapter.chapterNumber}" placeholder="0" min="0"/>
         </label>
-        <p th:errors="${chapter.chapterNumber}" class="error"></p>
     </div>
     <div class="form-group">
-        <label th:for="name">Chapter Name
+        <label th:for="name">Chapter Name <span th:errors="${chapter.name}" class="error"></span>
             <input class="form-control" th:field="${chapter.name}" placeholder="optional"/>
         </label>
-        <p th:errors="${chapter.name}" class="error"></p>
     </div>
     <input type="submit" value="Add Chapter"/>
 </form>

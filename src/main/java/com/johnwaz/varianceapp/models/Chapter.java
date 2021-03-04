@@ -25,15 +25,15 @@ public class Chapter extends AbstractEntity {
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
-    @NotNull(message = "Please give a chapter number")
-    @Min(value = 1, message = "Please give a chapter number")
+    @NotNull(message = "(Please give a chapter number)")
+    @Min(value = 1, message = "(Please give a chapter number)")
     private Integer chapterNumber;
 
-    @Size(max = 50, message = "Name must be less than 50 characters")
+    @Size(max = 80, message = "(Name must be less than 80 characters)")
     private String name;
 
     public Chapter(User user, Book book, @NotNull @Min(value = 1) Integer chapterNumber,
-                   @Size(max = 50, message = "Name must be less than 50 characters") String name) {
+                   @Size(max = 80, message = "(Name must be less than 80 characters)") String name) {
         this.user = user;
         this.book = book;
         this.chapterNumber = chapterNumber;
@@ -41,7 +41,7 @@ public class Chapter extends AbstractEntity {
     }
 
     public Chapter(User user, Story story, @NotNull @Min(value = 1) Integer chapterNumber,
-                   @Size(max = 50, message = "Name must be less than 50 characters") String name) {
+                   @Size(max = 80, message = "(Name must be less than 80 characters)") String name) {
         this.user = user;
         this.story = story;
         this.chapterNumber = chapterNumber;
