@@ -102,12 +102,17 @@ textarea {
     resize: none;
 }
 
+.text {
+    font-size: 12px;
+}
+
 .page-content {
     background-color: #f4f4f4;
 }
 
 hr {
     width: 75%;
+    margin-top: 5px;
 }
 
 .page-number {
