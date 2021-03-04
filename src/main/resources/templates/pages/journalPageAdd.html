@@ -14,7 +14,7 @@
 <form method="post">
     <div class="form-group">
         <label th:for="pageNumber">Page Number <span th:errors="${page.pageNumber}" class="error"></span>
-            <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
+            <input type="number" class="form-control number-field" th:field="${page.pageNumber}" placeholder="0" min="0"/>
         </label>
     </div>
     <div class="form-group textarea">
