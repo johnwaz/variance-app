@@ -104,6 +104,11 @@ ul {
 }
 
 .name-field {
+    width: 200px;
+    margin: auto;
+}
+
+.description-field {
     width: 250px;
     margin: auto;
 }
