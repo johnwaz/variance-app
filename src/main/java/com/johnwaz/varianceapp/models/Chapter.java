@@ -29,11 +29,11 @@ public class Chapter extends AbstractEntity {
     @Min(value = 1, message = "(Please give a chapter number)")
     private Integer chapterNumber;
 
-    @Size(max = 80, message = "(Name must be less than 80 characters)")
+    @Size(max = 80, message = "(Name must be equal to or less than 80 characters)")
     private String name;
 
     public Chapter(User user, Book book, @NotNull @Min(value = 1) Integer chapterNumber,
-                   @Size(max = 80, message = "(Name must be less than 80 characters)") String name) {
+                   @Size(max = 80, message = "(Name must be equal to or less than 80 characters)") String name) {
         this.user = user;
         this.book = book;
         this.chapterNumber = chapterNumber;
@@ -41,7 +41,7 @@ public class Chapter extends AbstractEntity {
     }
 
     public Chapter(User user, Story story, @NotNull @Min(value = 1) Integer chapterNumber,
-                   @Size(max = 80, message = "(Name must be less than 80 characters)") String name) {
+                   @Size(max = 80, message = "(Name must be equal to or less than 80 characters)") String name) {
         this.user = user;
         this.story = story;
         this.chapterNumber = chapterNumber;

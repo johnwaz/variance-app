@@ -13,13 +13,13 @@
 
 <form method="post">
     <div class="form-group">
-        <label th:for="chapterNumber">Chapter Number <span th:errors="${chapter.chapterNumber}" class="error"></span>
-            <input type="number" class="form-control" th:field="${chapter.chapterNumber}" placeholder="0" min="0"/>
-        </label>
+        <label th:for="chapterNumber">Chapter Number <span th:errors="${chapter.chapterNumber}" class="error"></span></label>
+            <input type="number" class="form-control number-field" th:field="${chapter.chapterNumber}" placeholder="0" min="0"/>
+
     </div>
     <div class="form-group">
         <label th:for="name">Chapter Name <span th:errors="${chapter.name}" class="error"></span>
-            <input class="form-control" th:field="${chapter.name}" placeholder="optional"/>
+            <input class="form-control name-field" th:field="${chapter.name}" placeholder="optional"/>
         </label>
     </div>
     <input type="submit" value="Add Chapter"/>
