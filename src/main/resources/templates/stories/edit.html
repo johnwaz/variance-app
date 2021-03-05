@@ -18,7 +18,7 @@
 <th:block th:if="${story}">
     <form method="post" th:action="@{/stories/edit}">
         <div class="form-group">
-            <label>Story Name <span th:errors="${story.name}" class="error"></span>
+            <label>Name <span th:errors="${story.name}" class="error"></span>
                 <input type="text" name="name" class="form-control name-field" th:value="${story.name}" placeholder="required">
             </label>
         </div>

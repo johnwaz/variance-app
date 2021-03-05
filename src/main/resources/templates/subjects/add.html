@@ -13,12 +13,12 @@
 
 <form method="post">
     <div class="form-group">
-        <label th:for="name">Subject Name <span th:errors="${subject.name}" class="error"></span>
+        <label th:for="name">Name <span th:errors="${subject.name}" class="error"></span>
             <input class="form-control name-field" th:field="${subject.name}" placeholder="required"/>
         </label>
     </div>
     <div class="form-group">
-        <label th:for="description">Subject Description <span th:errors="${subject.description}" class="error"></span>
+        <label th:for="description">Description <span th:errors="${subject.description}" class="error"></span>
             <input class="form-control description-field" th:field="${subject.description}" placeholder="optional"/>
         </label>
     </div>
