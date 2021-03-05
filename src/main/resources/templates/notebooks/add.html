@@ -12,16 +12,14 @@
 
 <form method="post">
     <div class="form-group">
-        <label th:for="title">Title
-            <input class="form-control" th:field="${notebook.title}" placeholder="required"/>
+        <label th:for="title">Title <span th:errors="${notebook.title}" class="error"></span>
+            <input class="form-control name-field" th:field="${notebook.title}" placeholder="required"/>
         </label>
-        <p th:errors="${notebook.title}" class="error"></p>
     </div>
     <div class="form-group">
-        <label th:for="description">Description
-            <input class="form-control" th:field="${notebook.description}" placeholder="optional"/>
+        <label th:for="description">Description <span th:errors="${notebook.description}" class="error"></span>
+            <input class="form-control description-field" th:field="${notebook.description}" placeholder="optional"/>
         </label>
-        <p th:errors="${notebook.description}" class="error"></p>
     </div>
 
     <input type="submit" value="Add Notebook"/>
