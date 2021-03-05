@@ -23,17 +23,17 @@ public class Page extends AbstractEntity {
     @ManyToOne
     private Subject subject;
 
-    @NotNull(message = "Please give a page number")
-    @Min(value = 1, message = "Please give a page number")
+    @NotNull(message = "(Please give a page number)")
+    @Min(value = 1, message = "(Please give a page number)")
     private Integer pageNumber;
 
-    @NotBlank(message = "Please add some content to the page")
-    @Size(max = 3000, message = "Content must be less than 3,000 characters")
+    @NotBlank(message = "(Please add some content to the page)")
+    @Size(max = 2800, message = "(Content must be equal to or less than 2,800 characters)")
     @Column(columnDefinition = "text")
     private String content;
 
     public Page(User user, Chapter chapter, @NotNull @Min(value = 1) Integer pageNumber,
-                @NotBlank @Size(max = 3000, message = "Content must be less than 3,000 characters") String content) {
+                @NotBlank @Size(max = 2800, message = "(Content must be equal to or less than 2,800 characters)") String content) {
         this.user = user;
         this.chapter = chapter;
         this.pageNumber = pageNumber;
@@ -41,7 +41,7 @@ public class Page extends AbstractEntity {
     }
 
     public Page(User user, Journal journal, @NotNull @Min(value = 1) Integer pageNumber,
-                @NotBlank @Size(max = 3000, message = "Content must be less than 3,000 characters") String content) {
+                @NotBlank @Size(max = 2800, message = "(Content must be equal to or less than 2,800 characters)") String content) {
         this.user = user;
         this.journal = journal;
         this.pageNumber = pageNumber;
@@ -49,7 +49,7 @@ public class Page extends AbstractEntity {
     }
 
     public Page(User user, Subject subject, @NotNull @Min(value = 1) Integer pageNumber,
-                @NotBlank @Size(max = 3000, message = "Content must be less than 3,000 characters") String content) {
+                @NotBlank @Size(max = 2800, message = "(Content must be equal to less than 2,800 characters)") String content) {
         this.user = user;
         this.subject = subject;
         this.pageNumber = pageNumber;

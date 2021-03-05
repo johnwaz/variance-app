@@ -18,13 +18,15 @@ public class Notebook extends AbstractEntity {
     @OneToMany(mappedBy = "notebook", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Subject> subjects = new ArrayList<>();
 
-    @NotBlank(message = "Please title the notebook")
+    @NotBlank(message = "(Please title the notebook)")
+    @Size(max = 40, message = "(Title must be equal to or less than 40 characters)")
     private String title;
 
-    @Size(max = 200, message = "Description must be less than 200 characters")
+    @Size(max = 100, message = "(Description must be equal to or less than 100 characters)")
     private String description;
 
-    public Notebook(User user, @NotBlank String title, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
+    public Notebook(User user, @NotBlank @Size(max = 40, message = "(Title must be equal to or less than 40 characters)") String title,
+                    @Size(max = 100, message = "(Description must be equal to or less than 100 characters)") String description) {
         this.user = user;
         this.title = title;
         this.description = description;

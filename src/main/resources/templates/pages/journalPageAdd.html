@@ -13,16 +13,14 @@
 
 <form method="post">
     <div class="form-group">
-        <label th:for="pageNumber">Page Number
-            <input type="number" class="form-control" th:field="${page.pageNumber}" placeholder="0" min="0"/>
+        <label th:for="pageNumber">Page Number <span th:errors="${page.pageNumber}" class="error"></span>
+            <input type="number" class="form-control number-field" th:field="${page.pageNumber}" placeholder="0" min="0"/>
         </label>
-        <p th:errors="${page.pageNumber}" class="error"></p>
     </div>
     <div class="form-group textarea">
-        <label th:for="content">Page Content
-            <textarea data-limit-rows="true" class="form-control text" name="content" th:field="${page.content}" rows="30" cols="80" wrap="hard" placeholder="required"></textarea>
+        <label th:for="content">Page Content <span th:errors="${page.content}" class="error"></span>
+            <textarea data-limit-rows="true" class="form-control text" name="content" th:field="${page.content}" rows="30" cols="75" wrap="hard" placeholder="required"></textarea>
         </label>
-        <p th:errors="${page.content}" class="error"></p>
     </div>
     <input type="submit" id="submit-code" value="Add Page"/>
 </form>

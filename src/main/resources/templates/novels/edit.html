@@ -17,16 +17,15 @@
 <th:block th:if="${novel}">
     <form method="post" th:action="@{/novels/edit}">
         <div class="form-group">
-            <label>Title
-                <input type="text" name="title" class="form-control" th:value="${novel.title}" placeholder="required">
+            <label>Title <span th:errors="${novel.title}" class="error"></span>
+                <input type="text" name="title" class="form-control name-field" th:value="${novel.title}" placeholder="required">
             </label>
-            <p th:errors="${novel.title}" class="error"></p>
         </div>
         <div class="form-group">
-            <label>Description
-                <input type="text" name="description" class="form-control" th:value="${novel.description}" placeholder="optional">
+            <label>Description <span th:errors="${novel.description}" class="error"></span>
+                <input type="text" name="description" class="form-control description-field" th:value="${novel.description}" placeholder="optional">
             </label>
-            <p th:errors="${novel.description}" class="error"></p>
+            <span th:errors="${novel.description}" class="error"></span>
         </div>
         <input type="hidden" th:value="${novelId}" name="novelId"/>
         <div class="form-group">

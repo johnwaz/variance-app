@@ -8,20 +8,18 @@
     <span>/ Add Novel</span>
 </div>
 
-<h3>Novel</h3>
+<h3>Add Novel</h3>
 
 <form method="post">
     <div class="form-group">
-        <label th:for="title">Title
-            <input class="form-control" th:field="${novel.title}" placeholder="required"/>
+        <label th:for="title">Title <span th:errors="${novel.title}" class="error"></span>
+            <input class="form-control name-field" th:field="${novel.title}" placeholder="required"/>
         </label>
-        <p th:errors="${novel.title}" class="error"></p>
     </div>
     <div class="form-group">
-        <label th:for="description">Description
-            <input class="form-control" th:field="${novel.description}" placeholder="optional"/>
+        <label th:for="description">Description <span th:errors="${novel.description}" class="error"></span>
+            <input class="form-control description-field" th:field="${novel.description}" placeholder="optional"/>
         </label>
-        <p th:errors="${novel.description}" class="error"></p>
     </div>
 
     <input type="submit" value="Add Novel"/>

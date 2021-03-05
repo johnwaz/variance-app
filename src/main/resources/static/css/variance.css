@@ -98,8 +98,24 @@ ul {
     margin-right: 40px;
 }
 
+.number-field {
+    width: 60px;
+    margin: auto;
+}
+
+.name-field {
+    width: 200px;
+    margin: auto;
+}
+
+.description-field {
+    width: 250px;
+    margin: auto;
+}
+
 textarea {
     resize: none;
+    overflow: hidden;
 }
 
 .text {

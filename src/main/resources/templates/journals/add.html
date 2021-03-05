@@ -8,20 +8,18 @@
     <span>/ Add Journal</span>
 </div>
 
-<h3>Journal</h3>
+<h3>Add Journal</h3>
 
 <form method="post">
     <div class="form-group">
-        <label th:for="name">Name
-            <input class="form-control" th:field="${journal.name}" placeholder="required"/>
+        <label th:for="name">Name <span th:errors="${journal.name}" class="error"></span>
+            <input class="form-control name-field" th:field="${journal.name}" placeholder="required"/>
         </label>
-        <p th:errors="${journal.name}" class="error"></p>
     </div>
     <div class="form-group">
-        <label th:for="description">Description
-            <input class="form-control" th:field="${journal.description}" placeholder="optional"/>
+        <label th:for="description">Description <span th:errors="${journal.description}" class="error"></span>
+            <input class="form-control description-field" th:field="${journal.description}" placeholder="optional"/>
         </label>
-        <p th:errors="${journal.description}" class="error"></p>
     </div>
 
     <input type="submit" value="Add Journal"/>
