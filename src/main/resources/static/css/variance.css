@@ -7,6 +7,8 @@ body, html {
     background-color: #f0f8ff;
     padding-bottom: 20px;
     text-align: center;
+    border-right: 4px solid #757575;
+    border-left: 4px solid #757575;
 }
 
 @media (max-width: 1000px) {
