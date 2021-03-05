@@ -18,13 +18,15 @@ public class Book extends AbstractEntity {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Chapter> chapters = new ArrayList<>();
 
-    @NotBlank(message = "Please title the book")
+    @NotBlank(message = "(Please title the book)")
+    @Size(max = 40, message = "(Title must be equal to or less than 40 characters)")
     private String title;
 
-    @Size(max = 200, message = "Description must be less than 200 characters")
+    @Size(max = 100, message = "(Description must be equal to or less than 100 characters)")
     private String description;
 
-    public Book(User user, @NotBlank String title, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
+    public Book(User user, @NotBlank @Size(max = 40, message = "(Title must be equal to or less than 40 characters)") String title,
+                @Size(max = 100, message = "(Description must be equal to or less than 100 characters)") String description) {
         this.user = user;
         this.title = title;
         this.description = description;
