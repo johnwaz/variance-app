@@ -18,13 +18,15 @@ public class Journal extends AbstractEntity {
     @OneToMany(mappedBy = "journal", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Page> pages = new ArrayList<>();
 
-    @NotBlank(message = "Please name the journal")
+    @NotBlank(message = "(Please name the journal)")
+    @Size(max = 40, message = "(Name must be equal to or less than 40 characters)")
     private String name;
 
-    @Size(max = 200, message = "Description must be less than 200 characters")
+    @Size(max = 100, message = "(Description must be equal to or less than 100 characters)")
     private String description;
 
-    public Journal(User user, @NotBlank String name, @Size(max = 200, message = "Description must be less than 200 characters") String description) {
+    public Journal(User user, @NotBlank @Size(max = 40, message = "(Name must be equal to or less than 40 characters)") String name,
+                   @Size(max = 100, message = "(Description must be equal to or less than 100 characters)") String description) {
         this.user = user;
         this.name = name;
         this.description = description;
