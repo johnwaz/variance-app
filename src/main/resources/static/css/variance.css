@@ -124,6 +124,28 @@ textarea {
     font-size: 12px;
 }
 
+.nb-text {
+    font-size: 14px;
+    background-attachment: local;
+    background-image:
+        linear-gradient(to right, white 10px, transparent 10px),
+        linear-gradient(to left, white 10px, transparent 10px),
+        repeating-linear-gradient(white, white 20px, #ccc 20px, #ccc 21px, white 21px);
+    line-height: 21px;
+    padding: 4px 10px;
+}
+
+.nb-page-content {
+    font-size: 14px;
+    background-attachment: local;
+    background-image:
+        linear-gradient(to right, #f4f4f4 10px, transparent 10px),
+        linear-gradient(to left, #f4f4f4 10px, transparent 10px),
+        repeating-linear-gradient(#f4f4f4, #f4f4f4 20px, #9e9e9e 20px, #9e9e9e 21px, #f4f4f4 21px);
+    line-height: 21px;
+    padding: 4px 10px;
+}
+
 .page-content {
     background-color: #f4f4f4;
 }
