@@ -122,6 +122,11 @@ textarea {
 
 .text {
     font-size: 12px;
+    padding: 5px;
+}
+
+.page-content {
+    background-color: #f4f4f4;
 }
 
 .journal-text {
@@ -164,10 +169,6 @@ textarea {
         repeating-linear-gradient(#f4f4f4, #f4f4f4 20px, #9e9e9e 20px, #9e9e9e 21px, #f4f4f4 21px);
     line-height: 21px;
     padding: 45px 5px 0;
-}
-
-.page-content {
-    background-color: #f4f4f4;
 }
 
 hr {
