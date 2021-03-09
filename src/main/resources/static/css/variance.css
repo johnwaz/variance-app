@@ -124,7 +124,7 @@ textarea {
     font-size: 12px;
 }
 
-.nb-text {
+.journal-text {
     font-size: 14px;
     background-attachment: local;
     background-image:
@@ -135,8 +135,8 @@ textarea {
     padding: 4px 10px;
 }
 
-.nb-page-content {
-    font-size: 14px;
+.journal-page-content {
+    font-size: 12px;
     background-attachment: local;
     background-image:
         linear-gradient(to right, #f4f4f4 10px, transparent 10px),
@@ -144,6 +144,26 @@ textarea {
         repeating-linear-gradient(#f4f4f4, #f4f4f4 20px, #9e9e9e 20px, #9e9e9e 21px, #f4f4f4 21px);
     line-height: 21px;
     padding: 4px 10px;
+}
+
+.nb-text {
+    font-size: 14px;
+    background-attachment: local;
+    background-image:
+        linear-gradient(to bottom, white 60px, transparent 10px),
+        repeating-linear-gradient(white, white 20px, #ccc 20px, #ccc 21px, white 21px);
+    line-height: 21px;
+    padding: 45px 5px 0;
+}
+
+.nb-page-content {
+    font-size: 14px;
+    background-attachment: local;
+    background-image:
+        linear-gradient(to bottom, #f4f4f4 60px, transparent 10px),
+        repeating-linear-gradient(#f4f4f4, #f4f4f4 20px, #9e9e9e 20px, #9e9e9e 21px, #f4f4f4 21px);
+    line-height: 21px;
+    padding: 45px 5px 0;
 }
 
 .page-content {
