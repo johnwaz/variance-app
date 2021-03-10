@@ -190,6 +190,12 @@ hr {
     margin-bottom: -10px;
 }
 
+#nbsp-charNum {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: -10px;
+}
+
 .chapter-number {
     margin-bottom: 0;
 }
