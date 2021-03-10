@@ -19,8 +19,9 @@
     </div>
     <div class="form-group textarea">
         <label th:for="content">Page Content <span th:errors="${page.content}" class="error"></span>
-            <textarea data-limit-rows="true" class="form-control journal-text" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+            <textarea onkeyup="countJPChars(this);" data-limit-rows="true" class="form-control journal-text" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
         </label>
+        <p id="jp-charNum">20 characters remaining</p>
     </div>
     <input type="submit" id="submit-code" value="Create"/>
 </form>

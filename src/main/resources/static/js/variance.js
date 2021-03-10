@@ -67,3 +67,15 @@ $(document).ready(function () {
         }
     });
 });
+
+function countJPChars(obj){
+    var maxLength = 20;
+    var strLength = obj.value.length;
+    var charRemain = (maxLength - strLength);
+
+    if(charRemain <= 0){
+        document.getElementById("jp-charNum").innerHTML = '<span style="color: red;">You have exceeded the limit of '+maxLength+' characters</span>';
+    } else {
+        document.getElementById("jp-charNum").innerHTML = charRemain+' characters remaining';
+    }
+}
