@@ -199,6 +199,11 @@ hr {
     margin-bottom: -10px;
 }
 
+#scp-charNum {
+    font-size: 14px;
+    margin-bottom: -10px;
+}
+
 .chapter-number {
     margin-bottom: 0;
 }

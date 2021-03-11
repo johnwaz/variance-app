@@ -103,3 +103,15 @@ function countBCPChars(obj){
         document.getElementById("bcp-charNum").innerHTML = charRemain+' characters remaining';
     }
 }
+
+function countSCPChars(obj){
+    var maxLength = 2400;
+    var strLength = obj.value.length;
+    var charRemain = (maxLength - strLength);
+
+    if (charRemain <= 0) {
+        document.getElementById("scp-charNum").innerHTML = '<span style="color: red;">You have reached the limit of '+maxLength+' characters</span>';
+    } else {
+        document.getElementById("scp-charNum").innerHTML = charRemain+' characters remaining';
+    }
+}
