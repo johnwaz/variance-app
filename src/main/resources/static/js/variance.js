@@ -91,3 +91,15 @@ function countNBSPChars(obj){
         document.getElementById("nbsp-charNum").innerHTML = charRemain+' characters remaining';
     }
 }
+
+function countBCPChars(obj){
+    var maxLength = 2400;
+    var strLength = obj.value.length;
+    var charRemain = (maxLength - strLength);
+
+    if (charRemain <= 0) {
+        document.getElementById("bcp-charNum").innerHTML = '<span style="color: red;">You have reached the limit of '+maxLength+' characters</span>';
+    } else {
+        document.getElementById("bcp-charNum").innerHTML = charRemain+' characters remaining';
+    }
+}
