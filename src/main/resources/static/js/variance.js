@@ -69,7 +69,7 @@ $(document).ready(function () {
 });
 
 function countJPChars(obj){
-    var maxLength = 1100;
+    var maxLength = 1000;
     var strLength = obj.value.length;
     var charRemain = (maxLength - strLength);
 

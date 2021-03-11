@@ -19,9 +19,9 @@
     </div>
     <div class="form-group textarea">
         <label th:for="content">Page Content <span th:errors="${page.content}" class="error"></span>
-            <textarea onkeyup="countJPChars(this);" maxlength="1100" data-limit-rows="true" class="form-control journal-text" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+            <textarea onkeyup="countJPChars(this);" maxlength="1000" data-limit-rows="true" class="form-control journal-text" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
         </label>
-        <p id="jp-charNum">1,100 characters allowed</p>
+        <p id="jp-charNum">1,000 characters allowed</p>
     </div>
     <input type="submit" id="submit-code" value="Create"/>
 </form>
