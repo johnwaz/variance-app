@@ -25,8 +25,9 @@
         </div>
         <div class="form-group textarea">
             <label>Page Content <span th:errors="${page.content}" class="error"></span>
-                <textarea data-limit-rows="true" class="form-control text" name="content" th:field="${page.content}" rows="30" cols="75" wrap="hard" placeholder="required"></textarea>
+                <textarea onkeyup="countBCPChars(this);" maxlength="2400" data-limit-rows="true" class="form-control text" name="content" th:field="${page.content}" rows="30" cols="75" wrap="hard" placeholder="required"></textarea>
             </label>
+            <p id="bcp-charNum">2400 characters allowed</p>
         </div>
         <input type="hidden" th:value="${pageId}" name="pageId"/>
         <div class="form-group">

@@ -287,7 +287,7 @@ public class PageController {
 
     @PostMapping("journalPageAdd/{journalId}")
     public String processAddPageToJournalForm(@Valid @ModelAttribute Page newPage, Errors errors,
-                                                   Model model, @PathVariable int journalId, HttpSession session) {
+                                              Model model, @PathVariable int journalId, HttpSession session) {
         if (errors.hasErrors()) {
             model.addAttribute("journal", journalRepository.findById(journalId).get());
             return "pages/journalPageAdd";
@@ -351,7 +351,7 @@ public class PageController {
 
     @PostMapping("journalPageEdit")
     public String processEditJournalPageForm(@Valid @ModelAttribute Page editPage, Errors errors, Model model,
-                                                  int pageId, Integer pageNumber, String content) {
+                                             int pageId, Integer pageNumber, String content) {
 
         if (errors.hasErrors()) {
             model.addAttribute("uneditedPage", pageRepository.findById(pageId).get());

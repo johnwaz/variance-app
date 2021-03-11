@@ -16,7 +16,7 @@
     <h6 th:text="${'Subject: ' + page.subject.name}"></h6>
     <h5 th:text="${'Notebook: ' + page.subject.notebook.title}"></h5>
     <h6 style="text-decoration: underline" th:text="${'Content:'}"></h6>
-    <textarea readonly class="page-content text" style="white-space: break-spaces" th:text="${page.content}" rows="30" cols="75"></textarea>
+    <textarea readonly class="nb-page-content" style="white-space: break-spaces" th:text="${page.content}" rows="24" cols="60"></textarea>
     <hr>
 </div>
 
