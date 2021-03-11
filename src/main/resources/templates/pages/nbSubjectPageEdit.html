@@ -27,7 +27,7 @@
             <label>Page Content <span th:errors="${page.content}" class="error"></span>
                 <textarea onkeyup="countNBSPChars(this);" maxlength="1500" data-limit-rows="true" class="form-control nb-text" name="content" th:field="${page.content}" rows="24" cols="60" wrap="hard" placeholder="required"></textarea>
             </label>
-            <p id="nbsp-charNum">1,500 characters allowed</p>
+            <p id="nbsp-charNum">1500 characters allowed</p>
         </div>
         <input type="hidden" th:value="${pageId}" name="pageId"/>
         <div class="form-group">
