@@ -100,6 +100,34 @@ ul {
     margin-right: 40px;
 }
 
+.chapter-underline {
+    border-bottom: 1px solid #282828;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.subject-underline {
+    border-bottom: 1px solid #282828;
+    width: 95px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.story-underline {
+    border-bottom: 1px solid #282828;
+    width: 78px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.page-underline {
+    border-bottom: 1px solid #282828;
+    width: 72px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 .number-field {
     width: 60px;
     margin: auto;

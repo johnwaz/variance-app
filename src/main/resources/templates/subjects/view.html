@@ -20,7 +20,7 @@
 <p></p>
 
 <h4 th:unless="${subject.pages} and ${subject.pages.size()}" th:text="${'No Pages'}"></h4>
-<h4 th:if="${subject.pages} and ${subject.pages.size()}" th:text="${'Pages'}"></h4>
+<h4 class="page-underline" th:if="${subject.pages} and ${subject.pages.size()}" th:text="${'Pages'}"></h4>
 <div>
     <ul>
         <li th:each="page : ${subject.pages}">
