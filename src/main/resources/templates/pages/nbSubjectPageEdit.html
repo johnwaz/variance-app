@@ -25,7 +25,7 @@
         </div>
         <div class="form-group textarea">
             <label>Page Content <span th:errors="${page.content}" class="error"></span>
-                <textarea onkeyup="countNBSPChars(this);" maxlength="1500" data-limit-rows="true" class="form-control nb-text" name="content" th:field="${page.content}" rows="24" cols="60" wrap="hard" placeholder="required"></textarea>
+                <textarea onkeyup="countNBSPChars(this);" maxlength="1500" data-limit-rows="true" class="form-control nb-text" name="content" th:field="${page.content}" rows="24" cols="60" wrap="hard" placeholder="Space then Enter to save page starting on the next line"></textarea>
             </label>
             <p id="nbsp-charNum">1500 characters allowed</p>
         </div>

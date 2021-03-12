@@ -16,7 +16,7 @@
 <p></p>
 
 <h4 th:unless="${journal.pages} and ${journal.pages.size()}" th:text="${'No Pages'}"></h4>
-<h4 th:if="${journal.pages} and ${journal.pages.size()}" th:text="${'Pages:'}"></h4>
+<h4 class="page-underline" th:if="${journal.pages} and ${journal.pages.size()}" th:text="${'Pages'}"></h4>
 <div>
     <ul>
         <li th:each="page : ${journal.pages}">

@@ -24,7 +24,7 @@
         </div>
         <div class="form-group textarea">
             <label>Page Content <span th:errors="${page.content}" class="error"></span>
-                <textarea onkeyup="countJPChars(this);" maxlength="1000" data-limit-rows="true" class="form-control journal-text" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="required"></textarea>
+                <textarea onkeyup="countJPChars(this);" maxlength="1000" data-limit-rows="true" class="form-control journal-text" name="content" th:field="${page.content}" rows="20" cols="50" wrap="hard" placeholder="Space then Enter to save page starting on the next line"></textarea>
             </label>
             <p id="jp-charNum">1000 characters allowed</p>
         </div>

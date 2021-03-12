@@ -55,9 +55,8 @@ function deletePage() {
 }
 
 $(document).ready(function () {
-  $('textarea[data-limit-rows=true]')
-    .on('keypress', function (event) {
-        var textarea = $(this),
+    $('textarea[data-limit-rows=true]').on('keypress', function(event) {
+        let textarea = $(this),
             text = textarea.val(),
             numberOfLines = (text.match(/\n/g) || []).length + 1,
             maxRows = parseInt(textarea.attr('rows'));
@@ -69,9 +68,9 @@ $(document).ready(function () {
 });
 
 function countJPChars(obj){
-    var maxLength = 1000;
-    var strLength = obj.value.length;
-    var charRemain = (maxLength - strLength);
+    let maxLength = 1000;
+    let strLength = obj.value.length;
+    let charRemain = (maxLength - strLength);
 
     if (charRemain <= 0) {
         document.getElementById("jp-charNum").innerHTML = '<span style="color: red;">You have reached the limit of '+maxLength+' characters</span>';
@@ -81,9 +80,9 @@ function countJPChars(obj){
 }
 
 function countNBSPChars(obj){
-    var maxLength = 1500;
-    var strLength = obj.value.length;
-    var charRemain = (maxLength - strLength);
+    let maxLength = 1500;
+    let strLength = obj.value.length;
+    let charRemain = (maxLength - strLength);
 
     if (charRemain <= 0) {
         document.getElementById("nbsp-charNum").innerHTML = '<span style="color: red;">You have reached the limit of '+maxLength+' characters</span>';
@@ -93,9 +92,9 @@ function countNBSPChars(obj){
 }
 
 function countBCPChars(obj){
-    var maxLength = 2400;
-    var strLength = obj.value.length;
-    var charRemain = (maxLength - strLength);
+    let maxLength = 2400;
+    let strLength = obj.value.length;
+    let charRemain = (maxLength - strLength);
 
     if (charRemain <= 0) {
         document.getElementById("bcp-charNum").innerHTML = '<span style="color: red;">You have reached the limit of '+maxLength+' characters</span>';
@@ -105,9 +104,9 @@ function countBCPChars(obj){
 }
 
 function countSCPChars(obj){
-    var maxLength = 2400;
-    var strLength = obj.value.length;
-    var charRemain = (maxLength - strLength);
+    let maxLength = 2400;
+    let strLength = obj.value.length;
+    let charRemain = (maxLength - strLength);
 
     if (charRemain <= 0) {
         document.getElementById("scp-charNum").innerHTML = '<span style="color: red;">You have reached the limit of '+maxLength+' characters</span>';
@@ -115,3 +114,7 @@ function countSCPChars(obj){
         document.getElementById("scp-charNum").innerHTML = charRemain+' characters remaining';
     }
 }
+
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+})

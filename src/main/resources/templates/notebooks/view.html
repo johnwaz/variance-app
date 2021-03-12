@@ -16,7 +16,7 @@
 <p></p>
 
 <h4 th:unless="${notebook.subjects} and ${notebook.subjects.size()}" th:text="${'No Subjects'}"></h4>
-<h4 th:if="${notebook.subjects} and ${notebook.subjects.size()}" th:text="${'Subjects:'}"></h4>
+<h4 class="subject-underline" th:if="${notebook.subjects} and ${notebook.subjects.size()}" th:text="${'Subjects'}"></h4>
 <div>
     <ul>
         <li th:each="subject : ${notebook.subjects}">

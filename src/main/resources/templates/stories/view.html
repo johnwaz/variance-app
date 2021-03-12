@@ -17,7 +17,7 @@
 <p></p>
 
 <h4 th:unless="${story.chapters} and ${story.chapters.size()}" th:text="${'No Chapters'}"></h4>
-<h4 th:if="${story.chapters} and ${story.chapters.size()}" th:text="${'Chapters:'}"></h4>
+<h4 class="chapter-underline" th:if="${story.chapters} and ${story.chapters.size()}" th:text="${'Chapters'}"></h4>
 <div>
     <ul>
         <li th:each="chapter : ${story.chapters}">
