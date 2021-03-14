@@ -14,22 +14,22 @@
 <div class="container body-content home-div">
     <span th:unless="${user.books} and ${user.books.size()}" class="home-span">
         <a th:href="@{'/books/add'}">
-            <input type="submit" value="Add Books" class="btn btn-secondary">
+            <input type="submit" value="Add Book" class="btn btn-secondary">
         </a>
     </span>
     <span th:unless="${user.novels} and ${user.novels.size()}" class="home-span">
         <a th:href="@{'/novels/add'}">
-            <input type="submit" value="Add Novels" class="btn btn-secondary">
+            <input type="submit" value="Add Novel" class="btn btn-secondary">
         </a>
     </span>
     <span th:unless="${user.journals} and ${user.journals.size()}" class="home-span">
         <a th:href="@{'/journals/add'}">
-            <input type="submit" value="Add Journals" class="btn btn-secondary">
+            <input type="submit" value="Add Journal" class="btn btn-secondary">
         </a>
     </span>
     <span th:unless="${user.notebooks} and ${user.notebooks.size()}" class="home-span">
         <a th:href="@{'/notebooks/add'}">
-            <input type="submit" value="Add Notebooks" class="btn btn-secondary">
+            <input type="submit" value="Add Notebook" class="btn btn-secondary">
         </a>
     </span>
 </div>
