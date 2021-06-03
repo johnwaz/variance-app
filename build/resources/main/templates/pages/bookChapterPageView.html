@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container var-container body-content">
+<header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>/ <a th:href="@{/books/view/{id}(id=${page.chapter.book.id})}" th:text="${page.chapter.book.title}"></a></span>
+    <span>/ <a th:href="@{/chapters/bookChapterView/{id}(id=${page.chapter.id})}" th:text="${'Chapter ' + page.chapter.chapterNumber}"></a></span>
+    <span th:text="${'/ Page ' + page.pageNumber}"></span>
+</div>
+
+<h3 th:text="${'Page ' + page.pageNumber}">Default Title</h3>
+
+<div>
+    <h6 th:text="${'Chapter: ' + page.chapter.chapterNumber}"></h6>
+    <h5 th:text="${'Book: ' + page.chapter.book.title}"></h5>
+    <h6 style="text-decoration: underline" th:text="${'Content:'}"></h6>
+    <textarea readonly class="page-content text" style="white-space: break-spaces" th:text="${page.content}" rows="30" cols="75"></textarea>
+    <hr>
+</div>
+
+<div>
+    <span class="view-span">
+        <a th:href="@{/pages/bookChapterPageEdit/{id}(id=${page.id})}">
+            <input type="submit" value="Edit Page" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/chapters/bookChapterView/{id}(id=${page.chapter.id})}">
+            <input type="submit" th:value="${'Back to Chapter ' + page.chapter.chapterNumber}" class="btn btn-dark">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
+    <th:block th:if="${page}">
+        <form method="post" th:action="@{/pages/bookChapterPageView}" id="delete-page">
+            <input type="hidden" name="pageId" th:value="${page.id}" class="form-control">
+            <input type="hidden" id="pageId" th:value="${page.pageNumber}" class="form-control">
+            <input type="hidden" name="chapterId" th:value="${page.chapter.id}" class="form-control">
+            <p></p>
+            <input onclick="deletePage()" type="button" value="Delete Page" class="btn btn-danger">
+        </form>
+    </th:block>
+</div>
+
+</body>
+</html>

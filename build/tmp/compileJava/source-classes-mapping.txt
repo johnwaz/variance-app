@@ -1,0 +1,68 @@
+com/johnwaz/varianceapp/models/Book.java
+ com.johnwaz.varianceapp.models.Book
+com/johnwaz/varianceapp/controller/SubjectController.java
+ com.johnwaz.varianceapp.controller.SubjectController
+com/johnwaz/varianceapp/data/NovelRepository.java
+ com.johnwaz.varianceapp.data.NovelRepository
+com/johnwaz/varianceapp/data/UserRepository.java
+ com.johnwaz.varianceapp.data.UserRepository
+com/johnwaz/varianceapp/models/AbstractEntity.java
+ com.johnwaz.varianceapp.models.AbstractEntity
+com/johnwaz/varianceapp/models/Notebook.java
+ com.johnwaz.varianceapp.models.Notebook
+com/johnwaz/varianceapp/AuthenticationFilter.java
+ com.johnwaz.varianceapp.AuthenticationFilter
+com/johnwaz/varianceapp/models/dto/LoginFormDTO.java
+ com.johnwaz.varianceapp.models.dto.LoginFormDTO
+com/johnwaz/varianceapp/models/Journal.java
+ com.johnwaz.varianceapp.models.Journal
+com/johnwaz/varianceapp/controller/BookController.java
+ com.johnwaz.varianceapp.controller.BookController
+com/johnwaz/varianceapp/models/User.java
+ com.johnwaz.varianceapp.models.User
+com/johnwaz/varianceapp/controller/JournalController.java
+ com.johnwaz.varianceapp.controller.JournalController
+com/johnwaz/varianceapp/models/Story.java
+ com.johnwaz.varianceapp.models.Story
+com/johnwaz/varianceapp/WebApplicationConfig.java
+ com.johnwaz.varianceapp.WebApplicationConfig
+com/johnwaz/varianceapp/data/BookRepository.java
+ com.johnwaz.varianceapp.data.BookRepository
+com/johnwaz/varianceapp/data/ChapterRepository.java
+ com.johnwaz.varianceapp.data.ChapterRepository
+com/johnwaz/varianceapp/controller/NotebookController.java
+ com.johnwaz.varianceapp.controller.NotebookController
+com/johnwaz/varianceapp/VarianceAppApplication.java
+ com.johnwaz.varianceapp.VarianceAppApplication
+com/johnwaz/varianceapp/data/PageRepository.java
+ com.johnwaz.varianceapp.data.PageRepository
+com/johnwaz/varianceapp/data/SubjectRepository.java
+ com.johnwaz.varianceapp.data.SubjectRepository
+com/johnwaz/varianceapp/data/StoryRepository.java
+ com.johnwaz.varianceapp.data.StoryRepository
+com/johnwaz/varianceapp/controller/HomeController.java
+ com.johnwaz.varianceapp.controller.HomeController
+com/johnwaz/varianceapp/models/Subject.java
+ com.johnwaz.varianceapp.models.Subject
+com/johnwaz/varianceapp/models/Page.java
+ com.johnwaz.varianceapp.models.Page
+com/johnwaz/varianceapp/controller/NovelController.java
+ com.johnwaz.varianceapp.controller.NovelController
+com/johnwaz/varianceapp/controller/AuthenticationController.java
+ com.johnwaz.varianceapp.controller.AuthenticationController
+com/johnwaz/varianceapp/data/NotebookRepository.java
+ com.johnwaz.varianceapp.data.NotebookRepository
+com/johnwaz/varianceapp/models/Chapter.java
+ com.johnwaz.varianceapp.models.Chapter
+com/johnwaz/varianceapp/controller/StoryController.java
+ com.johnwaz.varianceapp.controller.StoryController
+com/johnwaz/varianceapp/controller/PageController.java
+ com.johnwaz.varianceapp.controller.PageController
+com/johnwaz/varianceapp/controller/ChapterController.java
+ com.johnwaz.varianceapp.controller.ChapterController
+com/johnwaz/varianceapp/models/dto/RegisterFormDTO.java
+ com.johnwaz.varianceapp.models.dto.RegisterFormDTO
+com/johnwaz/varianceapp/models/Novel.java
+ com.johnwaz.varianceapp.models.Novel
+com/johnwaz/varianceapp/data/JournalRepository.java
+ com.johnwaz.varianceapp.data.JournalRepository

@@ -1,0 +1,2 @@
+com/johnwaz/varianceapp/VarianceAppApplicationTests.java
+ com.johnwaz.varianceapp.VarianceAppApplicationTests

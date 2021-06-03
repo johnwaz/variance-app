@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container var-container body-content">
+<header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span th:text="${'/ ' + novel.title}"></span>
+</div>
+
+<h3 th:text="${'Title: ' + novel.title}">Default Title</h3>
+
+<div>
+    <h6 th:if="${novel.description != ''}" th:text="${'Description: ' + novel.description}"></h6>
+</div>
+<p></p>
+
+<h4 th:unless="${novel.stories} and ${novel.stories.size()}" th:text="${'No Stories'}"></h4>
+<h4 class="story-underline" th:if="${novel.stories} and ${novel.stories.size()}" th:text="${'Stories'}"></h4>
+<div>
+    <ul>
+        <li th:each="story : ${novel.stories}">
+            <a th:href="@{'/stories/view/' + ${story.id}}" th:text="${story.name}"></a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <span class="view-span">
+        <a th:href="@{/novels/edit/{id}(id=${novel.id})}">
+            <input type="submit" value="Edit Novel" class="btn btn-info">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/stories/add/{id}(id=${novel.id})}">
+            <input type="submit" value="Add Story" class="btn btn-secondary">
+        </a>
+    </span>
+    <span class="view-span">
+        <a th:href="@{/}">
+            <input type="submit" th:value="${'Home'}" class="btn btn-primary">
+        </a>
+    </span>
+    <th:block th:if="${novel}">
+        <form method="post" th:action="@{/novels/view}" id="delete-novel">
+            <input type="hidden" name="novelId" th:value="${novel.id}" class="form-control">
+            <input type="hidden" id="novelId" th:value="${novel.title}" class="form-control">
+            <p></p>
+            <input onclick="deleteNovel()" type="button" value="Delete Novel" class="btn btn-danger">
+        </form>
+    </th:block>
+</div>
+
+</body>
+</html>
